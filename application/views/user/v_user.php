@@ -62,7 +62,7 @@
                   <td><?php echo $user->alamat.', '.$user->name_kota.', '.$user->name_prov; ?></td>
                   <td><?php echo $user->tlp; ?></td>
                   <td><?php echo $user->email; ?></td>
-                  <td><?php echo $user->upline; ?></td>
+                  <td><?php echo $user->namaupline; ?></td>
                   <td><?php echo $user->jumlahhu; ?></td>
                   <td><?php echo $user->statusbayar; ?></td>
                   <td>

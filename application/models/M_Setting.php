@@ -17,48 +17,22 @@ class M_Setting extends CI_Model {
         return $query->result();
     }
 
-    function getakses($ida){
+    function getkec($id){
         $this->db->select('*');
-        $this->db->join('tb_menu', 'tb_menu.id_menu = tb_akses.id_menu');
-        $this->db->join('tb_anggota', 'tb_anggota.statusanggota = tb_akses.tipeuser');
+        $this->db->order_by('kecamatan', 'ASC');
         $where = array(
-            'tb_akses.tipeuser' => $ida
+            'id_kota' => $id
         );
-        $query = $this->db->get_where('tb_akses', $where);
-        return $query->result();
-
-        // return $this->db->get('tb_menu')->result();
-    }
-
-    function getuser(){
-        $this->db->select('*');
-        $this->db->from('tb_provinsi');
-        $query = $this->db->get();
+        $query = $this->db->get_where('tb_kecamatan', $where);
         return $query->result();
     }
 
-    function getbarang(){
+    function cek($cek,$kode,$tabel){
         $this->db->select('*');
-        $this->db->from('tb_satuan');
-        $this->db->from('tb_jenisbarang');
-        $this->db->from('tb_konversi');
-        $query = $this->db->get();
-        return $query->result();
-    }
-
-    function gethargabarang(){
-        $this->db->select('*');
-        $this->db->join('tb_jenisbarang', 'tb_jenisbarang.id_jenisbarang = tb_barang.id_jenisbarang');
-        $this->db->join('tb_satuan', 'tb_satuan.id_satuan = tb_barang.id_satuan');
-        $this->db->from('tb_barang');
-        $query = $this->db->get();
-        return $query->result();
-    }
-
-    function getsuplier(){
-        $this->db->select('*');
-        $this->db->from('tb_provinsi');
-        $query = $this->db->get();
+        $where = array(
+            $cek => $kode
+        );
+        $query = $this->db->get_where($tabel, $where);
         return $query->result();
     }
 

@@ -25,12 +25,12 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" method="POST" action="<?php echo site_url('C_User/tambah')?>">
+            <?php echo form_open("C_User/tambah", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
               <div class="box-body">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">NIK</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nik" name="nik" placeholder="NIK" onkeypress="return Angkasaja(event)">
+                    <input type="text" class="form-control" id="nik" name="nik" maxlength="16" minlength="16" placeholder="NIK" onkeypress="return Angkasaja(event)" onkeyup="cek_nik()">
                   <span id="pesannik"></span>
                   </div>
                 </div>
@@ -86,11 +86,16 @@
                  <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Upline</label>
                   <div class="col-sm-9">
-                    <select class="form-control select2" id="tipeuser" name="tipeuser" style="width: 100%;">
+                    <select class="form-control select2" id="upline" name="upline" style="width: 100%;">
                       <option value="">--Pilih--</option>
-                      <?php foreach ($user as $user) { ?>
-                      <option value="<?php echo $user->id_anggota?>"><?php echo $user->nama ?></option>
-                      <?php } ?>
+                      <?php foreach ($user as $user) { 
+                        $a = $this->db->query("select * from tb_anggota where id_upline = '$user->id_anggota'"); 
+                        $b = $a->result();
+                        if ($user->id_anggota == '1'){ $max = 2; } else { $max = 3; }
+                        if(count($b)<=$max){ 
+                          ?> <option value="<?php echo $user->id_anggota?>"><?php echo $user->nama ?></option>  
+                      <?php } 
+                    }?>
                     </select>                    
                   </div>
                 </div>
@@ -127,7 +132,8 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Bukti Transfer</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="tf" name="tf" placeholder="Bukti Transfer">
+                    <input type="file" id="image-file" class="demoInputBox" name="input_gambar" required onchange="ValidateSize(this)">
+                  <p><span class="text-danger">Maksimal 2Mb </span></p>
                   </div>
                 </div>
               </div>
@@ -139,7 +145,7 @@
                   </div>
               </div>
               <!-- /.box-footer -->
-            </form>
+           <?php echo form_close();?>
           </div>
           <!-- /.box -->
         </div>

@@ -7,7 +7,7 @@ class M_User extends CI_Model {
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
-        $this->db->join('tb_anggota b', 'tb_anggota.id_upline = b.id_user');
+        $this->db->join('tb_anggota b', 'b.id_anggota = tb_anggota.id_upline');
         $query = $this->db->get('tb_anggota');
     	return $query->result();
     }
@@ -28,24 +28,53 @@ class M_User extends CI_Model {
         return $query->result();
     }
 
-    function tambahdata(){
+     public function upload(){
+        $file_name = $this->input->post('input_gambar');
+        $path= FCPATH.'images';
+        //echo $path;
+        $config['upload_path'] = $path;
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_size'] = '2048';
+        $config['remove_space'] = TRUE;
+        $config['width']= '3000';
+        $config['height']= '4000';
+        $this->load->library('upload', $config); // Load konfigurasi uploadnya
+        $this->upload->initialize($config);
+        if($this->upload->do_upload('input_gambar')){ // Lakukan upload dan Cek jika proses upload berhasil
+           $return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
+            return $return;
+        } else{
+            $return = array('result' => 'failed', 'error' => $this->upload->display_errors());
+            return $return; 
+        }
+    
+    }
+
+    function tambahdata($upload){
         $user = array(
-            // 'nik' => $this->input->post('nik'),
-            'username' => $this->input->post('username'),
+            'nik' => $this->input->post('nik'),
             'nama' => $this->input->post('nama'),
-            // 'alamat' => $this->input->post('alamat'),
-            // 'id_kota' => $this->input->post('kota'),
-            // 'id_provinsi' => $this->input->post('prov'),
-            'password' => $this->input->post('password'),
+            'alamat' => $this->input->post('alamat'),
+            'id_kota' => $this->input->post('kota'),
+            'id_provinsi' => $this->input->post('prov'),
+            'id_kecamatan' => $this->input->post('kecamatan'),
+            'email' => $this->input->post('email'),
+            'tlp' => $this->input->post('tlp'),
+            'bank' => $this->input->post('bank'),
+            'norek' => $this->input->post('norek'),
+            'pemilik' => $this->input->post('pemilik'),
+            'jumlahhu' => $this->input->post('jumlahhu'),
+            'namasponsor' => $this->input->post('namasponsor'),
+            'id_upline' => $this->input->post('upline'),
+            'buktitransfer' => $upload['file']['file_name'],
         );
         
         $this->db->insert('tb_anggota', $user);
     }
 
-    function cekkodeuser(){
-        $this->db->select_max('id_anggota');
+    function getuserall(){
         $iduser = $this->db->get('tb_anggota');
-        return $iduser->row();
+        return $iduser->result();
     }
 
     function tambahakses($id){

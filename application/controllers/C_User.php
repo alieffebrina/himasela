@@ -30,40 +30,45 @@ class C_User extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();
+        $data['user'] = $this->M_User->getuserall();
         $this->load->view('user/v_adduser', $data); 
         $this->load->view('template/footer');
     }
 
-    function cek_user(){
-        # ambil Kualifikasiname dari form
-        
-        $kode = $this->input->post('user');
-                # select ke model member Kualifikasiname yang diinput Kualifikasi
-        $hasil_kode = $this->M_User->cek_user($kode);
-         
-                # pengecekan value $hasil_Kualifikasiname
-        if(count($hasil_kode)!=0){
-          # kalu value $hasil_Kualifikasiname tidak 0
-                  # echo 1 untuk pertanda Kualifikasiname sudah ada pada db    
-                       echo '1';
+     function cek_nik(){
+        $tabel = 'tb_anggota';
+        $cek = 'nik';
+        $kode = $this->input->post('nik');
+        $hasil_kode = $this->M_Setting->cek($cek,$kode,$tabel);
+        if(count($hasil_kode)!=0){ 
+            echo '1';
         }else{
-                  # kalu value $hasil_Kualifikasiname = 0
-                  # echo 2 untuk pertanda Kualifikasiname belum ada pada db
             echo '2';
         }
          
     }
 
+    // function cek_upline(){
+    //     $tabel = 'tb_anggota';
+    //     $cek = 'id_upline';
+    //     $kode = $this->input->post('upline');
+    //     $hasil_kode = $this->M_Setting->cek($cek,$kode,$tabel);
+    //     if ($cek == '1'){ $max = 2} else { $max = 3} 
+    //     if(count($hasil_kode)>$max){ 
+    //         $callback = array(' '= 'Downline anda penuh'); 
+    //     }         
+    // }
+
     public function tambah()
     {   
-        $this->M_User->tambahdata();
-        $data = $this->M_User->cekkodeuser();
-        foreach ($data as $id) {
-            $id =$id;
-            $this->M_User->tambahakses($id);
+        $upload = $this->M_User->upload();
+        if ($upload['result'] == "success"){
+            $this->M_User->tambahdata($upload);
+            $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
+            redirect('C_User');      
+        }  else{
+            $data['message'] = $upload['error'];
         }
-        $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
-        redirect('C_User');
     }
 
     function view($ida)
@@ -98,7 +103,7 @@ class C_User extends CI_Controller{
 
     function hapus($id){
         $where = array('id_anggota' => $id);
-        $this->M_Setting->delete($where,'tb_user');
+        $this->M_Setting->delete($where,'tb_anggota');
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
         redirect('C_User');
     }

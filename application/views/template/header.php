@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ADP Paving</title>
+  <title>Himasela</title>
   <link rel="icon" type="image/png" href="<?php echo base_url() ?>assets/login/images/icons/paving.jpg"/>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -43,16 +43,16 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-green fixed sidebar-mini">
+<body class="hold-transition skin-purple-light fixed sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
     <!-- Logo -->
     <a href="<?php echo site_url('Welcome'); ?>" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>DP</span>
+      <span class="logo-mini"><b>H</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>ADP </b>Paving</span>
+      <span class="logo-lg"><b>H</b>imasela</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
