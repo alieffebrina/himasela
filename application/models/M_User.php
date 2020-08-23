@@ -67,7 +67,7 @@ class M_User extends CI_Model {
             'namasponsor' => $this->input->post('namasponsor'),
             'id_upline' => $this->input->post('upline'),
             'buktitransfer' => $upload['file']['file_name'],
-            'statusbayar' => $bayar,
+            'statusbayar' => 'menunggu konfirmasi',
             'statusanggota' => 'menunggu konfirmasi upline',
         );
         
