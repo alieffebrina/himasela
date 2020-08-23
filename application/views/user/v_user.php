@@ -42,6 +42,8 @@
                   <th>No</th>
                   <th>NIK</th>
                   <th>Nama</th>
+                  <th>Username</th>
+                  <th>Password</th>
                   <th>Alamat</th>
                   <th>Upline</th>
                   <th>Pembayaran</th>
@@ -57,6 +59,8 @@
                   <td><?php echo $no++; ?></td>
                   <td><?php echo $user->nik; ?></td>
                   <td><?php echo $user->nama; ?></td>
+                  <td><?php echo $user->username; ?></td>
+                  <td><?php echo $user->password; ?></td>
                   <td><?php echo $user->alamat.', '.$user->name_kota.', '.$user->name_prov; ?></td>
                   <td><?php echo $user->namaupline; ?></td>
                   <td><?php echo $user->statusbayar; ?></td>
