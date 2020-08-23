@@ -116,7 +116,7 @@ class C_User extends CI_Controller{
             $username = $data->nik;
         }
         $this->M_User->konfirm($iduser,$bayar,$anggota,$id,$username);
-        $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
+        echo "<script>alert('Transaksi Sukses.Data Sudah ada dalam Laporan');window.location='C_User'</script>";
         redirect('C_User');
     }
 

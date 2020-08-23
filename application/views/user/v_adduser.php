@@ -43,7 +43,7 @@
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
                   <div class="col-sm-9">
-                    <select class="form-control select2" id="prov" name="prov" style="width: 100%;">
+                    <select class="form-control select2" id="prov" name="prov" style="width: 100%;" required>
                       <option value="">--Pilih--</option>
                       <?php foreach ($provinsi as $provinsi) { ?>
                       <option value="<?php echo $provinsi->id_provinsi ?>"><?php echo $provinsi->name_prov ?></option>
@@ -54,39 +54,39 @@
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Kota/Kabupaten</label>
                   <div class="col-sm-9">
-                  <select class="form-control select2" id="kota" name="kota" style="width: 100%;">
+                  <select class="form-control select2" id="kota" name="kota" style="width: 100%;" required>
                     </select>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Kecamatan</label>
                   <div class="col-sm-9">
-                  <select class="form-control select2" id="kecamatan" name="kecamatan" style="width: 100%;">
+                  <select class="form-control select2" id="kecamatan" name="kecamatan" style="width: 100%;" required>
                     </select>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Alamat</label>
                   <div class="col-sm-9">
-                    <textarea class="form-control" rows="3" id="alamat" name="alamat"></textarea>
+                    <textarea class="form-control" rows="3" id="alamat" name="alamat" required></textarea>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">No HP</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="tlp" name="tlp" placeholder="Telepon" maxlength="12" minlength="6" onkeypress="return Angkasaja(event)">
+                    <input type="text" class="form-control" id="tlp" name="tlp" placeholder="Telepon" maxlength="12" minlength="6" onkeypress="return Angkasaja(event)" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">E-Mail</label>
                   <div class="col-sm-9">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail" required>
                   </div>
                 </div>
                  <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Upline</label>
                   <div class="col-sm-9">
-                    <select class="form-control select2" id="upline" name="upline" style="width: 100%;">
+                    <select class="form-control select2" id="upline" name="upline" style="width: 100%;" required>
                       <option value="">--Pilih--</option>
                       <?php foreach ($user as $user) { 
                         $a = $this->db->query("select * from tb_anggota where id_upline = '$user->id_anggota'"); 
