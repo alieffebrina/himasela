@@ -8,8 +8,48 @@ class M_User extends CI_Model {
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
         $this->db->join('tb_anggota b', 'b.id_anggota = tb_anggota.id_upline');
+        $anggota = array('downline', 'upline', 'administrator', 'admin');
+        $this->db->where_not_in('tb_anggota.statusanggota', $anggota);
         $query = $this->db->get('tb_anggota');
     	return $query->result();
+    }
+
+    function getall(){
+        $this->db->select('tb_anggota.*, b.nama namaupline, tb_provinsi.*, tb_kota.*, tb_kecamatan.*');
+        $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
+        $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
+        $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
+        $this->db->join('tb_anggota b', 'b.id_anggota = tb_anggota.id_upline');
+        $anggota = array('menunggu konfirmasi admin', 'menunggu konfirmasi upline');
+        $this->db->where_not_in('tb_anggota.statusanggota', $anggota);
+        $query = $this->db->get('tb_anggota');
+        return $query->result();
+    }
+
+    function getuserspek($iduser){
+        $this->db->select('tb_anggota.*, b.nama namaupline, tb_provinsi.*, tb_kota.*, tb_kecamatan.*');
+        $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
+        $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
+        $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
+        $this->db->join('tb_anggota b', 'b.id_anggota = tb_anggota.id_upline');
+        $anggota = array('downline', 'upline', 'administrator', 'admin');
+        $this->db->where_not_in('tb_anggota.statusanggota', $anggota);
+        $this->db->where('tb_anggota.id_upline', $iduser);
+        $query = $this->db->get('tb_anggota');
+        return $query->result();
+    }
+
+    function getallspek($iduser){
+        $this->db->select('tb_anggota.*, b.nama namaupline, tb_provinsi.*, tb_kota.*, tb_kecamatan.*');
+        $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
+        $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
+        $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
+        $this->db->join('tb_anggota b', 'b.id_anggota = tb_anggota.id_upline');
+        $anggota = array('menunggu konfirmasi admin', 'menunggu konfirmasi upline');
+        $this->db->where_not_in('tb_anggota.statusanggota', $anggota);
+        $this->db->where('tb_anggota.id_upline', $iduser);
+        $query = $this->db->get('tb_anggota');
+        return $query->result();
     }
 
     function getnama($ida){
@@ -69,6 +109,8 @@ class M_User extends CI_Model {
             'buktitransfer' => $upload['file']['file_name'],
             'statusbayar' => 'menunggu konfirmasi',
             'statusanggota' => 'menunggu konfirmasi upline',
+            'id_user' => $this->session->userdata('id_user'),
+            'tglupdate' => date('Y-m-d h:i:s'),
         );
         
         $this->db->insert('tb_anggota', $user);
@@ -91,9 +133,13 @@ class M_User extends CI_Model {
     }
 
     function getspek($iduser){
-		$this->db->select('*'); 
+        $this->db->select('tb_anggota.*, b.nama namaupline, tb_provinsi.*, tb_kota.*, tb_kecamatan.*');
+        $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
+        $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
+        $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
+        $this->db->join('tb_anggota b', 'b.id_anggota = tb_anggota.id_upline');
         $where = array(
-            'id_anggota' => $iduser
+            'tb_anggota.id_anggota' => $iduser
         );
         $query = $this->db->get_where('tb_anggota', $where);
     	return $query->result();
@@ -101,9 +147,22 @@ class M_User extends CI_Model {
 
     function edit(){
         $user = array(
-            'username' => $this->input->post('username'),
+            'nik' => $this->input->post('nik'),
             'nama' => $this->input->post('nama'),
-            'password' => $this->input->post('password'),
+            'alamat' => $this->input->post('alamat'),
+            'id_kota' => $this->input->post('kota'),
+            'id_provinsi' => $this->input->post('prov'),
+            'id_kecamatan' => $this->input->post('kecamatan'),
+            'email' => $this->input->post('email'),
+            'tlp' => $this->input->post('tlp'),
+            'bank' => $this->input->post('bank'),
+            'norek' => $this->input->post('norek'),
+            'pemilik' => $this->input->post('pemilik'),
+            'jumlahhu' => $this->input->post('jumlahhu'),
+            'namasponsor' => $this->input->post('namasponsor'),
+            'id_upline' => $this->input->post('upline'),
+            'id_user' => $this->session->userdata('id_user'),
+            'tglupdate' => date('Y-m-d h:i:s'),
         );
 
         $where = array(
@@ -139,6 +198,8 @@ class M_User extends CI_Model {
             'id_user' => $id,
             'username' => $username,
             'password' => $password,
+            'id_user' => $this->session->userdata('id_user'),
+            'tglupdate' => date('Y-m-d h:i:s'),
         );
 
         $where = array(

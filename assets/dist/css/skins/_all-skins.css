@@ -1347,7 +1347,7 @@
  * ------------
  */
 .skin-yellow-light .main-header .navbar {
-  background-color: #f39c12;
+  background-color: #8a3018;
 }
 .skin-yellow-light .main-header .navbar .nav > li > a {
   color: #ffffff;
@@ -1387,12 +1387,12 @@
   }
 }
 .skin-yellow-light .main-header .logo {
-  background-color: #f39c12;
+  background-color: #8a3018;
   color: #ffffff;
   border-bottom: 0 solid transparent;
 }
 .skin-yellow-light .main-header .logo:hover {
-  background-color: #f39a0d;
+  background-color: #8a3018;
 }
 .skin-yellow-light .main-header li.user-header {
   background-color: #f39c12;

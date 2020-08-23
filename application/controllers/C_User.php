@@ -16,9 +16,32 @@ class C_User extends CI_Controller{
     {
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
+        $iduser = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        $data['user'] = $this->M_User->getuser();
+        if ($id == 'upline' || $id == 'downline'){
+            $data['user'] = $this->M_User->getuserspek($iduser);
+        } else {
+            $data['user'] = $this->M_User->getuser();            
+        }
+        $data['header'] = 'Calon Anggota';
+        $this->load->view('user/v_user',$data); 
+        $this->load->view('template/footer');
+    }
+
+    function all()
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('statusanggota');
+        $iduser = $this->session->userdata('id_user');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        if ($id == 'upline' || $id == 'downline'){
+            $data['user'] = $this->M_User->getallspek($iduser);
+        } else {
+            $data['user'] = $this->M_User->getall();            
+        }
+        $data['header'] = 'Anggota';
         $this->load->view('user/v_user',$data); 
         $this->load->view('template/footer');
     }
@@ -47,24 +70,13 @@ class C_User extends CI_Controller{
         }
          
     }
-
-    // function cek_upline(){
-    //     $tabel = 'tb_anggota';
-    //     $cek = 'id_upline';
-    //     $kode = $this->input->post('upline');
-    //     $hasil_kode = $this->M_Setting->cek($cek,$kode,$tabel);
-    //     if ($cek == '1'){ $max = 2} else { $max = 3} 
-    //     if(count($hasil_kode)>$max){ 
-    //         $callback = array(' '= 'Downline anda penuh'); 
-    //     }         
-    // }
-
+    
     public function tambah()
     {   
         $upload = $this->M_User->upload();
         if ($upload['result'] == "success"){
             $this->M_User->tambahdata($upload);
-            $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
+            $this->session->set_flashdata('Sukses', "Record Added Successfully!!");
             redirect('C_User');  
         }
     }
@@ -95,15 +107,19 @@ class C_User extends CI_Controller{
     function edituser()
     {   
         $this->M_User->edit();
-        $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
-        redirect('C_User');
+        $this->session->set_flashdata('Sukses', "Update Data Successfully!!");
+        if($this->input->post('statusanggota') == 'menunggu konfirmasi admin' || $this->input->post('statusanggota') == 'menunggu konfirmasi upline' ){
+            redirect('C_User');
+        } else {
+            redirect('C_User/all');
+        }
     }
 
     function hapus($id){
         $where = array('id_anggota' => $id);
         $this->M_Setting->delete($where,'tb_anggota');
-        $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
-        redirect('C_User');
+        $this->session->set_flashdata('Sukses', "Delete Data Successfully!!");
+        redirect('C_User/all');
     }
 
     function konfirm($iduser)
@@ -116,8 +132,43 @@ class C_User extends CI_Controller{
             $username = $data->nik;
         }
         $this->M_User->konfirm($iduser,$bayar,$anggota,$id,$username);
-        echo "<script>alert('Transaksi Sukses.Data Sudah ada dalam Laporan');window.location='C_User'</script>";
-        redirect('C_User');
+        $this->session->set_flashdata('Sukses', "Konfirm Data Successfully!!");
+
+        if($anggota == 'menunggu konfirmasi admin' || $anggota == 'menunggu konfirmasi upline' ){
+            redirect('C_User');
+        } else {
+            redirect('C_User/all');
+        }
+    }
+
+    function laporan()
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('statusanggota');
+        $iduser = $this->session->userdata('id_user');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        if ($id == 'upline' || $id == 'downline'){
+            $data['user'] = $this->M_User->getallspek($iduser);
+        } else {
+            $data['user'] = $this->M_User->getall();            
+        }
+        $data['header'] = 'Anggota';
+        $this->load->view('user/v_laporanuser',$data); 
+        $this->load->view('template/footer');
+    }
+
+    public function excel()
+    {   
+        $id = $this->session->userdata('statusanggota');
+        if ($id == 'upline' || $id == 'downline'){
+            $user = $this->M_User->getallspek($iduser);
+        } else {
+            $user = $this->M_User->getall();            
+        }
+        $data = array('title' => 'Laporan Anggota',
+                'excel' => $user);
+        $this->load->view('user/v_exceluser', $data);
     }
 
 }

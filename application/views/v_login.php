@@ -47,7 +47,7 @@
                                     <a href="index.html">
                                         <div class="avatar-md profile-user-wid mb-4">
                                             <span class="avatar-title rounded-circle bg-light">
-                                                <img src="<?php echo base_url() ?>assets/login/assets/images/h.jpg" alt="" class="rounded-circle" height="34">
+                                                <img src="<?php echo base_url() ?>favicon/LOGO HIMASELA.png" alt="" class="rounded-circle" height="34">
                                             </span>
                                         </div>
                                     </a>
