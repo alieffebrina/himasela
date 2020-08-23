@@ -43,11 +43,9 @@
                   <th>NIK</th>
                   <th>Nama</th>
                   <th>Alamat</th>
-                  <th>No HP</th>
-                  <th>Email</th>
                   <th>Upline</th>
-                  <th>Jumlah HU</th>
                   <th>Pembayaran</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -60,13 +58,12 @@
                   <td><?php echo $user->nik; ?></td>
                   <td><?php echo $user->nama; ?></td>
                   <td><?php echo $user->alamat.', '.$user->name_kota.', '.$user->name_prov; ?></td>
-                  <td><?php echo $user->tlp; ?></td>
-                  <td><?php echo $user->email; ?></td>
                   <td><?php echo $user->namaupline; ?></td>
-                  <td><?php echo $user->jumlahhu; ?></td>
                   <td><?php echo $user->statusbayar; ?></td>
-                  <td>
+                  <td><?php echo $user->statusanggota; ?></td>
+                  <td> 
                     <div class="btn-group">
+                      <a href="<?php echo site_url('C_User/konfirm/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning"><i class="fa fa-fw fa-check"></i></button></a>
                       <a href="<?php echo site_url('C_User/view/'.$user->id_anggota); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
                       <a href="<?php echo site_url('C_User/edit/'.$user->id_anggota); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
                       <a href="<?php echo site_url('C_User/hapus/'.$user->id_anggota); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>

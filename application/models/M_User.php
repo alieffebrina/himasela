@@ -67,6 +67,8 @@ class M_User extends CI_Model {
             'namasponsor' => $this->input->post('namasponsor'),
             'id_upline' => $this->input->post('upline'),
             'buktitransfer' => $upload['file']['file_name'],
+            'statusbayar' => $bayar,
+            'statusanggota' => 'menunggu konfirmasi upline',
         );
         
         $this->db->insert('tb_anggota', $user);
@@ -112,5 +114,23 @@ class M_User extends CI_Model {
         $this->db->update('tb_anggota',$user);
     }
 
-    
+    function konfirm($iduser,$bayar,$anggota,$id){
+        if($id == 'administrator' || $id =='admin'){
+            $statusanggota = 'downline';
+        } else {
+            $statusanggota = 'menunggu konfirmasi admin';
+        }
+        $user = array(
+            'statusanggota' => $statusanggota,
+            'statusbayar' => 'sudah bayar',
+            'id_user' => $id,
+        );
+
+        $where = array(
+            'id_anggota' =>  $iduser,
+        );
+        
+        $this->db->where($where);
+        $this->db->update('tb_anggota',$user);
+    }    
 }

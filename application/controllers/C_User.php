@@ -65,9 +65,7 @@ class C_User extends CI_Controller{
         if ($upload['result'] == "success"){
             $this->M_User->tambahdata($upload);
             $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
-            redirect('C_User');      
-        }  else{
-            $data['message'] = $upload['error'];
+            redirect('C_User');  
         }
     }
 
@@ -104,6 +102,19 @@ class C_User extends CI_Controller{
     function hapus($id){
         $where = array('id_anggota' => $id);
         $this->M_Setting->delete($where,'tb_anggota');
+        $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
+        redirect('C_User');
+    }
+
+    function konfirm($iduser)
+    {   
+        $id = $this->session->userdata('statusanggota');
+        $data = $this->M_User->getnama($iduser);
+        foreach ($data as $data) {
+            $bayar = $data->statusbayar;
+            $anggota = $data->statusanggota;
+        }
+        $this->M_User->konfirm($iduser,$bayar,$anggota,$id);
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
         redirect('C_User');
     }

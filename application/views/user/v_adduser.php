@@ -96,7 +96,7 @@
                           ?> <option value="<?php echo $user->id_anggota?>"><?php echo $user->nama ?></option>  
                       <?php } 
                     }?>
-                    </select>                    
+                    </select>                
                   </div>
                 </div>
                 <div class="form-group">
