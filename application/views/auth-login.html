@@ -4,7 +4,7 @@
 <head>
         
         <meta charset="utf-8" />
-        <title>Login Admin | Sahabat Pena Kita</title>
+        <title>Himasela Community</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Halaman login admin sistem informasi database anggota" name="description" />
         <meta content="Sahabat Pena Kita" name="author" />
