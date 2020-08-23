@@ -113,8 +113,9 @@ class C_User extends CI_Controller{
         foreach ($data as $data) {
             $bayar = $data->statusbayar;
             $anggota = $data->statusanggota;
+            $username = $data->nik;
         }
-        $this->M_User->konfirm($iduser,$bayar,$anggota,$id);
+        $this->M_User->konfirm($iduser,$bayar,$anggota,$id,$username);
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
         redirect('C_User');
     }

@@ -114,16 +114,31 @@ class M_User extends CI_Model {
         $this->db->update('tb_anggota',$user);
     }
 
-    function konfirm($iduser,$bayar,$anggota,$id){
+    function konfirm($iduser,$bayar,$anggota,$id,$username){
+        $huruf = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';//buat karakter yang akan digunakan sebagai password
+        $st = '';
+        for($i=0; $i<8; $i++){
+            $p = rand(0, strlen($huruf)-1);
+            $st .=$huruf{$p};
+        }
+
+        $password = $st;
+
         if($id == 'administrator' || $id =='admin'){
             $statusanggota = 'downline';
+            $username = $username;
+            $password = $password;
         } else {
             $statusanggota = 'menunggu konfirmasi admin';
+            $username = '';
+            $password = '';
         }
         $user = array(
             'statusanggota' => $statusanggota,
             'statusbayar' => 'sudah bayar',
             'id_user' => $id,
+            'username' => $username,
+            'password' => $password,
         );
 
         $where = array(
