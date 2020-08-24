@@ -291,12 +291,20 @@ function toggle(source) {
 function ValidateSize(file) {
     var FileSize = file.files[0].size / 1024 / 1024; // in MB
     if (FileSize > 2) {
-        alert('File size exceeds 2 MB');
+        alert('Maaf File anda terlalu besar');
        $(file).val(''); //for clearing with Jquery
     } else {
-
+      var inputFile = document.getElementById('image-file');
+      var pathFile = inputFile.value;
+      var ekstensiOk = /(\.jpg|\.jpeg|\.png)$/i;
+      if(!ekstensiOk.exec(pathFile)){
+          alert('Silakan upload file yang memiliki ekstensi .jpeg/.jpg/.png');
+          inputFile.value = '';
+          return false;
+      }
     }
 }
+
 </script>
 </body>
 </html>
