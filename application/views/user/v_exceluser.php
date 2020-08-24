@@ -22,7 +22,7 @@ header("Expires: 0");
   <th>Kota</th>
   <th>Kecamatan</th>
   <th>Upline</th>
-  <th>Jumlah HU</th>
+  <th>Jumlah HD</th>
   <th>Bank</th>
   <th>No Rek</th>
   <th>Pemilik</th>

@@ -100,9 +100,9 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Jumlah HU</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Jumlah HD</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="jumlahhu" name="jumlahhu" placeholder="Jumlah HU">
+                    <input type="text" class="form-control" id="jumlahhu" name="jumlahhu" placeholder="Jumlah HD">
                   </div>
                 </div>
                 <div class="form-group">

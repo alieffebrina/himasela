@@ -101,7 +101,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Jumlah HU</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Jumlah HD</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="jumlahhu" name="jumlahhu" value="<?php echo $key->jumlahhu; ?>">
                   </div>
