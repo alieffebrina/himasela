@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2020 at 03:01 PM
+-- Generation Time: Aug 24, 2020 at 07:28 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.31
 
@@ -48,6 +48,8 @@ INSERT INTO `tb_akses` (`id_akses`, `id_menu`, `tipeuser`, `view`, `add`, `edit`
 (4, 4, 'administrator', '1', '1', '1', '1'),
 (5, 5, 'administrator', '1', '1', '1', '1'),
 (6, 6, 'administrator', '1', '1', '1', '1'),
+(7, 1, 'admin', '1', '1', '1', '1'),
+(8, 2, 'downline', '1', '1', '1', '1'),
 (19, 1, 'downline', '1', '1', '1', '1');
 
 -- --------------------------------------------------------
@@ -58,7 +60,7 @@ INSERT INTO `tb_akses` (`id_akses`, `id_menu`, `tipeuser`, `view`, `add`, `edit`
 
 CREATE TABLE `tb_anggota` (
   `id_anggota` int(11) NOT NULL,
-  `username` char(10) NOT NULL,
+  `username` char(16) NOT NULL,
   `password` char(10) NOT NULL,
   `nik` char(16) NOT NULL,
   `nama` varchar(100) NOT NULL,
@@ -87,10 +89,11 @@ CREATE TABLE `tb_anggota` (
 
 INSERT INTO `tb_anggota` (`id_anggota`, `username`, `password`, `nik`, `nama`, `alamat`, `id_provinsi`, `id_kota`, `id_kecamatan`, `email`, `tlp`, `bank`, `norek`, `pemilik`, `jumlahhu`, `namasponsor`, `id_user`, `tglupdate`, `id_upline`, `buktitransfer`, `statusanggota`, `statusbayar`) VALUES
 (1, 'admin', 'admin', '', 'administrator', '', '', '', '', '', '', '', '', '', '', '', 1, '2020-08-23 10:54:13', 1, '', 'administrator', 'sudah bayar'),
-(3, 'aaaaa', 'aaaaa', '1111111111111111', 'downline admin 1', 'sad', '11', '1102', '1102031', 'asd@asd', '131', 'dsa', 'asd', 'asd', '10', 'asd', 0, '0000-00-00 00:00:00', 1, 'WhatsApp_Image_2020-08-23_at_13_40_112.jpeg', 'downline', 'sudah bayar'),
-(4, '', '', '1111111111111112', 'downline admin 2', 'asd', '15', '1504', '1504020', 'asd@asd', '131', 'dsa', 'asd', 'asd', '10', 'asd', 0, '0000-00-00 00:00:00', 1, 'WhatsApp_Image_2020-08-23_at_13_40_113.jpeg', 'menunggu konfirmasi upline', 'menunggu konfirmasi'),
-(5, '', '', '1111111111111113', 'a11', 'asd', '17', '1703', '1703073', 'asd@asd', '131', 'dsa', 'asd', 'asd', '10', 'asd', 0, '0000-00-00 00:00:00', 3, 'WhatsApp_Image_2020-08-23_at_13_40_114.jpeg', 'menunggu konfirmasi admin', 'sudah bayar'),
-(6, '', '', '1111111111111114', 'a12', 'asd', '13', '1301', '1301013', 'asd@asd', '2131212313', 'dsa', 'asd', 'asd', '10', 'asd', 0, '0000-00-00 00:00:00', 3, NULL, 'downline', 'sudah bayar');
+(3, '1111111111111111', 'RglDXH9b', '1111111111111111', 'downline admin 1', 'sad', '11', '1102', '1102031', 'asd@asd', '131', 'dsa', 'asd', 'asd', '10', 'asd', 0, '0000-00-00 00:00:00', 1, 'WhatsApp_Image_2020-08-23_at_13_40_112.jpeg', 'downline', 'sudah bayar'),
+(4, '1111111111111112', 'SJETJYje', '1111111111111112', 'downline admin 2', 'asdasdsad', '15', '1504', '1504020', 'asd@asd', '131', 'dsa', 'asd', 'asd', '10', 'asd', 1, '2020-08-23 04:50:16', 1, 'WhatsApp_Image_2020-08-23_at_13_40_113.jpeg', 'downline', 'sudah bayar'),
+(5, '1111111111111113', 'GCE5POsb', '1111111111111113', 'a11', 'asd', '17', '1703', '1703073', 'asd@asd', '131', 'dsa', 'asd', 'asd', '10', 'asd', 0, '0000-00-00 00:00:00', 3, 'WhatsApp_Image_2020-08-23_at_13_40_114.jpeg', 'downline', 'sudah bayar'),
+(6, '1111111111111114', '1qhmu4xw', '1111111111111114', 'a12', 'asd', '13', '1301', '1301013', 'asd@asd', '2131212313', 'dsa', 'asd', 'asd', '10', 'asd', 0, '0000-00-00 00:00:00', 3, NULL, 'downline', 'sudah bayar'),
+(7, '1111111111111115', 'zfNSu0fW', '1111111111111115', 'a21', 'sad', '16', '1603', '1603033', 'asd@asd', '2131212313', 'dsa', 'asd', 'asd', '10', 'asd', 1, '2020-08-23 05:59:54', 3, 'WhatsApp_Image_2020-08-23_at_13_40_115.jpeg', 'downline', 'sudah bayar');
 
 -- --------------------------------------------------------
 
@@ -7759,12 +7762,12 @@ CREATE TABLE `tb_menu` (
 --
 
 INSERT INTO `tb_menu` (`id_menu`, `urutan`, `icon`, `link`, `menu`, `status`) VALUES
-(1, 2, 'fa fa-unlock-alt', 'C_User', 'Data Anggota', 'aktif'),
+(1, 2, 'fa fa-unlock-alt', 'C_User/all', 'Data Anggota', 'aktif'),
 (2, 1, 'fa fa-users', 'C_User', 'Data Calon Anggota', 'aktif'),
-(3, 3, 'fa fa-suitcase', 'C_Muatan', 'Jenis Muatan', 'tidak'),
+(3, 3, 'fa fa-suitcase', 'C_Muatan', 'Profil', 'tidak'),
 (4, 4, 'fa fa-dollar', 'C_Harga', 'Data Harga', 'tidak'),
 (5, 5, 'fa fa-files-o', 'C_Transaksi', 'Transaksi', 'tidak'),
-(6, 6, 'fa fa-table', 'C_Laporan', 'Laporan', 'aktif');
+(6, 6, 'fa fa-table', 'C_User/laporan', 'Laporan', 'aktif');
 
 -- --------------------------------------------------------
 
@@ -7865,13 +7868,13 @@ ALTER TABLE `tb_provinsi`
 -- AUTO_INCREMENT for table `tb_akses`
 --
 ALTER TABLE `tb_akses`
-  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `tb_anggota`
 --
 ALTER TABLE `tb_anggota`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tb_menu`

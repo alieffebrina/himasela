@@ -138,6 +138,12 @@
                     <input type="text" class="form-control" value="<?php echo $key->statusanggota ?>"readonly>
                   </div>
                 </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Foto Bukti Transfer</label>
+                    <div class="col-sm-6">
+                      <img class="img-responsive" src="<?php echo base_url() ?>images/<?php echo $key->buktitransfer ?>" alt="Photo" width="350px" height="197px">
+                    </div>
+                </div>
               </div>
             <?php } ?>
               <!-- /.box-body -->
