@@ -9,7 +9,7 @@
         <meta content="Halaman login admin sistem informasi database anggota" name="description" />
         <meta content="Sahabat Pena Kita" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="<?php echo base_url() ?>assets/login/assets/images/icon.png">
+        <link rel="shortcut icon" href="<?php echo base_url() ?>favicon/favicon.ico">
 
         <!-- Bootstrap Css -->
         <link href="<?php echo base_url() ?>assets/login/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
