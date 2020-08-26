@@ -306,5 +306,55 @@ function ValidateSize(file) {
 }
 
 </script>
+<script>
+  $(document).ready(function(){
+  // $('#modaluploadbuktitransfer').hidden();
+  $('#btnsimpantf').click(function(){ // Ketika tombol simpan di klik
+    $.ajax({
+      url: "<?php echo base_url("index.php/C_User/tambahtf"); ?>", // Isi dengan url/path file php yang dituju
+      type: 'POST', // Tentukan type nya POST atau GET
+      data: {
+        input_gambar : $("#image-file").val(),
+        id : $("#idang").val()}, // Ambil semua data yang ada didalam tag form
+      dataType: 'json',
+      beforeSend: function(e) {
+        if(e && e.overrideMimeType) {
+          e.overrideMimeType('application/jsoncharset=UTF-8')
+        }
+      },
+      success: function(response){ // Ketika proses pengiriman berhasil
+          $('.close').click(); // Close / Tutup Modal Dialog
+          // $("#tipeuser").html(response.list_tipeuser).show();
+      },
+      error: function (xhr, ajaxOptions, thrownError) { // Ketika terjadi error
+        alert(xhr.responseText) // munculkan alert
+      }
+    })
+  })
+  $('#modaluploadbuktitransfer').on('hidden.bs.modal', function (e){ // Ketika Modal Dialog di Close / tertutup
+    $('#modaluploadbuktitransfer input').val('') // Clear inputan menjadi kosong
+  })
+})
+</script>
+<!-- <script type="text/javascript">
+    $(document).ready(function(){
+        $('#modaluploadbuktitransfer').on('modaluploadbuktitransfer.bs.modal', function (e) {
+            var id_anggota = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : './detail.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'id_anggota='+ id_anggota,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('#modaluploadbuktitransfer').html(data);
+                id_anggota = document.getElementById('idang').value;
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script> -->
 </body>
 </html>

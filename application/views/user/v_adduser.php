@@ -91,9 +91,8 @@
                       <?php foreach ($user as $user) { 
                         $a = $this->db->query("select * from tb_anggota where id_upline = '$user->id_anggota'"); 
                         $b = $a->result();
-                        if ($user->id_anggota == '1'){ $max = 2; } else { $max = 3; }
-                        if(count($b)<=$max){ 
-                          ?> <option value="<?php echo $user->id_anggota?>"><?php echo $user->nama ?></option>  
+                        if(count($b)<3){ 
+                          ?> <option value="<?php echo $user->id_anggota.'/'.$user->nourut?>"><?php echo $user->nama ?></option>  
                       <?php } 
                     }?>
                     </select>                
@@ -102,8 +101,8 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Jumlah HD</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="jumlahhu" name="jumlahhu" placeholder="Jumlah HD">
-                  </div>
+                    <input type="text" class="form-control" id="jumlahhu" name="jumlahhu" placeholder="Jumlah HD" onkeypress="return Angkasaja(event)">
+                  </div>     
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Bank</label>
@@ -127,13 +126,6 @@
                   <label for="inputEmail3" class="col-sm-2 control-label">Nama Sponsor</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="namasponsor" name="namasponsor" placeholder="Nama Sponsor">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Bukti Transfer</label>
-                  <div class="col-sm-9">
-                    <input type="file" id="image-file" class="demoInputBox" name="input_gambar" required onchange="ValidateSize(this)">
-                  <p><span class="text-danger">Maksimal 2Mb </span></p>
                   </div>
                 </div>
               </div>

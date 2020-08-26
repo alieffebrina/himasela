@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <?php echo $header; ?>
+        Upload Bukti Transfer
         <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="<?php echo site_url('C_User'); ?>">Data Anggota</a></li>
-        <li class="active"><?php echo $header; ?></li>
+        <li><a href="<?php echo site_url('C_User'); ?>">Bukti Transfer</a></li>
+        <li class="active">Lihat Data</li>
       </ol>
     </section>
     <div class="box-body">
@@ -24,6 +24,51 @@
     <!-- Main content -->
     <section class="content">
       <div class="row">
+
+        <div class='col-lg-12'>
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Bukti Transfer</h3>
+            </div>
+            <!-- /.box-header -->
+
+            <div class="box-body">
+            <?php echo form_open("C_User/tambahtf", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
+                  <?php foreach ($upload as $upload) { ?>
+                <div class='row'>
+                  <div class="col-lg-12">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Nama</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="nama" name="nama" readonly value="<?php echo $upload->nama ?>">
+                      </div>
+                  </div>
+                </div>
+                <br>
+                <div class='row'>
+                  <div class="col-lg-12">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Upload</label>
+                      <div class="col-sm-9">
+                        <input type="file" id="image-file" class="demoInputBox" name="input_gambar" required onchange="ValidateSize(this)">
+                        <input type="hidden" class="form-control" id="noanggota" name="noanggota" readonly value="<?php echo $upload->id_anggota ?>">
+                        <input type="hidden" class="form-control" id="nik" name="nik" readonly value="<?php echo $upload->nik ?>">
+                      </div>
+                  </div>
+                </div> <br>
+
+                <?php  } ?>
+                <div class='row'>
+                  <div class='col-lg-12'>
+                    <label for="inputEmail3" class="col-sm-2 control-label"></label>
+                    <div class="col-sm-3">
+                      <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
@@ -65,7 +110,6 @@
                   <td><?php echo $user->namaupline; ?></td>
                   <td><?php echo $user->statusbayar; ?></td>
                   <td><?php echo $user->statusanggota; ?></td>
-                  <input type="hidden" id="id_anggota" name="id_anggota" value="<?php echo $user->id_anggota ?>">
                   <td> 
                     <div class="btn-group">
                     <?php if($header == 'Calon Anggota'){ 

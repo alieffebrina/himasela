@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 24, 2020 at 02:33 PM
+-- Generation Time: Aug 26, 2020 at 05:10 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.31
 
@@ -49,8 +49,8 @@ INSERT INTO `tb_akses` (`id_akses`, `id_menu`, `tipeuser`, `view`, `add`, `edit`
 (5, 5, 'administrator', '1', '1', '1', '1'),
 (6, 6, 'administrator', '1', '1', '1', '1'),
 (7, 1, 'admin', '1', '1', '1', '1'),
-(8, 2, 'downline', '1', '1', '1', '1'),
-(19, 1, 'downline', '1', '1', '1', '1');
+(8, 2, 'anggota', '1', '1', '1', '1'),
+(19, 1, 'anggota', '1', '1', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -77,23 +77,25 @@ CREATE TABLE `tb_anggota` (
   `namasponsor` varchar(200) NOT NULL,
   `id_user` int(11) NOT NULL,
   `tglupdate` datetime NOT NULL,
-  `id_upline` int(11) NOT NULL,
+  `id_upline` int(11) DEFAULT NULL,
   `buktitransfer` varchar(250) DEFAULT NULL,
-  `statusanggota` enum('administrator','admin','upline','downline','menunggu konfirmasi upline','menunggu konfirmasi admin','tidak aktif') NOT NULL DEFAULT 'menunggu konfirmasi upline',
-  `statusbayar` enum('belum bayar','menunggu konfirmasi','sudah bayar') NOT NULL
+  `statusanggota` enum('administrator','admin','anggota','menunggu konfirmasi upline','menunggu konfirmasi admin','tidak aktif') NOT NULL DEFAULT 'menunggu konfirmasi upline',
+  `statusbayar` enum('belum bayar','menunggu konfirmasi','sudah bayar') NOT NULL,
+  `nourut` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_anggota`
 --
 
-INSERT INTO `tb_anggota` (`id_anggota`, `username`, `password`, `nik`, `nama`, `alamat`, `id_provinsi`, `id_kota`, `id_kecamatan`, `email`, `tlp`, `bank`, `norek`, `pemilik`, `jumlahhu`, `namasponsor`, `id_user`, `tglupdate`, `id_upline`, `buktitransfer`, `statusanggota`, `statusbayar`) VALUES
-(1, 'admin', 'admin', '', 'administrator', '', '', '', '', '', '', '', '', '', '', '', 1, '2020-08-23 10:54:13', 1, '', 'administrator', 'sudah bayar'),
-(3, '1111111111111111', 'RglDXH9b', '1111111111111111', 'downline admin 1', 'sad', '11', '1102', '1102031', 'asd@asd', '131', 'dsa', 'asd', 'asd', '10', 'asd', 0, '0000-00-00 00:00:00', 1, 'WhatsApp_Image_2020-08-23_at_13_40_112.jpeg', 'downline', 'sudah bayar'),
-(4, '1111111111111112', 'SJETJYje', '1111111111111112', 'downline admin 2', 'asdasdsad', '15', '1504', '1504020', 'asd@asd', '131', 'dsa', 'asd', 'asd', '10', 'asd', 1, '2020-08-23 04:50:16', 1, 'WhatsApp_Image_2020-08-23_at_13_40_113.jpeg', 'downline', 'sudah bayar'),
-(5, '1111111111111113', 'GCE5POsb', '1111111111111113', 'a11', 'asd', '17', '1703', '1703073', 'asd@asd', '131', 'dsa', 'asd', 'asd', '10', 'asd', 0, '0000-00-00 00:00:00', 3, 'WhatsApp_Image_2020-08-23_at_13_40_114.jpeg', 'downline', 'sudah bayar'),
-(6, '1111111111111114', '1qhmu4xw', '1111111111111114', 'a12', 'asd', '13', '1301', '1301013', 'asd@asd', '2131212313', 'dsa', 'asd', 'asd', '10', 'asd', 0, '0000-00-00 00:00:00', 3, NULL, 'downline', 'sudah bayar'),
-(7, '1111111111111115', 'zfNSu0fW', '1111111111111115', 'a21', 'sad', '16', '1603', '1603033', 'asd@asd', '2131212313', 'dsa', 'asd', 'asd', '10', 'asd', 1, '2020-08-24 02:32:40', 3, 'WhatsApp_Image_2020-08-23_at_13_40_115.jpeg', 'tidak aktif', 'sudah bayar');
+INSERT INTO `tb_anggota` (`id_anggota`, `username`, `password`, `nik`, `nama`, `alamat`, `id_provinsi`, `id_kota`, `id_kecamatan`, `email`, `tlp`, `bank`, `norek`, `pemilik`, `jumlahhu`, `namasponsor`, `id_user`, `tglupdate`, `id_upline`, `buktitransfer`, `statusanggota`, `statusbayar`, `nourut`) VALUES
+(1, 'admin', 'admin', '', 'administrator', '', '', '', '', '', '', '', '', '', '', '', 1, '2020-08-23 10:54:13', 0, '', 'administrator', 'sudah bayar', '1'),
+(16, '', '', '1111111111111111', 'a', 'asd', '14', '1404', '1404030', 'ad@ads', '13112313', 'as', '99999999999', 'asd', 'asd', 'pak arif', 1, '2020-08-26 05:01:11', 1, NULL, 'menunggu konfirmasi admin', '', '11'),
+(17, '1111111111111112', 'oEzZeGb9', '1111111111111112', 'b', 'asd', '12', '1203', '1203091', 'bakhtiyar@gmailcom', '123111111111', 'asd', 'asd', 'asd', '12', 'asd', 1, '2020-08-26 04:58:12', 1, 'lebaran1.jpg', 'anggota', 'sudah bayar', '11'),
+(18, '1111111111111113', 'QPIcnjR7', '1111111111111113', 'c', 'asd', '15', '1504', '1504011', 'aie@gmail.com', '131', 'asd', '99999999999', 'asd', '112', 'asd', 1, '2020-08-26 04:58:00', 1, 'happy_ied_mubarak_subechtiningsih2.jpg', 'anggota', 'sudah bayar', '13'),
+(19, '', '', '1111111111111114', 'a11', 'asd', '11', '1101', '1101051', 'bakhtiyar@gmailcom', '2131212313', 'dsa', 'asd', 'asd', '1', 'asd', 1, '2020-08-26 04:50:53', 16, 'lebaran.jpg', 'anggota', 'sudah bayar', '111'),
+(20, '', '', '1111111111111115', 'asd', 'qe', '12', '1203', '1203080', 'as@asds', '131', 'as', '99999999999', 'bakhtiyar', '12', 'pak arif', 1, '2020-08-26 04:55:05', 17, 'hero-ucapan_idul_fitri_original_jpegquality-90-768x432.jpg', 'anggota', 'sudah bayar', '111'),
+(21, '', '', '1111111111111116', 'a121', '123', '12', '1204', '1204050', 'aie@gmail.com', '131123', 'as', '12345678', 'bakhtiyar', '123', 'asd', 1, '2020-08-26 04:50:19', 18, 'happy_ied_mubarak_subechtiningsih.jpg', 'anggota', 'sudah bayar', '131');
 
 -- --------------------------------------------------------
 
@@ -7874,7 +7876,7 @@ ALTER TABLE `tb_akses`
 -- AUTO_INCREMENT for table `tb_anggota`
 --
 ALTER TABLE `tb_anggota`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `tb_menu`

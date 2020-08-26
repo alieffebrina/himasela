@@ -8,7 +8,7 @@ class M_User extends CI_Model {
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
         $this->db->join('tb_anggota b', 'b.id_anggota = tb_anggota.id_upline');
-        $anggota = array('downline', 'upline', 'administrator', 'admin','tidak aktif');
+        $anggota = array('anggota', 'administrator', 'admin','tidak aktif');
         $this->db->where_not_in('tb_anggota.statusanggota', $anggota);
         $query = $this->db->get('tb_anggota');
     	return $query->result();
@@ -32,7 +32,7 @@ class M_User extends CI_Model {
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
         $this->db->join('tb_anggota b', 'b.id_anggota = tb_anggota.id_upline');
-        $anggota = array('downline', 'upline', 'administrator', 'admin','tidak aktif');
+        $anggota = array('anggota', 'administrator', 'admin','tidak aktif');
         $this->db->where_not_in('tb_anggota.statusanggota', $anggota);
         $this->db->where('tb_anggota.id_upline', $iduser);
         $query = $this->db->get('tb_anggota');
@@ -68,7 +68,7 @@ class M_User extends CI_Model {
         return $query->result();
     }
 
-     public function upload(){
+    function upload(){
         $file_name = $this->input->post('input_gambar');
         $path= FCPATH.'images';
         //echo $path;
@@ -90,7 +90,10 @@ class M_User extends CI_Model {
     
     }
 
-    function tambahdata($upload){
+    
+    
+
+    function tambahdata($nourut, $upline){
         $user = array(
             'nik' => $this->input->post('nik'),
             'nama' => $this->input->post('nama'),
@@ -105,9 +108,10 @@ class M_User extends CI_Model {
             'pemilik' => $this->input->post('pemilik'),
             'jumlahhu' => $this->input->post('jumlahhu'),
             'namasponsor' => $this->input->post('namasponsor'),
-            'id_upline' => $this->input->post('upline'),
-            'buktitransfer' => $upload['file']['file_name'],
-            'statusbayar' => 'menunggu konfirmasi',
+            'id_upline' => $upline,
+            'nourut' => $nourut,
+            // 'buktitransfer' => $upload['file']['file_name'],
+            'statusbayar' => 'belum bayar',
             'statusanggota' => 'menunggu konfirmasi upline',
             'id_user' => $this->session->userdata('id_user'),
             'tglupdate' => date('Y-m-d h:i:s'),
@@ -162,7 +166,7 @@ class M_User extends CI_Model {
             'pemilik' => $this->input->post('pemilik'),
             'jumlahhu' => $this->input->post('jumlahhu'),
             'namasponsor' => $this->input->post('namasponsor'),
-            'id_upline' => $this->input->post('upline'),
+            // 'id_upline' => $this->input->post('upline'),
             'id_user' => $this->session->userdata('id_user'),
             'tglupdate' => date('Y-m-d h:i:s'),
         );
@@ -199,19 +203,21 @@ class M_User extends CI_Model {
         }
 
         $password = $st;
-
-        if($id == 'administrator' || $id =='admin'){
-            $statusanggota = 'downline';
-            $username = $username;
-            $password = $password;
-        } else {
+        if ($anggota == 'menunggu konfirmasi upline'){
             $statusanggota = 'menunggu konfirmasi admin';
             $username = '';
             $password = '';
+            $statusbayar = '';
+        } else {
+            $statusanggota = 'anggota';
+            $username = $username;
+            $password = $password;
+            $statusbayar = 'sudah bayar';
         }
+
         $user = array(
             'statusanggota' => $statusanggota,
-            'statusbayar' => 'sudah bayar',
+            'statusbayar' => $statusbayar,
             'id_user' => $id,
             'username' => $username,
             'password' => $password,
@@ -225,5 +231,35 @@ class M_User extends CI_Model {
         
         $this->db->where($where);
         $this->db->update('tb_anggota',$user);
-    }    
+    }   
+
+    function konfirmadmin($upload){
+        $huruf = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';//buat karakter yang akan digunakan sebagai password
+        $st = '';
+        for($i=0; $i<8; $i++){
+            $p = rand(0, strlen($huruf)-1);
+            $st .=$huruf{$p};
+        }
+
+        $password = $st;
+        $password = $password;
+
+
+        $user = array(
+            'buktitransfer' => $upload['file']['file_name'],
+            'statusanggota' => 'anggota',
+            'id_user' => $this->session->userdata('id_user'),
+            'tglupdate' => date('Y-m-d h:i:s'),
+            'username' => $this->input->post('nik'),
+            'password' => $password,
+            'statusbayar' => 'sudah bayar',
+        );
+
+        $where = array(
+            'id_anggota' =>  $this->input->post('noanggota'),
+        );
+        
+        $this->db->where($where);
+        $this->db->update('tb_anggota',$user);
+    } 
 }
