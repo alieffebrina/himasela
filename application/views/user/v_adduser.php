@@ -89,7 +89,7 @@
                     <select class="form-control select2" id="upline" name="upline" style="width: 100%;" required>
                       <option value="">--Pilih--</option>
                       <?php foreach ($user as $user) { 
-                        $a = $this->db->query("select * from tb_anggota where id_upline = '$user->id_anggota'"); 
+                        $a = $this->db->query("select * from tb_anggota where id_upline = '$user->id_anggota' and statusanggota != 'tidak aktif'"); 
                         $b = $a->result();
                         if(count($b)<3){ 
                           ?> <option value="<?php echo $user->id_anggota.'/'.$user->nourut?>"><?php echo $user->nama ?></option>  

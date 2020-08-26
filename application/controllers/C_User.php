@@ -110,7 +110,20 @@ class C_User extends CI_Controller{
         $kode = $this->input->post('nik');
         $hasil_kode = $this->M_Setting->cek($cek,$kode,$tabel);
         if(count($hasil_kode)!=0){ 
-            echo '1';
+
+            $data = $this->M_User->getspek($kode);
+            foreach ($data as $key) {
+                $nik = $key->nik;
+                $nama = $key->nama;
+                $alamat = $key->alamat;
+                $prov = $key->name_prov;
+                $kota = $key->name_kota;
+                $tlp = $key->tlp;
+                $email = $key->email;
+            }
+            
+            $callback = array('nika'=>$nik, 'nama'=>$nama, 'alamat'=>$alamat); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
+            echo json_encode($callback); // konversi varibael $callback menjadi JSON
         }else{
             echo '2';
         }

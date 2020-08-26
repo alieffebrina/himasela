@@ -267,20 +267,12 @@ function toggle(source) {
                 data: 'nik='+nik,
                 type: "POST",
                 success: function(msg){
-                    if(msg==1){
-                        $("#pesannik").css("color","#fc5d32");
-                        $("#nik").css("border-color","#fc5d32");
-                        $("#pesannik").html("NIK sudah digunakan !");
- 
-                        error = 1;
-                    }else{
-                        $("#pesannik").css("color","#59c113");
-                        $("#nik").css("border-color","#59c113");
-                        $("#pesannik").html("");
-                        error = 0;
-                    }
- 
-                    $("#pesannik").fadeIn(1000);
+                  $("#nik").html(response.nika).show();
+                  $("#nama").html(response.nama).show();
+                  $("#alamat").html(response.alamat).show();
+                },
+                error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
+                  alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
                 }
             });
         }                
