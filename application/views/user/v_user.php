@@ -71,7 +71,7 @@
                     <?php if($header == 'Calon Anggota'){ 
                       if($user->statusanggota == 'menunggu konfirmasi admin'){ ?>     
                         <a href="<?php echo site_url('C_User/ttf/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning"><i class="fa fa-fw fa-check"></i></button></a>                   
-                          <!-- <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modaluploadbuktitransfer" data-id="<?php echo $user->id_anggota ?>"><i class="fa fa-fw fa-check"></i></button> -->
+                          <!-- <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modaluploadbuktitransfer<?php echo $user->id_anggota ?>" data-id="<?php echo $user->id_anggota ?>"><i class="fa fa-fw fa-check"></i></button> -->
                       <?php } else { ?>
                         <a href="<?php echo site_url('C_User/konfirm/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning"><i class="fa fa-fw fa-check"></i></button></a>
                     <?php } } ?>
@@ -99,3 +99,28 @@
     </section>
     <!-- /.content -->
   </div>
+
+
+<?php // foreach ($user as $user) { ?>
+<!-- <div class="modal fade" id="modaluploadbuktitransfer<?php echo $user->id_anggota ?>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Bukti Transfer</h4>
+      </div>
+      <div class="modal-body">
+        <input type="file" id="image-file" class="demoInputBox" name="input_gambar" required onchange="ValidateSize(this)">
+        <input type="text" class="form-control" id="idang" name="id_anggota" value="<?php echo $user->id_anggota ?>">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="btnsimpantf" >Save changes</button>
+      </div>
+    </div>
+   /.modal-content 
+  </div>
+  /.modal-dialog
+</div> -->
+<?php //} ?>

@@ -20,7 +20,7 @@
       <div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <!-- <div class="small-box bg-aqua">
+          <div class="small-box bg-aqua">
             <div class="inner">
               <h3><?php echo $barang; ?></h3>
 
@@ -30,12 +30,12 @@
               <i class="ion ion-bag"></i>
             </div>
             <a href="<?php echo site_url('C_barang'); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div> -->
+          </div>
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <!-- <div class="small-box bg-green">
+          <div class="small-box bg-green">
             <div class="inner">
               <h3><?php echo $datapelanggan; ?><sup style="font-size: 20px"></sup></h3>
 
@@ -45,12 +45,12 @@
               <i class="ion ion-stats-bars"></i>
             </div>
             <a href="<?php echo site_url('C_pelanggan'); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div> -->
+          </div>
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-         <!--  <div class="small-box bg-yellow">
+          <div class="small-box bg-yellow">
             <div class="inner">
              <h3>Rp. <?php $total = 0; 
               foreach ($totalpenjualan as $totalpenjualan) {
@@ -63,12 +63,12 @@
               <i class="ion ion-person-add"></i>
             </div>
             <a href="<?php echo site_url('C_penjualan'); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div> -->
+          </div>
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <!-- <div class="small-box bg-red">
+          <div class="small-box bg-red">
             <div class="inner">
               <h3>25.000.000</h3>
 
@@ -78,7 +78,7 @@
               <i class="ion ion-pie-graph"></i>
             </div>
             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div> -->
+          </div>
         </div>
         <!-- ./col -->
       </div>

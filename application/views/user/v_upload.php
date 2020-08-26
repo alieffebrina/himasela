@@ -51,6 +51,7 @@
                         <input type="file" id="image-file" class="demoInputBox" name="input_gambar" required onchange="ValidateSize(this)">
                         <input type="hidden" class="form-control" id="noanggota" name="noanggota" readonly value="<?php echo $upload->id_anggota ?>">
                         <input type="hidden" class="form-control" id="nik" name="nik" readonly value="<?php echo $upload->nik ?>">
+                      <span style="color: red">jpg,jpeg,png maksimal 2Mb</span>
                       </div>
                   </div>
                 </div> <br>
