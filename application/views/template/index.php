@@ -22,9 +22,9 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3><?php echo $barang; ?></h3>
+              <h3><?php echo $anggota; ?></h3>
 
-              <p>Total Item</p>
+              <p>Jumlah Anggota</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
@@ -37,14 +37,14 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3><?php echo $datapelanggan; ?><sup style="font-size: 20px"></sup></h3>
+              <h3><?php echo $konfirmupline; ?><sup style="font-size: 20px"></sup></h3>
 
-              <p>Data Pelanggan</p>
+              <p>Menunggu Konfirmasi Upline</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="<?php echo site_url('C_pelanggan'); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo site_url('C_User'); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -52,17 +52,14 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-             <h3>Rp. <?php $total = 0; 
-              foreach ($totalpenjualan as $totalpenjualan) {
-                $total += $totalpenjualan->total;
-              }
-              echo number_format($total); ?></h3>
-              <p>Penjualan bulan <?php echo date('F Y')?></p>
+            <h3><?php echo $konfirmadmin; ?><sup style="font-size: 20px"></sup></h3>
+
+              <p>Menunggu Konfirmasi Admin</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="<?php echo site_url('C_penjualan'); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo site_url('C_User'); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -70,9 +67,9 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>25.000.000</h3>
+            <h3><?php echo $sdhbayar; ?><sup style="font-size: 20px"></sup></h3>
 
-              <p>Laba Bulan <?php echo date('F Y')?></p>
+              <p>Jumlah Sudah Bayar</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -84,9 +81,9 @@
       </div>
       <!-- /.row -->
       <!-- Main row -->
-      <div class="row">
+      <!-- <div class="row"> -->
         <!-- Left col -->
-        <section class="col-lg-7 connectedSortable">
+        <!-- <section class="col-lg-7 connectedSortable"> -->
           <!-- Custom tabs (Charts with tabs)-->
           <!-- Bar chart -->
          <!--<div class="box box-primary">
@@ -105,14 +102,14 @@
               <div id="bar-chart" style="height: 500px;"></div>
             </div> -->
             <!-- /.box-body-->
-          </div>
+          <!-- </div> -->
           <!-- /.nav-tabs-custom -->
           <!-- /.box -->
-        </section>
+        <!-- </section> -->
         <!-- /.Left col -->
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
-        <section class="col-lg-5 connectedSortable">
-           <div class="box box-solid bg-green-gradient">
+        <!-- <section class="col-lg-5 connectedSortable"> -->
+           <!-- <div class="box box-solid bg-green-gradient"> -->
             <!-- <div class="box-header">
               <i class="fa fa-calendar"></i>
 
@@ -135,13 +132,13 @@
               </div>
             </div> -->
             <!-- /.box-header -->
-            <div class="box-body no-padding">
+            <!-- <div class="box-body no-padding"> -->
               <!--The calendar -->
-              <div id="calendar" style="width: 100%"></div>
-            </div>
+              <!-- <div id="calendar" style="width: 100%"></div>
+            </div> -->
             <!-- /.box-body -->
-            <div class="box-footer text-black">
-              <div class="row">
+            <!-- <div class="box-footer text-black">
+              <div class="row"> -->
                 <?php // foreach ($stokdashboard as $key) { 
                 //   $a = 100-(($key->stok/$key->stokmin)*100);?>
 
@@ -158,12 +155,12 @@
 
                 <?php // } ?>
                 <!-- /.col -->
-              </div>
+              <!-- </div> -->
               <!-- /.row -->
-            </div>
-          </div>
+           <!--  </div>
+          </div> -->
           <!-- Map box -->
-           <div class="box box-primary">
+           <!-- <div class="box box-primary"> -->
             <!-- <div class="box-header">
               <i class="ion ion-clipboard"></i>
 
@@ -180,7 +177,7 @@
               </div>
             </div> -->
             <!-- /.box-header -->
-            <div class="box-body">
+            <!-- <div class="box-body"> -->
               <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
               <!-- <ul class="todo-list"> -->
                 <?php // foreach ($hutangdashboard as $hd) { ?>
@@ -195,12 +192,12 @@
                 </li> -->
                 <?php// } ?>
               <!-- </ul> -->
-            </div>
+            <!-- </div> -->
             <!-- /.box-body -->
             <!-- <div class="box-footer clearfix no-border">
               <a href="<?php echo site_url('C_penjualan/hutang'); ?>"><button type="button" class="btn btn-default pull-right">Selengkapnya</button>
             </div> -->
-          </div>
+          <!-- </div> -->
           <!-- /.box -->
 
           <!-- solid sales graph -->

@@ -14,6 +14,31 @@ class M_User extends CI_Model {
     	return $query->result();
     }
 
+    function totalanggota(){
+        $this->db->where_not_in('statusanggota', 'tidak aktif');
+        $query = $this->db->get('tb_anggota');
+        return $query->num_rows();
+    }
+
+    function waitupline(){
+        $this->db->where('statusanggota', 'menunggu konfirmasi upline');
+        $query = $this->db->get('tb_anggota');
+        return $query->num_rows();
+    }
+
+    function waitadmin(){
+        $this->db->where('statusanggota', 'menunggu konfirmasi admin');
+        $query = $this->db->get('tb_anggota');
+        return $query->num_rows();
+    }
+
+    function sdhbayar(){
+        $this->db->where('statusbayar', 'sudah bayar');
+        $this->db->where_not_in('statusanggota', 'tidak aktif');
+        $query = $this->db->get('tb_anggota');
+        return $query->num_rows();
+    }
+
     function getall(){
         $this->db->select('tb_anggota.*, b.nama namaupline, tb_provinsi.*, tb_kota.*, tb_kecamatan.*');
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');

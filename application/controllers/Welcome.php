@@ -24,6 +24,7 @@ class Welcome extends CI_Controller {
         $this->load->helper(array('form','url'));
         $this->load->library('session');
         $this->load->model('M_Setting');
+        $this->load->model('M_User');
     }
 
 	public function index()
@@ -32,7 +33,11 @@ class Welcome extends CI_Controller {
 		$id = $this->session->userdata('statusanggota');
         $data['menu'] = $this->M_Setting->getmenu1($id);
 		$this->load->view('template/sidebar.php', $data);
-		$this->load->view('template/index.php');
+		$data['anggota'] = $this->M_User->totalanggota();
+		$data['konfirmupline'] = $this->M_User->waitupline();		
+		$data['konfirmadmin'] = $this->M_User->waitadmin();		
+		$data['sdhbayar'] = $this->M_User->sdhbayar();
+		$this->load->view('template/index.php', $data);
 		$this->load->view('template/footer.php');
 	}
 }
