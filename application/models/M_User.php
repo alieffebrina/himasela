@@ -16,7 +16,8 @@ class M_User extends CI_Model {
 
     function totalanggota(){
         $this->db->where_not_in('statusanggota', 'tidak aktif');
-        $query = $this->db->get('tb_anggota');
+        $this->db->where_not_in('statusanggota', 'administrator');
+	$query = $this->db->get('tb_anggota');
         return $query->num_rows();
     }
 
@@ -34,7 +35,8 @@ class M_User extends CI_Model {
 
     function sdhbayar(){
         $this->db->where('statusbayar', 'sudah bayar');
-        $this->db->where_not_in('statusanggota', 'tidak aktif');
+        $this->db->where_not_in('statusanggota', 'administrator');
+	$this->db->where_not_in('statusanggota', 'tidak aktif');
         $query = $this->db->get('tb_anggota');
         return $query->num_rows();
     }
