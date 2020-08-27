@@ -74,6 +74,63 @@
 <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
 <script src="<?php echo base_url() ?>assets/bower_components/Flot/jquery.flot.categories.js"></script>
 <!-- Page script -->
+<style type="text/css">
+  @media (min-width: 480px) {
+    .row-xs-table {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+        height: 100%;
+    }
+    .col-xs-table {
+        display: table-cell;
+        float: none;
+        height: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .row-sm-table {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+        height: 100%;
+    }
+    .col-sm-table {
+        display: table-cell;
+        float: none;
+        height: 100%;
+    }
+}
+
+@media (min-width: 992px) {
+    .row-md-table {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+        height: 100%;
+    }
+    .col-md-table {
+        display: table-cell;
+        float: none;
+        height: 100%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .row-lg-table {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+        height: 100%;
+    }
+    .col-lg-table {
+        display: table-cell;
+        float: none;
+        height: 100%;
+    }
+}
+</style>
 <script>
   $(document).ready(function(){ 
     $('#example1').DataTable();
