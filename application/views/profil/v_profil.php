@@ -46,12 +46,14 @@
                   <label for="inputPassword3" class="col-sm-2 control-label">Username</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="username" name="username" value="<?php echo $key->username ?>" maxlength='16' >
+                    <span style="color: red"> Maksimal 16 karakter</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="password" name="password" value="<?php echo $key->password ?>" maxlength='10' >
+                    <span style="color: red"> Maksimal 10 karakter</span>
                   </div>
                 </div>
                 <div class="form-group">
