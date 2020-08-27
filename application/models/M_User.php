@@ -204,6 +204,22 @@ class M_User extends CI_Model {
         $this->db->update('tb_anggota',$user);
     }
 
+    function username(){
+        $user = array(
+            'username' => $this->input->post('username'),
+            'password' => $this->input->post('password'),
+            'id_user' => $this->session->userdata('id_user'),
+            'tglupdate' => date('Y-m-d h:i:s'),
+        );
+
+        $where = array(
+            'id_anggota' =>  $this->input->post('id'),
+        );
+        
+        $this->db->where($where);
+        $this->db->update('tb_anggota',$user);
+    }
+
     function hapus($id){
         $user = array(
             'statusanggota' => 'tidak aktif',
