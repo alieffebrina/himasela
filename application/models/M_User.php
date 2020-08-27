@@ -261,7 +261,7 @@ class M_User extends CI_Model {
             'statusbayar' => $statusbayar,
             'id_user' => $id,
             'username' => $username,
-            'password' => $password,
+            'password' => '123456',
             'id_user' => $this->session->userdata('id_user'),
             'tglupdate' => date('Y-m-d h:i:s'),
         );
@@ -292,7 +292,7 @@ class M_User extends CI_Model {
             'id_user' => $this->session->userdata('id_user'),
             'tglupdate' => date('Y-m-d h:i:s'),
             'username' => $this->input->post('nik'),
-            'password' => $password,
+            'password' => '123456',
             'statusbayar' => 'sudah bayar',
         );
 
