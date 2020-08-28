@@ -19,6 +19,7 @@ class C_User extends CI_Controller{
         $iduser = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
+
         if ($id == 'anggota'){
             $data['user'] = $this->M_User->getuserspek($iduser);
         } else {
@@ -34,6 +35,8 @@ class C_User extends CI_Controller{
         $hasiledit = $this->M_Setting->cekakses($tabel, $edit);
         if(count($hasiledit)!=0){ 
             $tomboledit = 'aktif';
+        } else {
+            $tomboledit = 'tidak';
         }
 
         $hapus = array(
@@ -44,10 +47,12 @@ class C_User extends CI_Controller{
         $hasilhapus = $this->M_Setting->cekakses($tabel, $hapus);
         if(count($hasilhapus)!=0){ 
             $tombolhapus = 'aktif';
+        } else{
+            $tombolhapus = 'tidak';
         }
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;
-        $data['header'] = 'Calon Anggota';
+        $data['header'] = 'Calon Anggota';        
         $this->load->view('user/v_user',$data); 
         $this->load->view('user/v_modal',$data); 
         $this->load->view('template/footer');
@@ -74,6 +79,8 @@ class C_User extends CI_Controller{
         $hasiledit = $this->M_Setting->cekakses($tabel, $edit);
         if(count($hasiledit)!=0){ 
             $tomboledit = 'aktif';
+        } else {
+            $tomboledit = 'tidak';
         }
 
         $hapus = array(
@@ -84,6 +91,8 @@ class C_User extends CI_Controller{
         $hasilhapus = $this->M_Setting->cekakses($tabel, $hapus);
         if(count($hasilhapus)!=0){ 
             $tombolhapus = 'aktif';
+        } else{
+            $tombolhapus = 'tidak';
         }
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;

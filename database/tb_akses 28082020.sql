@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2020 at 01:47 PM
+-- Generation Time: Aug 28, 2020 at 09:44 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.31
 
@@ -49,8 +49,8 @@ INSERT INTO `tb_akses` (`id_akses`, `id_menu`, `tipeuser`, `view`, `add`, `edit`
 (5, 5, 'administrator', '1', '1', '1', '1'),
 (6, 6, 'administrator', '1', '1', '1', '1'),
 (7, 3, 'anggota', '1', '1', '1', '1'),
-(8, 2, 'anggota', '1', '1', '1', '1'),
-(19, 1, 'anggota', '1', '1', '1', '1');
+(8, 2, 'anggota', '1', '1', '0', '0'),
+(19, 1, 'anggota', '1', '1', '0', '0');
 
 --
 -- Indexes for dumped tables

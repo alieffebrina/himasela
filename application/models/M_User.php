@@ -137,7 +137,7 @@ class M_User extends CI_Model {
             'nourut' => $nourut,
             // 'buktitransfer' => $upload['file']['file_name'],
             'statusbayar' => 'belum bayar',
-            'statusanggota' => 'menunggu konfirmasi upline',
+            'statusanggota' => 'menunggu konfirmasi admin',
             'id_user' => $this->session->userdata('id_user'),
             'tglupdate' => date('Y-m-d h:i:s'),
         );

@@ -29,13 +29,10 @@
             <div class="box-header">
               <h3 class="box-title">Data <?php echo $header; ?></h3>
             </div>
-
             <div class="box-header">
               <a href="<?php echo site_url('C_User/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data</button></a>
-            </div>
+            </div> 
             <!-- /.box-header -->
-
-            
             <div class="box-body table-responsive no-padding">
               <table id="example1" class="table table-bordered table-striped table-hover">
                 <thead>
