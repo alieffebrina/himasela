@@ -235,13 +235,37 @@ class C_User extends CI_Controller{
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['user'] = $this->M_User->getspek($iduser);
+        $data['upline'] = $this->M_User->getuserall();
         $this->load->view('user/v_euser',$data); 
         $this->load->view('template/footer');
     }
 
     function edituser()
     {   
-        $this->M_User->edit();
+        $kalimat = $this->input->post('upline');
+        $data = explode("/" , $kalimat);
+        $upline =  $data[0];
+        $tabel = 'tb_anggota';
+        $cek = 'id_upline';
+        $hasilsama = $this->M_User->cekupline($upline);
+        if(count($hasilsama) == 1){
+
+            foreach ($hasilsama as $hasilsama) {
+                $nourut = $hasilsama->nourut;
+            }
+        } else {
+            $hasil_kode = $this->M_Setting->cek($cek,$upline,$tabel);
+            $hitung = count($hasil_kode);
+            if(count($hasil_kode) == 0){
+                $nourut = 1;
+            } else {
+                $nourut = $hitung+1;
+            }
+            $no = $data[1].' '.+$nourut.' ';
+            $nourut = str_replace(' ', '', $no);
+        }
+
+        $this->M_User->edit($nourut, $upline);
         $this->session->set_flashdata('Sukses', "Data Berhasil Di Rubah!!");
         if($this->input->post('statusanggota') == 'menunggu konfirmasi admin' || $this->input->post('statusanggota') == 'menunggu konfirmasi upline' ){
             redirect('C_User');

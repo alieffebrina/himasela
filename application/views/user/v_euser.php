@@ -96,8 +96,18 @@
                  <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Upline</label>
                   <div class="col-sm-9">
-                    <input type="hidden" class="form-control" id="upline" name="upline" value="<?php echo $key->id_upline; ?>"> 
-                    <input type="text" class="form-control" value="<?php echo $key->namaupline; ?>" readonly>               
+                    <select class="form-control select2" id="upline" name="upline" style="width: 100%;">
+                      <option value="<?php echo $key->id_upline.'/'.$key->nourut?>" selected ><?php echo $key->namaupline ?></option>
+                      <?php foreach ($upline as $upline) { 
+                        $a = $this->db->query("select * from tb_anggota where id_upline = '$upline->id_anggota' and statusanggota != 'tidak aktif'"); 
+                        $b = $a->result();
+                        if(count($b)<3){ 
+                          if ($upline->id_anggota != $key->id_upline){ ?>
+                            <option value="<?php echo $upline->id_anggota.'/'.$upline->nourut?>"><?php echo $upline->nama ?></option>  
+                          <?php }
+                       } 
+                    }?>
+                    </select>             
                   </div>
                 </div>
                 <div class="form-group">

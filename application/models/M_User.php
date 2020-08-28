@@ -95,7 +95,7 @@ class M_User extends CI_Model {
 
     function upload(){
         $file_name = $this->input->post('input_gambar');
-        $path= FCPATH.'/assets/images';
+        $path= FCPATH.'/images';
         //echo $path;
         $config['upload_path'] = $path;
         $config['allowed_types'] = 'jpg|png|jpeg';
@@ -114,9 +114,6 @@ class M_User extends CI_Model {
         }
     
     }
-
-    
-    
 
     function tambahdata($nourut, $upline){
         $user = array(
@@ -146,7 +143,7 @@ class M_User extends CI_Model {
     }
 
     function getuserall(){
-
+        $this->db->where_not_in('statusanggota', 'menunggu konfirmasi admin');
         $this->db->where_not_in('statusanggota', 'tidak aktif');
         $iduser = $this->db->get('tb_anggota');
         return $iduser->result();
@@ -176,7 +173,7 @@ class M_User extends CI_Model {
     	return $query->result();
     }
 
-    function edit(){
+    function edit($nourut, $upline){
         $user = array(
             'nik' => $this->input->post('nik'),
             'nama' => $this->input->post('nama'),
@@ -191,7 +188,8 @@ class M_User extends CI_Model {
             'pemilik' => $this->input->post('pemilik'),
             'jumlahhu' => $this->input->post('jumlahhu'),
             'namasponsor' => $this->input->post('namasponsor'),
-            // 'id_upline' => $this->input->post('upline'),
+            'id_upline' => $upline,
+            'nourut' => $nourut,
             'id_user' => $this->session->userdata('id_user'),
             'tglupdate' => date('Y-m-d h:i:s'),
         );
@@ -233,6 +231,16 @@ class M_User extends CI_Model {
         
         $this->db->where($where);
         $this->db->update('tb_anggota',$user);
+    }
+
+    function cekupline($upline){
+        $this->db->select('*');
+        $where = array(
+            'id_upline' => $upline,
+            'id_anggota' =>  $this->input->post('id'),
+        );
+        $query = $this->db->get_where('tb_anggota', $where);
+        return $query->result();
     }
 
     function konfirm($iduser,$bayar,$anggota,$id,$username){
