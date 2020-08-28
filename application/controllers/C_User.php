@@ -170,6 +170,8 @@ class C_User extends CI_Controller{
             $this->M_User->konfirmadmin($upload);
             $this->session->set_flashdata('Sukses', "Data Berhasil Di Simpan!!");
             redirect('C_User/all');  
+        } else {
+            'gagal';
         }
     }
 

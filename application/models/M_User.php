@@ -95,7 +95,7 @@ class M_User extends CI_Model {
 
     function upload(){
         $file_name = $this->input->post('input_gambar');
-        $path= FCPATH.'images';
+        $path= FCPATH.'/assets/images';
         //echo $path;
         $config['upload_path'] = $path;
         $config['allowed_types'] = 'jpg|png|jpeg';
