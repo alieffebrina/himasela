@@ -30,6 +30,7 @@ class C_Login extends CI_Controller {
 		          'authenticated'=>true, // Buat session authenticated dengan value true
 		          'username'=>$user->username,  // Buat session nip
 		          'nama'=>$user->nama,
+		          'nourut'=>$user->nourut,
 		          'id_user'=>$user->id_anggota, // Buat session authenticated
 		          'statusanggota' => $user->statusanggota
 		        );

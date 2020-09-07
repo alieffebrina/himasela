@@ -33,7 +33,7 @@
               <a href="<?php echo site_url('C_User/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data</button></a>
             </div> 
             <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
+            <div class="box-body table-responsive">
               <table id="example1" class="table table-bordered table-striped table-hover">
                 <thead>
                 <tr>
@@ -44,7 +44,7 @@
                   <th>Password</th>
                   <th>Alamat</th>
                   <th>Upline</th>
-                  <th>Pembayaran</th>
+                  <th>Level</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
@@ -61,15 +61,16 @@
                   <td><?php echo $user->password; ?></td>
                   <td><?php echo $user->alamat.', '.$user->name_kota.', '.$user->name_prov; ?></td>
                   <td><?php echo $user->namaupline; ?></td>
-                  <td><?php echo $user->statusbayar; ?></td>
+                  <td><?php echo $user->level; ?></td>
                   <td><?php echo $user->statusanggota; ?></td>
                   <input type="hidden" id="id_anggota" name="id_anggota" value="<?php echo $user->id_anggota ?>">
                   <td> 
                     <div class="btn-group">
-                    <?php if($header == 'Calon Anggota'){ 
-                      if($user->statusanggota == 'menunggu konfirmasi admin' || $user->statusanggota == 'administrator' ){ ?>     
+                    <?php 
+                    $id = $this->session->userdata('statusanggota');
+                    if($header == 'Calon Anggota' && $id == 'administrator'){ ?>     
                         <a href="<?php echo site_url('C_User/ttf/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning"><i class="fa fa-fw fa-check"></i></button></a> 
-                      <?php }  } ?>
+                      <?php }  ?>
                       <a href="<?php echo site_url('C_User/view/'.$user->id_anggota); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
                       <?php if($aksesedit == 'aktif'){?>
                       <a href="<?php echo site_url('C_User/edit/'.$user->id_anggota); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
