@@ -17,11 +17,12 @@ class C_User extends CI_Controller{
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
+        $nourut = $this->session->userdata('nourut');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
 
         if ($id == 'anggota'){
-            $data['user'] = $this->M_User->getuserspek($iduser);
+            $data['user'] = $this->M_User->getspek($nourut);
         } else {
             $data['user'] = $this->M_User->getuser();            
         }
@@ -63,10 +64,11 @@ class C_User extends CI_Controller{
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
+        $nourut = $this->session->userdata('nourut');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         if ($id == 'anggota'){
-            $data['user'] = $this->M_User->getallspek($iduser);
+            $data['user'] = $this->M_User->getallspek($nourut);
         } else {
             $data['user'] = $this->M_User->getall();            
         }

@@ -78,10 +78,12 @@ class C_Donasi extends CI_Controller{
         $this->load->view('template/sidebar.php', $data);
        
         $totalupline = $this->M_Donasi->getuserupline($nourut);
-        if(count($totalupline) > 5){
+        // if(count($totalupline) > 5){
             
-            $data['upline'] = $this->M_Donasi->getuserupline($nourut);
-        }
+        //     $data['upline'] = $this->M_Donasi->getuserupline($nourut);
+        // }
+
+        $data['upline'] = $this->M_Donasi->getuserupline($nourut);
 
         $tabel = 'tb_akses';
         $edit = array(

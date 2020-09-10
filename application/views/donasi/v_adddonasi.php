@@ -105,7 +105,7 @@
                               } 
                              echo "Upgrade Level"; } else { echo "-"; } ?></td>
                             <td> 
-                              <input type="text" name="upgrade" id="upgrade" value="<?php echo $levelup.'/'.$upline->id_anggota; ?>">
+                              <input type="hidden" name="upgrade" id="upgrade" value="<?php echo $levelup.'/'.$upline->id_anggota; ?>">
                               <div class="btn-group">
 
                                 <a href="<?php echo site_url('C_Donasi/bayar/'.$upline->id_anggota.'/'.$levelup); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-dollar"></i></button></a>

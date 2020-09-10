@@ -51,7 +51,7 @@ class M_User extends CI_Model {
         return $query->result();
     }
 
-    function getuserspek($iduser){
+    function getuserspek($nourut){
         $this->db->select('tb_anggota.*, b.nama namaupline, tb_provinsi.*, tb_kota.*, tb_kecamatan.*');
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
@@ -64,7 +64,7 @@ class M_User extends CI_Model {
         return $query->result();
     }
 
-    function getallspek($iduser){
+    function getallspek($nourut){
         $this->db->select('tb_anggota.*, b.nama namaupline, tb_provinsi.*, tb_kota.*, tb_kecamatan.*');
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
@@ -72,7 +72,7 @@ class M_User extends CI_Model {
         $this->db->join('tb_anggota b', 'b.id_anggota = tb_anggota.id_upline');
         $anggota = array('menunggu konfirmasi admin', 'menunggu konfirmasi upline','tidak aktif');
         $this->db->where_not_in('tb_anggota.statusanggota', $anggota);
-        $this->db->where('tb_anggota.id_upline', $iduser);
+        $this->db->like('tb_anggota.nourut', $nourut, 'after');
         $query = $this->db->get('tb_anggota');
         return $query->result();
     }
