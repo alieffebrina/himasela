@@ -13,7 +13,14 @@
           $id = $this->session->userdata('id_user');?>
           </p>
 
-          <a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-circle text-success"></i> Online</a>
+          <a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-circle text-success"></i>
+            <?php $level = $this->db->query("select * from tb_anggota where id_anggota = '$id'");
+              $querydonasi = $level->result();
+              if ($id != '1'){
+                foreach ($querydonasi as $key) {
+                  echo 'Level '.$key->level;
+                } }
+               ?></a>
         </div></p>
       </div>
       <form action="#" method="get" class="sidebar-form">
