@@ -34,12 +34,20 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('template/header.php');
 		$id = $this->session->userdata('statusanggota');
+        $nourut = $this->session->userdata('nourut');
         $data['menu'] = $this->M_Setting->getmenu1($id);
 		$this->load->view('template/sidebar.php', $data);
-		$data['anggota'] = $this->M_User->totalanggota();
-		$data['konfirmupline'] = $this->M_User->waitupline();		
-		$data['konfirmadmin'] = $this->M_User->waitadmin();		
-		$data['sdhbayar'] = $this->M_User->sdhbayar();
+		if($id=='administrator'){
+			$data['anggota'] = $this->M_User->totalanggota();
+			$data['konfirmupline'] = $this->M_User->waitupline();		
+			$data['konfirmadmin'] = $this->M_User->waitadmin();		
+			$data['sdhbayar'] = $this->M_User->sdhbayar();
+		} else {
+			$data['anggota'] = $this->M_User->totalanggotadwonline($nourut);
+			$data['konfirmupline'] = $this->M_User->waituplinedwonline($nourut);		
+			$data['konfirmadmin'] = $this->M_User->waitadmindwonline($nourut);		
+			$data['sdhbayar'] = $this->M_User->sdhbayardwonline($nourut);
+		}
 		$this->load->view('template/index.php', $data);
 		$this->load->view('template/footer.php');
 	}
