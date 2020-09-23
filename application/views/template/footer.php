@@ -74,6 +74,20 @@
 <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
 <script src="<?php echo base_url() ?>assets/bower_components/Flot/jquery.flot.categories.js"></script>
 <!-- Page script -->
+
+<!-- CK Editor -->
+<script src="<?php echo base_url() ?>assets/bower_components/ckeditor/ckeditor.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="<?php echo base_url() ?>assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<!-- <script>
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('berita')
+    //bootstrap WYSIHTML5 - text editor
+    $('.textarea').wysihtml5()
+  })
+</script> -->
 <style type="text/css">
   @media (min-width: 480px) {
     .row-xs-table {
