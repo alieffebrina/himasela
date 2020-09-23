@@ -50,7 +50,7 @@ class C_Setting extends CI_Controller{
     function index()
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('statusanggota');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['user'] = $this->M_User->getuser();
@@ -58,10 +58,33 @@ class C_Setting extends CI_Controller{
         $this->load->view('template/footer');
     }
 
+    function downline()
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('statusanggota');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        $data['downline'] = $this->M_Setting->getdownline();
+        $this->load->view('template/v_downline',$data); 
+        $this->load->view('template/footer');
+    }
+
+    function batasdownline(){
+
+        $where = array('id_setting' => $this->input->post('id') );
+        $batas = array('downline' => $this->input->post('downline'));
+        $this->M_Setting->batasdownline($where, $batas);
+
+            $this->session->set_flashdata('sukses','<div class="alert alert-warning left-icon-alert" role="alert">
+                                                        <strong>Sukses!</strong> Data Berhasil di Rubah.
+                                                    </div>');
+            redirect('downline');
+    }
+
     function view($ida)
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('statusanggota');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $akses['akses'] = $this->M_Setting->getakses($ida);
@@ -118,7 +141,7 @@ class C_Setting extends CI_Controller{
     function vkode()
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('statusanggota');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['kode'] = $this->M_Setting->getkode();
@@ -129,7 +152,7 @@ class C_Setting extends CI_Controller{
     function addkode()
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('statusanggota');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['kode'] = $this->M_Setting->getkode();

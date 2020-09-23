@@ -81,6 +81,7 @@
                   <label for="inputEmail3" class="col-sm-2 control-label">E-Mail</label>
                   <div class="col-sm-9">
                     <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail" required>
+                    <!-- <input type="text" class="form-control" id="email" name="email" value="<?php ?>" required> -->
                   </div>
                 </div>
                  <div class="form-group">
@@ -88,10 +89,14 @@
                   <div class="col-sm-9">
                     <select class="form-control select2" id="upline" name="upline" style="width: 100%;" required>
                       <option value="">--Pilih--</option>
-                      <?php foreach ($user as $user) { 
+                      <?php 
+                      foreach($downline as $downline){ echo $downline->downline; } 
+                      
+                      $down = $downline->downline;
+                      foreach ($user as $user) { 
                         $a = $this->db->query("select * from tb_anggota where id_upline = '$user->id_anggota' and statusanggota != 'tidak aktif'"); 
                         $b = $a->result();
-                        if(count($b)<3){ 
+                        if(count($b)< $down){ 
                           ?> <option value="<?php echo $user->id_anggota.'/'.$user->nourut?>"><?php echo $user->nama ?></option>  
                       <?php } 
                     }?>

@@ -53,7 +53,7 @@ class C_User extends CI_Controller{
         }
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;
-        $data['header'] = 'Calon Anggota';        
+        $data['header'] = 'Calon Anggota';      
         $this->load->view('user/v_user',$data); 
         $this->load->view('user/v_modal',$data); 
         $this->load->view('template/footer');
@@ -111,6 +111,7 @@ class C_User extends CI_Controller{
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['user'] = $this->M_User->getuserall();
+        $data['downline'] = $this->M_Setting->getdownline();  
         $this->load->view('user/v_adduser', $data); 
         $this->load->view('template/footer');
     }
@@ -160,7 +161,8 @@ class C_User extends CI_Controller{
         // $upload = $this->M_User->upload();
         // if ($upload['result'] == "success"){
             $this->M_User->tambahdata($nourut, $upline);
-            $this->session->set_flashdata('Sukses', "Data Berhasil Di Simpan!!");
+
+            $this->session->set_flashdata('Sukses', "Username anda sama dengan Nik dengan password 123456 !!");
             redirect('C_User');  
         // }
     }
@@ -238,6 +240,7 @@ class C_User extends CI_Controller{
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['user'] = $this->M_User->getspek($iduser);
         $data['upline'] = $this->M_User->getuserall();
+        $data['downline'] = $this->M_Setting->getdownline();  
         $this->load->view('user/v_euser',$data); 
         $this->load->view('template/footer');
     }

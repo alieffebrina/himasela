@@ -50,5 +50,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'C_Login';
+$route['level'] = 'C_Level';
+$route['level-add'] = 'C_Level/add';
+$route['level-view/(:any)'] = 'C_Level/view/$1';
+$route['level-edit/(:any)'] = 'C_Level/edit/$1';
+$route['downline'] = 'C_Setting/downline';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

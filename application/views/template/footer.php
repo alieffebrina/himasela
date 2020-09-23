@@ -295,6 +295,7 @@ function toggle(source) {
         rupiah.value = formatRupiah(this.value, 'Rp. ');
       });
     }
+
     /* Fungsi formatRupiah */
     function formatRupiah(angka, prefix){
       var number_string = angka.replace(/[^,\d]/g, '').toString(),

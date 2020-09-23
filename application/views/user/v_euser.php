@@ -98,10 +98,13 @@
                   <div class="col-sm-9">
                     <select class="form-control select2" id="upline" name="upline" style="width: 100%;">
                       <option value="<?php echo $key->id_upline.'/'.$key->nourut?>" selected ><?php echo $key->namaupline ?></option>
-                      <?php foreach ($upline as $upline) { 
+                      <?php 
+                      foreach($downline as $downline){ echo $downline->downline; } 
+                      $down = $downline->downline;
+                      foreach ($upline as $upline) { 
                         $a = $this->db->query("select * from tb_anggota where id_upline = '$upline->id_anggota' and statusanggota != 'tidak aktif'"); 
                         $b = $a->result();
-                        if(count($b)<3){ 
+                        if(count($b)<5){ 
                           if ($upline->id_anggota != $key->id_upline){ ?>
                             <option value="<?php echo $upline->id_anggota.'/'.$upline->nourut?>"><?php echo $upline->nama ?></option>  
                           <?php }

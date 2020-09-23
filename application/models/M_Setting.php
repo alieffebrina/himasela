@@ -8,6 +8,16 @@ class M_Setting extends CI_Model {
     	return $query->result();
     }
 
+    function getdownline(){
+        $query = $this->db->get('tb_setting');
+        return $query->result();
+    }
+
+    function batasdownline($where, $level) {
+        $this->db->where($where);
+        $this->db->update('tb_setting',$level);
+    }
+
     function getkota($id){
         $this->db->select('*');
         $where = array(

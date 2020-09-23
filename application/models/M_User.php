@@ -161,6 +161,8 @@ class M_User extends CI_Model {
             'namasponsor' => $this->input->post('namasponsor'),
             'id_upline' => $upline,
             'nourut' => $nourut,
+            'username' => $this->input->post('nik'),
+            'password' => '123456',
             // 'buktitransfer' => $upload['file']['file_name'],
             'statusbayar' => 'belum bayar',
             'statusanggota' => 'menunggu konfirmasi admin',
