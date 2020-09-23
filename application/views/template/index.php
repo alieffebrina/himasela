@@ -107,7 +107,57 @@
         </div>
         <!-- ./col -->
       </div>
+      <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Berita Terbaru</h3>
 
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="table-responsive">
+                
+              <table id="example1" class="table table-bordered table-striped table-hover">
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>User</th>
+                  <th>Tanggal Upload</th>
+                  <th>Judul Berita</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <?php 
+                  $no=1;
+                  foreach ($berita as $berita) {  ?>  
+                    <tr>
+                      <td><?php echo $no++; ?></td>
+                      <td><?php echo $berita->nama; ?></td>
+                      <td><?php echo $berita->tglupdate; ?></td>
+                      <td><?php echo $berita->judul; ?></td>
+                      <td><a href="<?php echo site_url('berita-view/'.$berita->id_berita); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
+                      <?php if($aksesedit == 'aktif'){?>
+                      <a href="<?php echo site_url('berita-edit/'.$berita->id_berita); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
+                      <?php } ?>
+                      <?php if($akseshapus == 'aktif'){?>
+                      <a href="<?php echo site_url('C_Berita/hapus/'.$berita->id_berita); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
+                      <?php } ?>
+                      </td>
+                    </tr>
+                  <?php } ?>
+                </tbody>
+              </table>
+              </div>
+              <!-- /.table-responsive -->
+            </div>
+            <!-- /.box-body -->
+            <!-- /.box-footer -->
+          </div>
         </section>
         <!-- right col -->
       </div>

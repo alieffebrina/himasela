@@ -36,7 +36,7 @@
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Tanggal</label>
                   <div class="col-sm-9">
-                    <input type="date" class="form-control" id="judul" name="judul" value="<?php echo $key->tglupdate ?>" readonly>
+                    <input type="text" class="form-control" id="judul" name="judul" value="<?php echo $key->tglupdate ?>" readonly>
                   </div>
                 </div>
                 <div class="form-group">

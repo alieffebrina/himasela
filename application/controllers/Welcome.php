@@ -24,6 +24,7 @@ class Welcome extends CI_Controller {
         $this->load->helper(array('form','url'));
         $this->load->library('session');
         $this->load->model('M_Setting');
+        $this->load->model('M_Berita');
         $this->load->model('M_User');
         if(!$this->session->userdata('id_user')){
             redirect('C_Login');
@@ -48,6 +49,7 @@ class Welcome extends CI_Controller {
 			$data['konfirmadmin'] = $this->M_User->waitadmindwonline($nourut);		
 			$data['sdhbayar'] = $this->M_User->sdhbayardwonline($nourut);
 		}
+        $data['berita'] = $this->M_Berita->getBerita();
 		$this->load->view('template/index.php', $data);
 		$this->load->view('template/footer.php');
 	}

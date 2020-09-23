@@ -62,7 +62,7 @@ class C_Berita extends CI_Controller{
         $data['aksesadd'] = $tomboltambah;   
 
         $data['berita'] = $this->M_Berita->getBerita();
-        $this->load->view('Berita/v_Berita',$data); 
+        $this->load->view('berita/v_Berita',$data); 
         $this->load->view('template/footer');
     }
 
@@ -73,7 +73,7 @@ class C_Berita extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['berita'] = $this->M_Berita->getspek($ida);
-        $this->load->view('Berita/v_vBerita',$data); 
+        $this->load->view('berita/v_vberita',$data); 
         $this->load->view('template/footer');
     }
 
@@ -83,8 +83,8 @@ class C_Berita extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        $data['Berita'] = $this->M_Berita->getspek($ida);
-        $this->load->view('Berita/v_editBerita',$data); 
+        $data['berita'] = $this->M_Berita->getspek($ida);
+        $this->load->view('berita/v_eberita',$data); 
         $this->load->view('template/footer');
     }
 
@@ -94,7 +94,7 @@ class C_Berita extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        $this->load->view('Berita/v_addBerita',$data); 
+        $this->load->view('Berita/v_addberita',$data); 
         $this->load->view('template/footer');
     }
 

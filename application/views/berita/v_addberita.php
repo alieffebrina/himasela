@@ -45,7 +45,7 @@
               <!-- /.box-body -->
               <div class="box-footer">
                   <div class="col-sm-10">
-                    <a href="<?php echo site_url('level'); ?>" class="btn btn-default">Batal</a>
+                    <a href="<?php echo site_url('berita'); ?>" class="btn btn-default">Batal</a>
                     <button type="submit" class="btn btn-info">Tambah Data</button>
                   </div>
               </div>

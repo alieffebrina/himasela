@@ -10,7 +10,7 @@ class M_Berita extends CI_Model {
     }
 
     function getspek($ida){
-        $this->db->select('tb_anggota.nama, tb_berita.*')
+        $this->db->select('tb_anggota.nama, tb_berita.*');
         $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_berita.id_user');
     	$this->db->where('id_Berita', $ida);
         return $this->db->get('tb_berita')->result();
