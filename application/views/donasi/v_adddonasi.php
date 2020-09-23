@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Donasi User
+        Data Upgrade Member
         <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="<?php echo site_url('C_DOnasi'); ?>">Data Donasi User</a></li>
-        <li class="active">Data Donasi User</li>
+        <li><a href="<?php echo site_url('C_DOnasi'); ?>">Data Upgrade Member</a></li>
+        <li class="active">Data Upgrade Member</li>
       </ol>
     </section>
     <div class="box-body">
