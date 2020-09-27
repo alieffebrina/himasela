@@ -34,106 +34,52 @@
             <!-- /.box-header -->
             <!-- form start -->
             <?php echo form_open("C_Donasi/upgrade", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
-              <div class="box-body">
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Upload Bukti Transfer</label>
-                  <div class="col-sm-9">
-                        <input type="file" id="imagebt" class="demoInputBox" name="imagebt" required onchange="ValidateSize(this)">
-                           
-                           <input type="hidden" id="id" name="id" value="<?php echo $idgo; ?>">
-                              <input type="hidden" class="form-control" id="level" name="level" value="<?php echo $level ?>">
-                  </div>
-                </div>
-              </div>
-
+            <?php foreach ($data as $data) { 
+             $levelup = $data->id_upline+1; ?>
+              <div class="box-body table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                <tr>
+                  <td>NIK</td>
+                  <td><?php echo $data->nik ?></td></tr><tr>
+                  <td>Nama</td>
+                  <td><?php echo $data->nama ?></td></tr><tr>
+                  <td>Upline</td>
+                  <td><?php echo $data->namaupline ?></td></tr><tr>
+                  <td>Upgrade Level</td>
+                  <td><?php echo $levelup ?></td></tr><tr>
+                  <td>Nominal Donasi</td>
+                  <?php foreach ($level as $level) {
+                    echo "<td> Rp. ".number_format($level->nominal)."</td></tr><tr>";
+                  } ?>
+                    <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data->id_anggota ?>">
+                    <input type="hidden" class="form-control" id="level" name="level" value="<?php echo $levelup ?>">
+                    <input type="hidden" class="form-control" id="upline" name="upline" value="<?php echo $data->id_upline ?>">
+                  <td>Upload </td>
+                  <td>
+                    <input type="file" id="imagebt" class="demoInputBox" name="imagebt" required onchange="ValidateSize(tdis)"></td>
+                </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+              </table>
+            </div>
               <!-- /.box-body -->
               <div class="box-footer">
                   <div class="col-sm-10">
-                    <a href="<?php echo site_url('C_barang/index'); ?>" class="btn btn-default">Batal</a>
+                    <a href="<?php echo site_url('C_Donasi'); ?>" class="btn btn-default">Batal</a>
                     <button type="submit" class="btn btn-info">Simpan Data</button>
                   </div>
               </div>
               <!-- /.box-footer -->
+            <?php } ?>
            <?php echo form_close();?>
           </div>
           <!-- /.box -->
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Data Donasi User</h3>
-            </div> 
-            <!-- /.box-header -->
-            <div class="box-body table-responsive">
-              <table id="example1" class="table table-bordered table-striped table-hover">
-                <thead>
-                <tr>
-                  <th>No</th>
-                  <th>NIK</th>
-                  <th>Nama</th>
-                  <th>Upline</th>
-                  <th>Level</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                  <?php 
-                  $no=1;
-                  foreach ($upline as $upline) { 
-                    $nourut = $upline->nourut;
-                    $cekjumlah = $this->db->query("select * from tb_anggota where nourut Like '$nourut%' "); 
-                    $query = $cekjumlah->result();
-                    if(count($query)>5){
-                      ?>  <tr>
-                            <td><?php echo $no++; ?></td>
-                            <td><?php echo $upline->nik; ?></td>
-                            <td><?php echo $upline->nama; ?></td>
-                            <td><?php echo $upline->namaupline; ?></td>
-                            <td><?php echo $upline->level; ?></td>
-                            <td><?php if(count($query)>5){ 
-                              $levelup = $upline->level+1;
-                              $cekdonasi = $this->db->query("select * from tb_donasi where id_anggota = '$upline->id_anggota' and levelupgrade = '$levelup'");
-                              $querydonasi = $cekdonasi->result();
-                              if(count($querydonasi) != NULL){
-                                foreach ($querydonasi as $key) {
-                                  echo $key->status;
-                                }
-                              } 
-                             echo "Upgrade Level"; } else { echo "-"; } ?></td>
-                            <td> 
-                              <input type="hidden" name="upgrade" id="upgrade" value="<?php echo $levelup.'/'.$upline->id_anggota; ?>">
-                              <div class="btn-group">
-
-                                <a href="<?php echo site_url('C_Donasi/bayar/'.$upline->id_anggota.'/'.$levelup); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-dollar"></i></button></a>
-                               <!--  <a 
-                                    href="javascript:;"
-                                    data-id="<?php echo $upline->id_anggota ?>"
-                                    data-level="<?php echo $levelup ?>"
-                                    data-toggle="modal" data-target="#edit-data"> -->
-                                    <!-- <button  data-idgotaaa="<?php echo $upline->id_anggota ?>"
-                                    data-level="<?php echo $levelup ?>"
-                                    data-toggle="modal" data-target="#edit-data" class="btn btn-info" value="<?php echo $levelup.'/'.$upline->id_anggota; ?>"><i class="fa fa-fw fa-dollar"></i></button> -->
-                                <!-- </a> -->
-                            
-                              </div>
-                            </td>
-                          </tr>
-                        <?php 
-                      } 
-                    } ?>
-                </tbody>
-              </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-      </div>
       <!-- /.row -->
     </section>
     <!-- /.content -->

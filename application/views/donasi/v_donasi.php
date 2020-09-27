@@ -13,13 +13,7 @@
       </ol>
     </section>
     <div class="box-body">
-    <?php if ($this->session->flashdata('Sukses')) { ?>
-        <div class="alert alert-success alert-dismissible">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <h5><i class="icon fa fa-check"></i> Sukses!</h5>
-          <?=$this->session->flashdata('Sukses')?>.
-        </div>                 
-      <?php } ?>
+          <?=$this->session->flashdata('sukses')?>
     </div>
     <!-- Main content -->
     <section class="content">
@@ -27,7 +21,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">DataUpgrade Member</h3>
+              <h3 class="box-title">Data Upgrade Member</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive">
@@ -69,16 +63,6 @@
                             <td> 
 
                                 <a href="<?php echo site_url('C_Donasi/bayar/'.$upline->id_anggota.'/'.$levelup); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-dollar"></i></button></a>
-                               <!--  <a 
-                                    href="javascript:;"
-                                    data-id="<?php echo $upline->id_anggota ?>"
-                                    data-level="<?php echo $levelup ?>"
-                                    data-toggle="modal" data-target="#edit-data"> -->
-                                    <!-- <button  data-idgotaaa="<?php echo $upline->id_anggota ?>"
-                                    data-level="<?php echo $levelup ?>"
-                                    data-toggle="modal" data-target="#edit-data" class="btn btn-info" value="<?php echo $levelup.'/'.$upline->id_anggota; ?>"><i class="fa fa-fw fa-dollar"></i></button> -->
-                                <!-- </a> -->
-                            
                             </td>
                           <?php } ?>
                           </tr>
@@ -98,49 +82,3 @@
     </section>
     <!-- /.content -->
   </div>
-
- <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit-data" class="modal fade">
-     <div class="modal-dialog">
-         <div class="modal-content">
-             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                 <h4 class="modal-title">Bukti Transfer</h4>
-             </div>
-            <?php echo form_open("C_Donasi/upgrade", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
-              <div class="modal-body">
-                      <div class="modal-body">
-                        <input type="file" id="imagebt" class="demoInputBox" name="imagebt" required onchange="ValidateSize(this)">
-                           
-                           <input type="text" id="idgota" name="idgota">
-                              <input type="text" class="form-control" id="level" name="level" placeholder="Tuliskan Nama">
-                      </div>
-                  </div>
-                  <div class="modal-footer">
-                      <button class="btn btn-info" type="submit"> Simpan&nbsp;</button>
-                      <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
-                  </div>
-           <?php echo form_close();?>
-             </div>
-         </div>
-     </div>
- </div>
-<!-- 
-<div class="modal fade" id="modaluploadbuktitransfer">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Bukti Transfer</h4>
-      </div>
-      <div class="modal-body">
-        <input type="file" id="imagebt" class="demoInputBox" name="imagebt" required onchange="ValidateSize(this)">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="btnsimpantfupgrade" >Save changes</button>
-      </div>
-    </div>
-  </div>
-</div> -->

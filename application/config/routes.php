@@ -52,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'C_Login';
 $route['level'] = 'C_Level';
 $route['level-add'] = 'C_Level/add';
+$route['donasi-add'] = 'C_Donasi/add';
 $route['level-view/(:any)'] = 'C_Level/view/$1';
 $route['level-edit/(:any)'] = 'C_Level/edit/$1';
 $route['downline'] = 'C_Setting/downline';

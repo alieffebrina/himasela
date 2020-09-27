@@ -33,6 +33,15 @@ class M_Donasi extends CI_Model {
         return $query->result();
     }
 
+    function getdonasianggota($nourut){
+        $this->db->order_by('tb_donasi.status', 'ASC');
+        $this->db->where('tb_anggota.statusanggota', 'anggota');
+        $this->db->like('tb_anggota.nourut', $nourut, 'after');
+        $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_donasi.id_anggota');
+        $query = $this->db->get('tb_donasi');
+        return $query->result();
+    }
+
     function upload(){
         $file_name = $this->input->post('imagebt');
         $path= FCPATH.'/images';
@@ -58,8 +67,9 @@ class M_Donasi extends CI_Model {
     function upgrade($upload, $level, $anggota){
          $user = array(
             'buktibayar' => $upload['file']['file_name'],
-            'id_anggota' => $anggota,
-            'levelupgrade' => $level,
+            'id_anggota' => $this->input->post('id'),
+            'id_upline' => $this->input->post('upline'),
+            'levelupgrade' => $this->input->post('level'),
             'tglbayar' => date('Y-m-d'),
             'status' => 'menunggu aprove'
         );
