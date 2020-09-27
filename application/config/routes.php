@@ -61,4 +61,6 @@ $route['berita-add'] = 'C_Berita/add';
 $route['berita-view/(:any)'] = 'C_Berita/view/$1';
 $route['berita-edit/(:any)'] = 'C_Berita/edit/$1';
 $route['404_override'] = '';
+$route['transaksi'] = 'C_Donasi/transaksi';
+$route['struktur'] = 'C_Struktur';
 $route['translate_uri_dashes'] = FALSE;

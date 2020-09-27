@@ -28,16 +28,27 @@ class M_Donasi extends CI_Model {
     }
 
     function getdonasi(){
+        $this->db->order_by('tb_donasi.tglbayar', 'DESC');
         $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_donasi.id_anggota');
         $query = $this->db->get('tb_donasi');
         return $query->result();
     }
 
     function getdonasianggota($nourut){
-        $this->db->order_by('tb_donasi.status', 'ASC');
+        $this->db->order_by('tb_donasi.tglbayar', 'DESC');
         $this->db->where('tb_anggota.statusanggota', 'anggota');
         $this->db->like('tb_anggota.nourut', $nourut, 'after');
         $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_donasi.id_anggota');
+        $query = $this->db->get('tb_donasi');
+        return $query->result();
+    }
+
+    function gethistory($id){
+        $this->db->order_by('tb_donasi.tglbayar', 'DESC');
+        $this->db->where('tb_donasi.id_anggota', $id);
+        $this->db->or_where('tb_donasi.id_upline', $id);
+        $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_donasi.id_anggota');
+        $this->db->join('tb_level', 'tb_level.id_level = tb_donasi.levelupgrade');
         $query = $this->db->get('tb_donasi');
         return $query->result();
     }
@@ -64,7 +75,7 @@ class M_Donasi extends CI_Model {
     
     }
 
-    function upgrade($upload, $level, $anggota){
+    function upgrade($upload){
          $user = array(
             'buktibayar' => $upload['file']['file_name'],
             'id_anggota' => $this->input->post('id'),

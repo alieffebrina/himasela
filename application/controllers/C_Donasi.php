@@ -76,7 +76,7 @@ class C_Donasi extends CI_Controller{
         $this->load->view('template/footer');
     }
 
-     function add($idgo, $level)
+     function add()
     {
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
@@ -84,10 +84,8 @@ class C_Donasi extends CI_Controller{
         $nourut = $this->session->userdata('nourut');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        $levelup = $level+1;
-        $data['level'] = $this->M_Level->getspek($levelup);
-        $data['data'] = $this->M_Donasi->getuserspek($idgo);
-        $this->load->view('donasi/v_adddonasi',$data); 
+        $data['data'] = $this->M_Donasi->getuserupline($nourut);
+        $this->load->view('donasi/v_adddonasianggota',$data); 
         $this->load->view('template/footer');
     }
 
@@ -96,7 +94,7 @@ class C_Donasi extends CI_Controller{
     {   
         $upload = $this->M_Donasi->upload();
         if ($upload['result'] == "success"){
-            $this->M_Donasi->upgrade($upload, $level, $anggota);
+            $this->M_Donasi->upgrade($upload);
             $this->session->set_flashdata('sukses','<div class="alert alert-warning left-icon-alert" role="alert">
                                                     <strong>Sukses!</strong> Silahkan tunggu aprove admin.
                                                 </div>');
@@ -112,4 +110,35 @@ class C_Donasi extends CI_Controller{
         $this->session->set_flashdata('Sukses', "Pembayaran berhasil di aprove!!!!");
             redirect('C_Donasi'); //data calon anggota
     }
+
+    function getuserspek(){
+        $id = $this->input->post('idanggota');
+        $data = $this->M_Donasi->getuserspek($id);
+        foreach($data as $data){
+            $levelup = $data->level+1;
+            $getlevel = $this->M_Level->getspek($levelup);
+            foreach ($getlevel as $key) {
+             $nominal = "<input type='text' name='nominal' value='".$key->nominal."' readonly class='form-control'> ";
+            }
+          $level = "<input type='text' name='level' value='".$levelup."' readonly class='form-control'> ";
+          $upline =  "<input type='text' name='upline' value='".$data->id_upline."' class='form-control'>".$data->namaupline;
+        }
+        
+        $callback = array('level'=>$level, 'upline' => $upline, 'nominal'=>$nominal); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
+        echo json_encode($callback); // konversi varibael $callback menjadi JSON
+    }
+
+     function transaksi()
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('statusanggota');
+        $iduser = $this->session->userdata('id_user');
+        $nourut = $this->session->userdata('nourut');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        $data['data'] = $this->M_Donasi->gethistory($iduser);
+        $this->load->view('donasi/v_history',$data); 
+        $this->load->view('template/footer');
+    }
+
 }
