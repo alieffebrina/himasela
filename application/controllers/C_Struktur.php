@@ -22,6 +22,7 @@ class C_Struktur extends CI_Controller{
         $this->load->view('template/sidebar.php', $data);
         $data['total'] = $this->M_Struktur->gettotal();
         $data['user'] = $this->M_Struktur->getuser();
+        $data['length'] = $this->M_Struktur->getlenght();
         $this->load->view('struktur/v_struktur',$data);    
         $this->load->view('template/footer');
     }

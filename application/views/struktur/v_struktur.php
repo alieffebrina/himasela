@@ -26,9 +26,10 @@
             <!-- /.box-header -->
             <!-- form start -->
             <?php foreach ($total as $key) {
-              $jumlah = $key->nourut; 
+              $jumlah = $key->nouruta; 
+              echo $jumlah;
             } ?>
-            <div class="box-body table-responsive">
+           <!--  <div class="box-body table-responsive">
               <table>
                 <thead>
                 </thead>
@@ -40,30 +41,30 @@
                 </tr>
                 </tbody>
               </table>
-            </div>
+            </div> <li>
+                          <img src="dist/img/user1-128x128.jpg" alt="User Image">
+                          <a class="users-list-name" href="#"><?php echo '$user->nama' ?> </a>
+                          <span class="users-list-date"><?php echo $user->nourut ?></span>
+                        </li> -->
             <div class="box-body no-padding">
-              <ul type='Horizontal'>
-                <?php foreach ($user as $user) { ?>
+                  <!-- <ul type='Horizontal'> -->
+                  <?php
+                  foreach ($length as $length) {
+                    echo '<ul>';
+                    foreach ($user as $user) { 
+                      $us = $user->nourut;
+                      $cari = strlen($us);
+                      $total = $length->no;
+                      // if($cari == $total) {
+                      echo '<li>'.$us.' - '.$cari.'</li>';
+                        // $index ++;
+                      // } 
+                    }
+                    echo '</ul><br>';
+                  } ?>
+                   
 
-                  <li>
-                    <img src="dist/img/user1-128x128.jpg" alt="User Image">
-                    <a class="users-list-name" href="#">Alexander Pierce</a>
-                    <span class="users-list-date">Today</span>
-                  </li>
-                  <ul type='Horizontal'>
-                  
-              <?php for ($i=1; $i>$jumlah; $i++) { ?>
-                 
-
-                      <li>
-                        <img src="dist/img/user1-128x128.jpg" alt="User Image">
-                        <a class="users-list-name" href="#">Alexander Pierce</a>
-                        <span class="users-list-date">Today</span>
-                      </li>
-                <?php } ?></ul>
-              <?php } ?>
-                </ul>
-              <!-- /.users-list -->
+                    <!-- </ul> -->
             </div>
           </div>
         </div>
