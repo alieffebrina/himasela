@@ -30,57 +30,34 @@
               // echo $jumlah;
               
             } 
-             // for ( $a=0; $a<=13; $a++){
-             //      for ( $b=1; $b<$a; $b++){
-             //        echo $a.'-'.$b.'<br>';
-             //      }
-             //  }
-            
+
+            // $id_upline = $a
+            // $f = $this->db->query("select * from tb_anggota where id_upline = '$e->id_anggota' and id_anggota != $e->id_anggota"); 
+            // $g = $c->result();
+            // if($g != NULL){
+            //   echo '<ul>';
+            //   foreach ($g as $h) {
+            //     echo '<li>'.$h->nama.'<li>';
+            //   }
+            // }  
+
               ?>
             <div class="box-body no-padding">
                   <!-- <ul type='Horizontal'> -->
                   <?php
                        echo '<ul>';
-                        $id_upline = 1; 
-                        echo $id_upline;
-                        $a = $this->db->query("select * from tb_anggota where id_upline = '$id_upline'"); 
-                        $b = $a->result();
-                        foreach ($b as $b) {
-
-                          
-                          echo '<li>'.$b->nama.' - '.$b->nourut.'</li>';
-
-                          $id_upline = $b->id_anggota;
-                          for ( $a=0; $a<=13; $a++){
-                            $c = $this->db->query("select * from tb_anggota where nourut LIKE '$b->nourut%' and length(nourut) = $a"); 
+                        foreach ($user as $user) {
+                          echo '<li>'.$user->nama.' - '.$user->nourut.'</li>'; 
+                          for($a=3; $a>=13; $a++){
+                            $c = $this->db->query("select * from tb_anggota where nourut LIKE '$user->nourut%'");
                             $d = $c->result();
-                            echo '<ul>';
-                            echo '<ul>';
                             foreach ($d as $d) {
-                              echo '<li>'.$d->nama.' - '.$d->nourut.'</li>';
-                            } 
-                              echo '</ul>';
+                              echo '<li>'.$d->nourut.'</li>';
+                            }
                           }
                         }
-                          echo '</ul>';
-                    // } 
-
-                   foreach ($length as $length) {
-                     $e = $this->db->query("select * from tb_anggota where id_upline = '$id_upline'");
-                     $f = $e->result();
-                      $total = $length->no;
-                      // if($us == $total) {
-                      // echo '<li>'.$user->nama.' - '.$us.'</li>';
-                      //   // $index ++;
-                      // } 
-                      echo $total;
-                    // }
-                    // echo '</ul><br>';
-                  } 
-                    ?>
-                   
-
-                    <!-- </ul> -->
+                        echo '</ul>';
+                    //?>
             </div>
           </div>
         </div>

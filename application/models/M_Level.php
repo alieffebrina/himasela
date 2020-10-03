@@ -37,4 +37,9 @@ class M_Level extends CI_Model {
     	$this->db->where($where);
         $this->db->update('tb_level',$level);
     }
+
+    function selectmax(){
+        $this->db->select_max('id_level');
+        return $this->db->get('tb_level')->result();
+    }
 }

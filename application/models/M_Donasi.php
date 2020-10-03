@@ -44,6 +44,7 @@ class M_Donasi extends CI_Model {
     }
 
     function gethistory($id){
+        $this->db->select('tb_donasi.*, tb_level.*, tb_anggota.nama nama');
         $this->db->order_by('tb_donasi.tglbayar', 'DESC');
         $this->db->where('tb_donasi.id_anggota', $id);
         $this->db->or_where('tb_donasi.id_upline', $id);
@@ -80,6 +81,19 @@ class M_Donasi extends CI_Model {
             'buktibayar' => $upload['file']['file_name'],
             'id_anggota' => $this->input->post('id'),
             'id_upline' => $this->input->post('upline'),
+            'levelupgrade' => $this->input->post('level'),
+            'tglbayar' => date('Y-m-d'),
+            'status' => 'menunggu aprove'
+        );
+        
+        $this->db->insert('tb_donasi', $user);
+    }
+
+    function donasiadmin($upload){
+         $user = array(
+            'buktibayar' => $upload['file']['file_name'],
+            'id_anggota' => $this->input->post('id'),
+            'id_upline' => '1',
             'levelupgrade' => $this->input->post('level'),
             'tglbayar' => date('Y-m-d'),
             'status' => 'menunggu aprove'

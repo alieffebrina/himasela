@@ -92,13 +92,25 @@ class C_Donasi extends CI_Controller{
 
     function upgrade()
     {   
+        $mx = $this->M_Level->selectmax();
+        foreach ($mx as $mx) {
+            $max = $mx->id_level;
+        }
+        // echo $max;
+        $lv = $this->input->post('level');
         $upload = $this->M_Donasi->upload();
-        if ($upload['result'] == "success"){
+        if ($upload['result'] == "success" && $lv != $max){
             $this->M_Donasi->upgrade($upload);
             $this->session->set_flashdata('sukses','<div class="alert alert-warning left-icon-alert" role="alert">
                                                     <strong>Sukses!</strong> Silahkan tunggu aprove admin.
                                                 </div>');
             redirect('C_Donasi');  
+        } else if ($lv == $max){
+            $this->M_Donasi->donasiadmin($upload);
+            $this->session->set_flashdata('sukses','<div class="alert alert-warning left-icon-alert" role="alert">
+                                                    <strong>Sukses!</strong> Silahkan tunggu aprove admin.
+                                                </div>');
+            redirect('C_Donasi'); 
         } else {
             'gagal';
         }
@@ -121,7 +133,7 @@ class C_Donasi extends CI_Controller{
              $nominal = "<input type='text' name='nominal' value='".$key->nominal."' readonly class='form-control'> ";
             }
           $level = "<input type='text' name='level' value='".$levelup."' readonly class='form-control'> ";
-          $upline =  "<input type='text' name='upline' value='".$data->id_upline."' class='form-control'>".$data->namaupline;
+          $upline =  "<input type='hidden' name='upline' value='".$data->id_upline."' class='form-control'>".$data->namaupline;
         }
         
         $callback = array('level'=>$level, 'upline' => $upline, 'nominal'=>$nominal); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
