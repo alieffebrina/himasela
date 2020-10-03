@@ -26,42 +26,58 @@
             <!-- /.box-header -->
             <!-- form start -->
             <?php foreach ($total as $key) {
-              $jumlah = $key->nouruta; 
-              echo $jumlah;
-            } ?>
-           <!--  <div class="box-body table-responsive">
-              <table>
-                <thead>
-                </thead>
-                <tbody>
-                <tr><td>aaaa</td>
-                </tr>
-                <tr><td>b</td>
-                  <td>b</td>
-                </tr>
-                </tbody>
-              </table>
-            </div> <li>
-                          <img src="dist/img/user1-128x128.jpg" alt="User Image">
-                          <a class="users-list-name" href="#"><?php echo '$user->nama' ?> </a>
-                          <span class="users-list-date"><?php echo $user->nourut ?></span>
-                        </li> -->
+              $jumlah = intval($key->nouruta); 
+              // echo $jumlah;
+              
+            } 
+             // for ( $a=0; $a<=13; $a++){
+             //      for ( $b=1; $b<$a; $b++){
+             //        echo $a.'-'.$b.'<br>';
+             //      }
+             //  }
+            
+              ?>
             <div class="box-body no-padding">
                   <!-- <ul type='Horizontal'> -->
                   <?php
-                  foreach ($length as $length) {
-                    echo '<ul>';
-                    foreach ($user as $user) { 
-                      $us = $user->nourut;
-                      $cari = strlen($us);
+                       echo '<ul>';
+                        $id_upline = 1; 
+                        echo $id_upline;
+                        $a = $this->db->query("select * from tb_anggota where id_upline = '$id_upline'"); 
+                        $b = $a->result();
+                        foreach ($b as $b) {
+
+                          
+                          echo '<li>'.$b->nama.' - '.$b->nourut.'</li>';
+
+                          $id_upline = $b->id_anggota;
+                          for ( $a=0; $a<=13; $a++){
+                            $c = $this->db->query("select * from tb_anggota where nourut LIKE '$b->nourut%' and length(nourut) = $a"); 
+                            $d = $c->result();
+                            echo '<ul>';
+                            echo '<ul>';
+                            foreach ($d as $d) {
+                              echo '<li>'.$d->nama.' - '.$d->nourut.'</li>';
+                            } 
+                              echo '</ul>';
+                          }
+                        }
+                          echo '</ul>';
+                    // } 
+
+                   foreach ($length as $length) {
+                     $e = $this->db->query("select * from tb_anggota where id_upline = '$id_upline'");
+                     $f = $e->result();
                       $total = $length->no;
-                      // if($cari == $total) {
-                      echo '<li>'.$us.' - '.$cari.'</li>';
-                        // $index ++;
+                      // if($us == $total) {
+                      // echo '<li>'.$user->nama.' - '.$us.'</li>';
+                      //   // $index ++;
                       // } 
-                    }
-                    echo '</ul><br>';
-                  } ?>
+                      echo $total;
+                    // }
+                    // echo '</ul><br>';
+                  } 
+                    ?>
                    
 
                     <!-- </ul> -->

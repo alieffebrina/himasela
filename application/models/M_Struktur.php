@@ -10,6 +10,7 @@ class M_Struktur extends CI_Model {
 
     function getuser(){
         $this->db->select('Length(nourut) noa, nama, nourut');
+        $this->db->where('id_upline', '1');
         $query = $this->db->get('tb_anggota');
     	return $query->result();
     }
