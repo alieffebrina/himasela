@@ -13,7 +13,8 @@
         <li class="active">Dashboard</li>
       </ol>
     </section>
-    <?php if($this->session->userdata('statusanggota') != 'administrator') { ?>
+    <?php if($this->session->userdata('statusanggota') != 'administrator') { 
+      if($info >= 5) { ?>
     <div class="alert alert-danger left-icon-alert" role="alert">
 
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -41,7 +42,7 @@
           }
          ?>
     </div>
-  <?php } ?>
+  <?php } } ?>
     <!-- Main content -->
     <section class="content">
       <!-- Small boxes (Stat box) -->
@@ -108,7 +109,7 @@
         <!-- ./col -->
       </div>
       <div class="box box-info">
-            <div class="box-header with-border">
+            <!-- <div class="box-header with-border">
               <h3 class="box-title">Berita Terbaru</h3>
 
               <div class="box-tools pull-right">
@@ -116,12 +117,12 @@
                 </button>
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
               </div>
-            </div>
+            </div> -->
             <!-- /.box-header -->
-            <div class="box-body">
-              <div class="table-responsive">
+        <!--     <div class="box-body">
+              <div class="table-responsive"> -->
                 
-              <table id="example1" class="table table-bordered table-striped table-hover">
+              <!-- <table id="example1" class="table table-bordered table-striped table-hover">
                 <thead>
                 <tr>
                   <th>No</th>
@@ -134,7 +135,7 @@
                 <tbody>
                   <?php 
                   $no=1;
-                  foreach ($berita as $berita) {  ?>  
+                  //foreach ($berita as $berita) {  ?>  
                     <tr>
                       <td><?php echo $no++; ?></td>
                       <td><?php echo $berita->nama; ?></td>
@@ -143,12 +144,12 @@
                       <td><a href="<?php echo site_url('berita-view/'.$berita->id_berita); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
                       </td>
                     </tr>
-                  <?php } ?>
+                  <?php // } ?>
                 </tbody>
-              </table>
-              </div>
+              </table> -->
+              <!-- </div> -->
               <!-- /.table-responsive -->
-            </div>
+            <!-- </div> -->
             <!-- /.box-body -->
             <!-- /.box-footer -->
           </div>

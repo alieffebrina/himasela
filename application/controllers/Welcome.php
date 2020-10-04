@@ -26,6 +26,7 @@ class Welcome extends CI_Controller {
         $this->load->model('M_Setting');
         $this->load->model('M_Berita');
         $this->load->model('M_User');
+        $this->load->model('M_Donasi');
         if(!$this->session->userdata('id_user')){
             redirect('C_Login');
         }
@@ -36,6 +37,7 @@ class Welcome extends CI_Controller {
 		$this->load->view('template/header.php');
 		$id = $this->session->userdata('statusanggota');
         $nourut = $this->session->userdata('nourut');
+        $user = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
 		$this->load->view('template/sidebar.php', $data);
 		if($id=='administrator'){
@@ -43,12 +45,22 @@ class Welcome extends CI_Controller {
 			$data['konfirmupline'] = $this->M_User->waitupline();		
 			$data['konfirmadmin'] = $this->M_User->waitadmin();		
 			$data['sdhbayar'] = $this->M_User->sdhbayar();
+			$data['info'] = 0;
+			// $donasia = 'tanpa';
 		} else {
 			$data['anggota'] = $this->M_User->totalanggotadwonline($nourut);
 			$data['konfirmupline'] = $this->M_User->waituplinedwonline($nourut);		
 			$data['konfirmadmin'] = $this->M_User->waitadmindwonline($nourut);		
 			$data['sdhbayar'] = $this->M_User->sdhbayardwonline($nourut);
+			$data['info'] = $this->M_Donasi->anggotabayar($user);
+			// if(($donasi > 5){
+			// 	$donasia = 'info';
+			// } else {
+			// 	$donasia = 'tanpa';
+			// }
 		}
+		// echo $donasia;
+  //       $data['info'] = $donasia;
         $data['berita'] = $this->M_Berita->getBerita();
 		$this->load->view('template/index.php', $data);
 		$this->load->view('template/footer.php');

@@ -51,21 +51,23 @@
                         $e = $this->db->query("select * from tb_anggota where id_upline = '$id_upline'"); 
                         $b = $e->result();
                         if($b != NULL){
-                          foreach ($b as $b) {
-                            echo '<li>'.$b->nama.' - '.$b->nourut.'</li>';
+                          for ( $a=1; $a<=13; $a++){
+                            foreach ($b as $b) {
+                              echo '<li>'.$b->nama.' - '.$b->nourut.'</li>';
 
-                            $id_upline = $b->id_anggota;
-                            $c = $this->db->query("select * from tb_anggota where nourut LIKE '$b->nourut%' and nourut != $b->nourut"); 
-                            $d = $c->result();
-                            if($d != NULL){
-                              echo '<ul>';
-                              foreach ($d as $d) {
-                                echo '<li>'.$d->nama.' - '.$d->nourut.'</li>';
-                              }  
-                            } else {
-                              echo '</ul>';   
+                              $id_upline = $b->id_anggota;
+                              $c = $this->db->query("select * from tb_anggota where nourut LIKE '$b->nourut%'"); 
+                              $d = $c->result();
+                              if($d != NULL){
+                                echo '<ul>';
+                                foreach ($d as $d) {
+                                  echo '<li>'.$d->nama.' - '.$d->nourut.'</li>';
+                                }  
+                              } else {
+                                echo '</ul>';   
+                              }
                             }
-                          }
+                          }  
                         } else {
                           echo '</ul>';
                         }

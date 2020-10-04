@@ -127,4 +127,10 @@ class M_Donasi extends CI_Model {
         $this->db->update('tb_anggota',$anggota);
     } 
 
+    function anggotabayar($user){
+        $this->db->where('id_upline',$user);
+        $result = $this->db->get('tb_donasi');
+        return $result->num_rows();
+    }
+
 }

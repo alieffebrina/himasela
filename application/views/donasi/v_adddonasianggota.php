@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Level
+        Data Upgrade Member
         <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="<?php echo site_url('C_User'); ?>">Data Level</a></li>
-        <li class="active">Tambah Level</li>
+        <li><a href="<?php echo site_url('C_DOnasi'); ?>">Data Upgrade Member</a></li>
+        <li class="active">Data Upgrade Member</li>
       </ol>
     </section>
 
@@ -21,7 +21,7 @@
           <!-- Horizontal Form -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Tambah Data Level</h3>
+              <h3 class="box-title">Upgrade Member</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -34,7 +34,7 @@
                       <option value="">--Pilih--</option>
                       <?php 
                       foreach ($data as $data) { ?> 
-                        <option value="<?php echo $data->id_anggota; ?>"><?php echo $data->nama ?></option>  
+                        <option value="<?php echo $data->id_anggota; ?>"><?php echo $data->nama.'-'.$data->nourut; ?></option>  
                       <?php } ?>
                     </select>   
                   </div>
