@@ -64,3 +64,10 @@ $route['404_override'] = '';
 $route['transaksi'] = 'C_Donasi/transaksi';
 $route['struktur'] = 'C_Struktur';
 $route['translate_uri_dashes'] = FALSE;
+
+
+// sejahtera
+$route['sejahtera'] = 'C_Sejahtera';
+$route['sejahtera-add'] = 'C_Sejahtera/add';
+$route['sejahtera-edit/(:any)'] = 'C_Sejahtera/edit/$1';
+$route['sejahtera-view/(:any)'] = 'C_Sejahtera/view/$1';

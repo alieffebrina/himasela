@@ -310,6 +310,15 @@ function toggle(source) {
       });
     }
 
+    var income = document.getElementById('income');
+    if(income){
+      income.addEventListener('keyup', function(e){
+      //   // tambahkan 'Rp.' pada saat form di ketik
+      //   // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+        income.value = formatRupiah(this.value, 'Rp. ');
+      });
+    }
+
     /* Fungsi formatRupiah */
     function formatRupiah(angka, prefix){
       var number_string = angka.replace(/[^,\d]/g, '').toString(),
