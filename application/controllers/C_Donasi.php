@@ -84,7 +84,11 @@ class C_Donasi extends CI_Controller{
         $nourut = $this->session->userdata('nourut');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        $data['data'] = $this->M_Donasi->getuserupline($nourut);
+        if ($id == 'anggota'){
+            $data['data'] = $this->M_Donasi->getuserupline($iduser);
+        } else {
+            $data['data'] = $this->M_Donasi->getuser();            
+        }
         $this->load->view('donasi/v_adddonasianggota',$data); 
         $this->load->view('template/footer');
     }

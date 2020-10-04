@@ -68,7 +68,7 @@ class C_User extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         if ($id == 'anggota'){
-            $data['user'] = $this->M_User->getallspek($nourut);
+            $data['user'] = $this->M_User->getallspek($iduser);
         } else {
             $data['user'] = $this->M_User->getall();            
         }

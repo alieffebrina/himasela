@@ -39,31 +39,31 @@ class M_User extends CI_Model {
         return $query->num_rows();
     }
 
-    function totalanggotadwonline($nourut){
+    function totalanggotadwonline($user){
         $this->db->where_not_in('statusanggota', 'tidak aktif');
-        $this->db->like('tb_anggota.nourut', $nourut, 'after');
+        $this->db->where('tb_anggota.id_upline', $user);
         $query = $this->db->get('tb_anggota');
         return $query->num_rows();
     }
 
-    function waituplinedwonline($nourut){
+    function waituplinedwonline($user){
         $this->db->where('statusanggota', 'menunggu konfirmasi upline');
-        $this->db->like('tb_anggota.nourut', $nourut, 'after');
+        $this->db->where('tb_anggota.id_upline', $user);
         $query = $this->db->get('tb_anggota');
         return $query->num_rows();
     }
 
-    function waitadmindwonline($nourut){
+    function waitadmindwonline($user){
         $this->db->where('statusanggota', 'menunggu konfirmasi admin');
-        $this->db->like('tb_anggota.nourut', $nourut, 'after');
+        $this->db->where('tb_anggota.id_upline', $user);
         $query = $this->db->get('tb_anggota');
         return $query->num_rows();
     }
 
-    function sdhbayardwonline($nourut){
+    function sdhbayardwonline($user){
         $this->db->where('statusbayar', 'sudah bayar');
         $this->db->where_not_in('statusanggota', 'tidak aktif');
-        $this->db->like('tb_anggota.nourut', $nourut, 'after');
+        $this->db->where('tb_anggota.id_upline', $user);
         $query = $this->db->get('tb_anggota');
         return $query->num_rows();
     }
@@ -93,15 +93,16 @@ class M_User extends CI_Model {
         return $query->result();
     }
 
-    function getallspek($nourut){
+    function getallspek($iduser){
         $this->db->select('tb_anggota.*, b.nama namaupline, tb_provinsi.*, tb_kota.*, tb_kecamatan.*');
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
         $this->db->join('tb_anggota b', 'b.id_anggota = tb_anggota.id_upline');
         $anggota = array('menunggu konfirmasi admin', 'menunggu konfirmasi upline','tidak aktif');
-        $this->db->where_not_in('tb_anggota.statusanggota', $anggota);
-        $this->db->like('tb_anggota.nourut', $nourut, 'after');
+        $this->db->where_not_in('tb_anggota.statusanggota', $anggota);       
+        $this->db->where('tb_anggota.id_upline', $iduser);
+        // $this->db->like('tb_anggota.id_upline', $nourut, 'after');
         $query = $this->db->get('tb_anggota');
         return $query->result();
     }

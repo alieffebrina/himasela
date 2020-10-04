@@ -46,21 +46,15 @@ class Welcome extends CI_Controller {
 			$data['konfirmadmin'] = $this->M_User->waitadmin();		
 			$data['sdhbayar'] = $this->M_User->sdhbayar();
 			$data['info'] = 0;
-			// $donasia = 'tanpa';
+        	$data['listanggota'] = $this->M_User->getall();
 		} else {
-			$data['anggota'] = $this->M_User->totalanggotadwonline($nourut);
-			$data['konfirmupline'] = $this->M_User->waituplinedwonline($nourut);		
-			$data['konfirmadmin'] = $this->M_User->waitadmindwonline($nourut);		
-			$data['sdhbayar'] = $this->M_User->sdhbayardwonline($nourut);
+			$data['anggota'] = $this->M_User->totalanggotadwonline($user);
+			$data['konfirmupline'] = $this->M_User->waituplinedwonline($user);		
+			$data['konfirmadmin'] = $this->M_User->waitadmindwonline($user);		
+			$data['sdhbayar'] = $this->M_User->sdhbayardwonline($user);
 			$data['info'] = $this->M_Donasi->anggotabayar($user);
-			// if(($donasi > 5){
-			// 	$donasia = 'info';
-			// } else {
-			// 	$donasia = 'tanpa';
-			// }
+        	$data['listanggota'] = $this->M_User->getallspek($user);
 		}
-		// echo $donasia;
-  //       $data['info'] = $donasia;
         $data['berita'] = $this->M_Berita->getBerita();
 		$this->load->view('template/index.php', $data);
 		$this->load->view('template/footer.php');

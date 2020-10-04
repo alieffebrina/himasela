@@ -10,11 +10,11 @@ class M_Donasi extends CI_Model {
     	return $query->result();
     }
 
-    function getuserupline($nourut){
+    function getuserupline($id_user){
         $this->db->select('tb_anggota.*, b.nama namaupline');
         $this->db->join('tb_anggota b', 'b.id_anggota = tb_anggota.id_upline');
         $this->db->where('tb_anggota.statusanggota', 'anggota');
-        $this->db->like('tb_anggota.nourut', $nourut, 'after');
+        $this->db->where('tb_anggota.id_upline', $id_user);
         $query = $this->db->get('tb_anggota');
         return $query->result();
     }

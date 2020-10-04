@@ -109,47 +109,60 @@
         <!-- ./col -->
       </div>
       <div class="box box-info">
-            <!-- <div class="box-header with-border">
-              <h3 class="box-title">Berita Terbaru</h3>
+            <div class="box-header with-border">
+              <h3 class="box-title">List Anggota</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
               </div>
-            </div> -->
+            </div>
             <!-- /.box-header -->
-        <!--     <div class="box-body">
-              <div class="table-responsive"> -->
+            <div class="box-body">
+              <div class="table-responsive">
                 
-              <!-- <table id="example1" class="table table-bordered table-striped table-hover">
+             <table id="example1" class="table table-bordered table-striped table-hover">
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>User</th>
-                  <th>Tanggal Upload</th>
-                  <th>Judul Berita</th>
-                  <th>Action</th>
+                  <th>NIK</th>
+                  <th>Nama</th>
+                  <th>Username</th>
+                  <?php if ($this->session->userdata('statusanggota') == 'administrator') { ?>
+                  <th>Password</th>
+                  <?php } ?>
+                  <th>Alamat</th>
+                  <th>Upline</th>
+                  <th>Level</th>
+                  <th>Status</th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php 
                   $no=1;
-                  //foreach ($berita as $berita) {  ?>  
-                    <tr>
-                      <td><?php echo $no++; ?></td>
-                      <td><?php echo $berita->nama; ?></td>
-                      <td><?php echo $berita->tglupdate; ?></td>
-                      <td><?php echo $berita->judul; ?></td>
-                      <td><a href="<?php echo site_url('berita-view/'.$berita->id_berita); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
-                      </td>
-                    </tr>
-                  <?php // } ?>
+                  foreach ($listanggota as $user) { ?>
+                <tr>
+                  <td><?php echo $no++; ?></td>
+                  <td><?php echo $user->nik; ?></td>
+                  <td><?php echo $user->nama; ?></td>
+                  <td><?php echo $user->username; ?></td>
+                  
+                  <?php if ($this->session->userdata('statusanggota') == 'administrator') { ?>
+                  <td><?php echo $user->password; ?></td>
+                  <?php } ?>
+                  <td><?php echo $user->alamat.', '.$user->name_kota.', '.$user->name_prov; ?></td>
+                  <td><?php echo $user->namaupline; ?></td>
+                  <td><?php echo $user->level; ?></td>
+                  <td><?php echo $user->statusanggota; ?></td>
+                  <input type="hidden" id="id_anggota" name="id_anggota" value="<?php echo $user->id_anggota ?>">
+                </tr>
+                  <?php } ?>
                 </tbody>
-              </table> -->
-              <!-- </div> -->
+              </table>
+              </div>
               <!-- /.table-responsive -->
-            <!-- </div> -->
+            </div>
             <!-- /.box-body -->
             <!-- /.box-footer -->
           </div>
