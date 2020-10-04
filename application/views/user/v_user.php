@@ -41,7 +41,9 @@
                   <th>NIK</th>
                   <th>Nama</th>
                   <th>Username</th>
+                  <?php if($this->db->session('statusanggota') == 'administrator') { ?>
                   <th>Password</th>
+              	  <?php } ?>
                   <th>Alamat</th>
                   <th>Upline</th>
                   <th>Level</th>
@@ -58,7 +60,9 @@
                   <td><?php echo $user->nik; ?></td>
                   <td><?php echo $user->nama; ?></td>
                   <td><?php echo $user->username; ?></td>
+                  <?php if($this->db->session('statusanggota') == 'administrator') { ?>
                   <td><?php echo $user->password; ?></td>
+                  <?php } ?>
                   <td><?php echo $user->alamat.', '.$user->name_kota.', '.$user->name_prov; ?></td>
                   <td><?php echo $user->namaupline; ?></td>
                   <td><?php echo $user->level; ?></td>

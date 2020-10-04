@@ -141,12 +141,6 @@
                       <td><?php echo $berita->tglupdate; ?></td>
                       <td><?php echo $berita->judul; ?></td>
                       <td><a href="<?php echo site_url('berita-view/'.$berita->id_berita); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
-                      <?php if($aksesedit == 'aktif'){?>
-                      <a href="<?php echo site_url('berita-edit/'.$berita->id_berita); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
-                      <?php } ?>
-                      <?php if($akseshapus == 'aktif'){?>
-                      <a href="<?php echo site_url('C_Berita/hapus/'.$berita->id_berita); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
-                      <?php } ?>
                       </td>
                     </tr>
                   <?php } ?>
