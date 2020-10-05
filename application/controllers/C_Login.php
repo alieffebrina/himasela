@@ -38,7 +38,7 @@ class C_Login extends CI_Controller {
 		        $this->session->set_userdata($session); // Buat session sesuai $session
 		        redirect('Welcome'); // Redirect ke halaman welcome
 		    }else{
-		        $this->session->set_flashdata('message', 'Password salah'); // Buat session flashdata
+		        $this->session->set_flashdata('message', 'Password salah silahkan hubungi admin'); // Buat session flashdata
 		        redirect('C_Login'); // Redirect ke halaman login
 		    }
    		}

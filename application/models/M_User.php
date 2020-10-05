@@ -14,6 +14,29 @@ class M_User extends CI_Model {
     	return $query->result();
     }
 
+    function getcalonanggota($nourut){
+        $this->db->select('tb_anggota.*, b.nama namaupline, tb_provinsi.*, tb_kota.*, tb_kecamatan.*');
+        $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
+        $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
+        $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
+        $this->db->join('tb_anggota b', 'b.id_anggota = tb_anggota.id_upline');
+        $anggota = array('anggota', 'administrator', 'admin','tidak aktif');
+        $this->db->where_not_in('tb_anggota.statusanggota', $anggota);
+        $this->db->like('tb_anggota.nourut', $nourut, 'after');
+        $query = $this->db->get('tb_anggota');
+        return $query->result();
+    }
+
+    public function cekUsername($username){
+        // $this->db->where('kelas', $kelas);
+        $cek = $this->db->get_where('tb_anggota', ['username' => $username])->row();
+        if(empty($cek)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     function totalanggota(){
         $this->db->where_not_in('statusanggota', 'tidak aktif');
         $query = $this->db->get('tb_anggota');
@@ -74,7 +97,7 @@ class M_User extends CI_Model {
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
         $this->db->join('tb_anggota b', 'b.id_anggota = tb_anggota.id_upline');
-        $anggota = array('menunggu konfirmasi admin', 'menunggu konfirmasi upline','tidak aktif');
+        $anggota = array('menunggu konfirmasi admin', 'menunggu konfirmasi upline');
         $this->db->where_not_in('tb_anggota.statusanggota', $anggota);
         $query = $this->db->get('tb_anggota');
         return $query->result();
@@ -102,6 +125,7 @@ class M_User extends CI_Model {
         $anggota = array('menunggu konfirmasi admin', 'menunggu konfirmasi upline','tidak aktif');
         $this->db->where_not_in('tb_anggota.statusanggota', $anggota);       
         $this->db->where('tb_anggota.id_upline', $iduser);
+        $this->db->or_where('tb_anggota.id_anggota', $iduser);
         // $this->db->like('tb_anggota.id_upline', $nourut, 'after');
         $query = $this->db->get('tb_anggota');
         return $query->result();
@@ -145,7 +169,7 @@ class M_User extends CI_Model {
     
     }
 
-    function tambahdata($nourut, $upline){
+    function tambahdata($nourut, $upline, $username){
         $user = array(
             'nik' => $this->input->post('nik'),
             'nama' => $this->input->post('nama'),
@@ -162,7 +186,7 @@ class M_User extends CI_Model {
             'namasponsor' => $this->input->post('namasponsor'),
             'id_upline' => $upline,
             'nourut' => $nourut,
-            'username' => $this->input->post('nik'),
+            'username' => $username,
             'password' => '123456',
             // 'buktitransfer' => $upload['file']['file_name'],
             'statusbayar' => 'belum bayar',
@@ -337,4 +361,20 @@ class M_User extends CI_Model {
         $this->db->where($where);
         $this->db->update('tb_anggota',$user);
     } 
+
+    function aktif($id){
+        $user = array(
+            'statusanggota' => 'anggota',
+            'id_user' => $this->session->userdata('id_user'),
+            'tglupdate' => date('Y-m-d h:i:s'),
+        );
+
+        $where = array(
+            'id_anggota' =>  $id,
+        );
+        
+        $this->db->where($where);
+        $this->db->update('tb_anggota',$user);
+    }
+
 }

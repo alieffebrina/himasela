@@ -22,7 +22,7 @@ class C_User extends CI_Controller{
         $this->load->view('template/sidebar.php', $data);
 
         if ($id == 'anggota'){
-            $data['user'] = $this->M_User->getspek($nourut);
+            $data['user'] = $this->M_User->getcalonanggota($nourut);
         } else {
             $data['user'] = $this->M_User->getuser();            
         }
@@ -160,9 +160,25 @@ class C_User extends CI_Controller{
         $nourut = str_replace(' ', '', $no);
         // $upload = $this->M_User->upload();
         // if ($upload['result'] == "success"){
-            $this->M_User->tambahdata($nourut, $upline);
+        if ($this->M_User->cekUsername($this->input->post('nik', true))) {
+            $username = $this->input->post('nik');
+        } else {
+            $huruf = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';//buat karakter yang akan digunakan sebagai password
+            $st = '';
+            for($i=0; $i<8; $i++){
+                $p = rand(0, strlen($huruf)-1);
+                $st .=$huruf{$p};
+            }
+            // $user = $this->input->post('nik');
+            $username = $st;
+        }
 
-            $this->session->set_flashdata('Sukses', "Username anda sama dengan Nik dengan password 123456 !!");
+            $this->M_User->tambahdata($nourut, $upline, $username);
+            if($username == $this->input->post('nik')){
+                $this->session->set_flashdata('Sukses', "Username anda sama dengan Nik dengan password 123456 !!");                
+            } else {
+                $this->session->set_flashdata('Sukses', "Username dan password silahkan hubungi admin !!");   
+            }
             redirect('C_User');  
         // }
     }
@@ -282,6 +298,12 @@ class C_User extends CI_Controller{
     function hapus($id){
         $this->M_User->hapus($id);
         $this->session->set_flashdata('Sukses', "Data Berhasil Di Hapus!!!!");
+        redirect('C_User/all');
+    }
+
+    function aktif($id){
+        $this->M_User->aktif($id);
+        $this->session->set_flashdata('Sukses', "Data Berhasil Di Aktifkan Kembali!!!!");
         redirect('C_User/all');
     }
 
