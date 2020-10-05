@@ -16,7 +16,9 @@
     <?php 
     foreach ($downline as $downline) {
       $down = $downline->downline;
+      // echo 'down'.$down;
     }
+    // echo $info;
     if($this->session->userdata('statusanggota') != 'administrator') { 
       if($info >= $down) { ?>
     <div class="alert alert-danger left-icon-alert" role="alert">

@@ -56,7 +56,7 @@ class Welcome extends CI_Controller {
 			foreach ($ceklevel as $key) {
 				$hasilcel = $key->level-1;
 			}
-				$data['info'] = $this->M_Donasi->anggotabayar($user, $hasilcel);
+			$data['info'] = $this->M_Donasi->anggotabayar($user, $hasilcel);
         	$data['listanggota'] = $this->M_User->getallspek($user);
 		}
 		
