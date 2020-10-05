@@ -52,9 +52,15 @@ class Welcome extends CI_Controller {
 			$data['konfirmupline'] = $this->M_User->waituplinedwonline($user);		
 			$data['konfirmadmin'] = $this->M_User->waitadmindwonline($user);		
 			$data['sdhbayar'] = $this->M_User->sdhbayardwonline($user);
-			$data['info'] = $this->M_Donasi->anggotabayar($user);
+			$ceklevel = $this->M_Donasi->ceklevel($user);
+			foreach ($ceklevel as $key) {
+				$hasilcel = $key->level-1;
+			}
+				$data['info'] = $this->M_Donasi->anggotabayar($user, $hasilcel);
         	$data['listanggota'] = $this->M_User->getallspek($user);
 		}
+		
+        $data['downline'] = $this->M_Setting->getdownline();
         $data['berita'] = $this->M_Berita->getBerita();
 		$this->load->view('template/index.php', $data);
 		$this->load->view('template/footer.php');

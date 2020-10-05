@@ -286,13 +286,9 @@ class M_User extends CI_Model {
         $password = $st;
         if ($anggota == 'menunggu konfirmasi upline'){
             $statusanggota = 'menunggu konfirmasi admin';
-            $username = '';
-            $password = '';
             $statusbayar = '';
         } else {
             $statusanggota = 'anggota';
-            $username = $username;
-            $password = $password;
             $statusbayar = 'sudah bayar';
         }
 
@@ -300,8 +296,6 @@ class M_User extends CI_Model {
             'statusanggota' => $statusanggota,
             'statusbayar' => $statusbayar,
             'id_user' => $id,
-            'username' => $username,
-            'password' => '123456',
             'id_user' => $this->session->userdata('id_user'),
             'tglupdate' => date('Y-m-d h:i:s'),
         );

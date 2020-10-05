@@ -13,8 +13,12 @@
         <li class="active">Dashboard</li>
       </ol>
     </section>
-    <?php if($this->session->userdata('statusanggota') != 'administrator') { 
-      if($info >= 5) { ?>
+    <?php 
+    foreach ($downline as $downline) {
+      $down = $downline->downline;
+    }
+    if($this->session->userdata('statusanggota') != 'administrator') { 
+      if($info >= $down) { ?>
     <div class="alert alert-danger left-icon-alert" role="alert">
 
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

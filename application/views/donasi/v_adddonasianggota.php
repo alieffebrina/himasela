@@ -34,7 +34,7 @@
                       <option value="">--Pilih--</option>
                       <?php 
                       foreach ($data as $data) { ?> 
-                        <option value="<?php echo $data->id_anggota; ?>"><?php echo $data->nama.'-'.$data->nourut; ?></option>  
+                        <option value="<?php echo $data->id_anggota; ?>"><?php echo $data->nama ?></option>  
                       <?php } ?>
                     </select>   
                   </div>
