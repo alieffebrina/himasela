@@ -21,7 +21,7 @@ class C_Donasi extends CI_Controller{
         $nourut = $this->session->userdata('nourut');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        $data['upline'] = $this->M_Donasi->getuserupline($nourut);
+        $data['upline'] = $this->M_Donasi->getdonasi($iduser);
 
         $tabel = 'tb_akses';
         $edit = array(
@@ -52,7 +52,7 @@ class C_Donasi extends CI_Controller{
         $data['aksesedit'] = $tomboledit;   
 
         $data['donasi'] = $this->M_Donasi->getdonasi();
-        $data['donasianggota'] = $this->M_Donasi->getdonasianggota($nourut);
+        $data['donasianggota'] = $this->M_Donasi->getdonasianggota($iduser);
         if($id != 'administrator'){ 
             $this->load->view('donasi/v_donasianggota',$data); 
         } else {

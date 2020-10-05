@@ -35,10 +35,11 @@ class M_Donasi extends CI_Model {
         return $query->result();
     }
 
-    function getdonasianggota($nourut){
+    function getdonasianggota($iduser){
         $this->db->order_by('tb_donasi.tglbayar', 'DESC');
-        $this->db->where('tb_anggota.statusanggota', 'anggota');
-        $this->db->like('tb_anggota.nourut', $nourut, 'after');
+        // $this->db->where('tb_anggota.statusanggota', 'anggota');
+        $this->db->where('tb_donasi.id_upline', $iduser);
+        $this->db->or_where('tb_donasi.id_anggota', $iduser);
         $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_donasi.id_anggota');
         $query = $this->db->get('tb_donasi');
         return $query->result();
