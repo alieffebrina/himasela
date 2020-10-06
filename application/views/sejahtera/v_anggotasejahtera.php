@@ -9,7 +9,7 @@
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="<?php echo site_url('sejahtera'); ?>">Dana Kesejahteraan</a></li>
-        <li class="active">Lihat Dana Kesejahteraan</li>
+        <li class="active">Anggota Dana Kesejahteraan</li>
       </ol>
     </section>
 
@@ -21,7 +21,7 @@
           <!-- Horizontal Form -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Lihat  Dana Kesejahteraan</h3>
+              <h3 class="box-title">Detail Dana Kesejahteraan</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -53,12 +53,6 @@
                     <input type="text" class="form-control" id="income" name="income" value="<?php echo 'Rp. '.number_format($key->income) ?>" readonly>
                   </div>
                 </div>
-              <!-- /.box-body -->
-              <div class="box-footer">
-                  <div class="col-sm-10">
-                    <a href="<?php echo site_url('sejahtera'); ?>" class="btn btn-default">Batal</a>
-                  </div>
-              </div>
             </div>
               <!-- /.box-footer -->
             <?php } ?>
@@ -66,7 +60,46 @@
           </div>
           <!-- /.box -->
         </div>
-        
+        <?php 
+        if($cekanggota < $key->anggota) { ?>
+        <!-- left column -->
+        <div class="col-md-12">
+          <!-- Horizontal Form -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Anggota  Dana Kesejahteraan</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <?php echo form_open("C_Sejahtera/tambahanggota", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Anggota</label>
+                  <div class="col-sm-9">
+                    <input type="hidden" class="form-control" id="id" name="idsejahtera" value="<?php echo $key->id_sejahtera ?>" readonly>
+                    <select class="form-control select2" id="idanggota" name="idanggota" style="width: 100%;" required onchange="">
+                      <option value="">--Pilih--</option>
+                      <?php 
+                      foreach ($user as $data) { ?> 
+                        <option value="<?php echo $data->id_anggota; ?>"><?php echo $data->nama ?></option>  
+                      <?php } ?>
+                    </select>   
+                  </div>
+                </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                  <div class="col-sm-10">
+                    <a href="<?php echo site_url('sejahtera'); ?>" class="btn btn-default">Batal</a>
+                    <button type="submit" class="btn btn-info">Simpan Data</button>
+                  </div>
+              </div>
+            </div>
+              <!-- /.box-footer -->
+           <?php echo form_close();?>
+          </div>
+          <!-- /.box -->
+        </div>
+      <?php } ?>
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">

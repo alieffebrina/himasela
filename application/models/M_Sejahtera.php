@@ -55,4 +55,43 @@ class M_Sejahtera extends CI_Model {
         $this->db->select_max('id_sejahtera');
         return $this->db->get('tb_sejahtera')->result();
     }
+
+    function getanggota($where){
+        $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_detailsejahtera.id_anggota');
+        return $this->db->get_where('tb_detailsejahtera', $where)->result();
+    }
+
+
+     function tambahanggota(){
+        $user = array(
+            'id_sejahtera' => $this->input->post('idsejahtera'),
+            'id_anggota' => $this->input->post('idanggota'),
+            'id_user' => $this->session->userdata('id_user'),
+            'tglupdate' => date('Y-m-d h:i:s')
+        );
+        $this->db->insert('tb_detailsejahtera', $user);
+    }
+
+    function updateanggota() {
+        $where = array(
+            'id_detailsejahtera' => $this->input->post('id_detailsejahtera'),
+        );
+        $Berita = array(
+            'id_anggota' => $this->input->post('idanggota'),
+            'id_user' => $this->session->userdata('id_user'),
+            'tglupdate' => date('Y-m-d h:i:s')
+        );
+        $this->db->where($where);
+        $this->db->update('tb_detailsejahtera',$Berita);
+    }
+
+    function cekanggota($sejahtera){
+        $anggota = array(
+            'id_sejahtera' => $sejahtera
+        );
+
+        $this->db->where($anggota);
+        $result = $this->db->get('tb_detailsejahtera');
+        return $result->num_rows();
+    }
 }

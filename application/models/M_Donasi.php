@@ -132,7 +132,7 @@ class M_Donasi extends CI_Model {
     function anggotabayar($user, $hasilcel){
         $this->db->join('tb_anggota b', 'tb_anggota.id_upline = b.id_anggota');
         $anggota = array(
-            'tb_anggota.level >=' => 'b.level',
+            'tb_anggota.level' => 'b.level',
             'tb_anggota.statusanggota' => 'anggota',
             'tb_anggota.id_upline' => $user,
         );

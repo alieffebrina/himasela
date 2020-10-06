@@ -66,6 +66,48 @@
           </div>
           <!-- /.box -->
         </div>
+      </div>
+      
+        
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Data Anggota</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive">
+              <table id="example1" class="table table-bordered table-striped table-hover">
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>NIK</th>
+                  <th>Nama</th>
+                  <th>Alamat</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <?php 
+                  $no=1;
+                  foreach ($anggota as $anggota) { ?>
+                  <tr>
+                    <td><?php echo $no++; ?></td>
+                    <td><?php echo $anggota->nik; ?></td>
+                    <td><?php echo $anggota->nama; ?></td>
+                    <td><?php echo $anggota->alamat; ?></td>
+                    <td>
+                      <a href="<?php echo site_url('sejahtera-anggota-edit/'.$anggota->id_detailsejahtera.'/'.$anggota->id_sejahtera); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
+                      <a href="<?php echo site_url('C_Sejahtera/hapusanggota/'.$anggota->id_detailsejahtera.'/'.$anggota->id_sejahtera); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
+                    </td>
+                  </tr>
+                  <?php } ?>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
       <!-- /.row -->
     </section>
     <!-- /.content -->

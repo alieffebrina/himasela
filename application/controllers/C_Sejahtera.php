@@ -6,6 +6,7 @@ class C_Sejahtera extends CI_Controller{
         $this->load->helper(array('form','url'));
         $this->load->library('session');
         $this->load->model('M_Sejahtera');
+        $this->load->model('M_User');
         $this->load->model('M_Setting');
         if(!$this->session->userdata('id_user')){
             redirect('C_Login');
@@ -72,6 +73,8 @@ class C_Sejahtera extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
+        $detail = array('id_sejahtera' => $ida );
+        $data['anggota'] = $this->M_Sejahtera->getanggota($detail);
         $data['sejahtera'] = $this->M_Sejahtera->getspek($ida);
         $this->load->view('sejahtera/v_vsejahtera',$data); 
         $this->load->view('template/footer');
@@ -83,8 +86,10 @@ class C_Sejahtera extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
+        $detail = array('id_sejahtera' => $ida );
+        $data['anggota'] = $this->M_Sejahtera->getanggota($detail);
         $data['sejahtera'] = $this->M_Sejahtera->getspek($ida);
-        $this->load->view('sejahtera/v_editSejahtera',$data); 
+        $this->load->view('sejahtera/v_editsejahtera',$data); 
         $this->load->view('template/footer');
     }
 
@@ -94,7 +99,7 @@ class C_Sejahtera extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        $this->load->view('sejahtera/v_addSejahtera',$data); 
+        $this->load->view('sejahtera/v_addsejahtera',$data); 
         $this->load->view('template/footer');
     }
 
@@ -142,11 +147,75 @@ class C_Sejahtera extends CI_Controller{
     function hapus($id)
     {
 
-        $where = array('id_Sejahtera' => $id);
-        $this->M_Setting->delete($where,'tb_Sejahtera');
+        $where = array('id_sejahtera' => $id);
+        $this->M_Setting->delete($where,'tb_sejahtera');
+        $detail = array('id_sejahtera' => $id);
+        $this->M_Setting->delete($detail,'tb_detailsejahtera');
         $this->session->set_flashdata('sukses', '<div class="alert alert-success left-icon-alert" role="alert">
                                                     <strong>Sukses!</strong> Data Berhasil di Hapus.
                                                 </div>');
             redirect('sejahtera'); 
+    } 
+
+    function tambahanggota()
+    {
+        $sejahtera = $this->input->post('idsejahtera');
+        $this->M_Sejahtera->tambahanggota();
+        $this->session->set_flashdata('sukses','<div class="alert alert-warning left-icon-alert" role="alert">
+                                                    <strong>Sukses!</strong> Data Berhasil di Tambah.
+                                                </div>');
+        redirect('sejahtera-anggota/'.$sejahtera);
+    } 
+
+    function anggota($ida)
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('statusanggota');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+
+        $detail = array('id_sejahtera' => $ida );
+        $data['cekanggota'] = $this->M_Sejahtera->cekanggota($ida);
+        $data['anggota'] = $this->M_Sejahtera->getanggota($detail);
+        $data['sejahtera'] = $this->M_Sejahtera->getspek($ida);
+        $data['user'] = $this->M_User->getall();
+        $this->load->view('sejahtera/v_anggotasejahtera',$data); 
+        $this->load->view('template/footer');
+    }
+
+    function editanggota($ida, $sejahtera)
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('statusanggota');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        $sek = array('id_sejahtera' => $sejahtera );
+        $detail = array('id_detailsejahtera' => $ida );
+        $data['sejahtera'] = $this->M_Sejahtera->getspek($sejahtera);
+        $data['anggota'] = $this->M_Sejahtera->getanggota($sek);
+        $data['user'] = $this->M_User->getall();
+        $data['usersejahtera'] = $this->M_Sejahtera->getanggota($detail);
+        $this->load->view('sejahtera/v_anggotaedit',$data); 
+        $this->load->view('template/footer');
+    }
+
+      function updateanggota()
+    {   
+        $sejahtera = $this->input->post('idsejahtera');
+        $this->M_Sejahtera->updateanggota();
+        $this->session->set_flashdata('sukses','<div class="alert alert-warning left-icon-alert" role="alert">
+                                                <strong>Sukses!</strong> Data Berhasil di Tambah.
+                                            </div>');
+        redirect('sejahtera-anggota/'.$sejahtera);
+    }
+
+    function hapusanggota($id, $sejahtera)
+    {
+        $where = array('id_detailsejahtera' => $id);
+        $this->M_Setting->delete($where,'tb_detailsejahtera');
+        $this->session->set_flashdata('sukses', '<div class="alert alert-success left-icon-alert" role="alert">
+                                                    <strong>Sukses!</strong> Data Berhasil di Hapus.
+                                                </div>');
+        redirect('sejahtera-anggota/'.$sejahtera);
     } 
 }
