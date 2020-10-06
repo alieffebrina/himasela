@@ -75,6 +75,8 @@
 <script src="<?php echo base_url() ?>assets/bower_components/Flot/jquery.flot.categories.js"></script>
 <!-- Page script -->
 
+<!-- Select2 -->
+<script src="<?php echo base_url() ?>assets/bower_components/select2/dist/js/select2.full.min.js"></script>
 <!-- CK Editor -->
 <script src="<?php echo base_url() ?>assets/bower_components/ckeditor/ckeditor.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
@@ -147,6 +149,10 @@
 </style>
 <script>
   $(document).ready(function(){ 
+
+    //Initialize Select2 Elements
+    $('.select2').select2()
+    
     $('#example1').DataTable();
     $('#example2').DataTable({
       'paging'      : true,

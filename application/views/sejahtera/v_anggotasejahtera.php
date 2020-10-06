@@ -73,12 +73,12 @@
             <!-- form start -->
             <?php echo form_open("C_Sejahtera/tambahanggota", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
               <div class="box-body">
+                <div class="row">
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Anggota</label>
                   <div class="col-sm-9">
                     <input type="hidden" class="form-control" id="id" name="idsejahtera" value="<?php echo $key->id_sejahtera ?>" readonly>
-                    <select class="form-control select2" id="idanggota" name="idanggota" style="width: 100%;" required onchange="">
-                      <option value="">--Pilih--</option>
+                    <select class="form-control select2" id="idanggota" name="idanggota" style="width: 100%;" required >
                       <?php 
                       foreach ($user as $data) { ?> 
                         <option value="<?php echo $data->id_anggota; ?>"><?php echo $data->nama ?></option>  
@@ -94,6 +94,7 @@
                   </div>
               </div>
             </div>
+            
               <!-- /.box-footer -->
            <?php echo form_close();?>
           </div>
