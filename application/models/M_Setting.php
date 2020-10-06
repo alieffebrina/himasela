@@ -140,6 +140,7 @@ class M_Setting extends CI_Model {
     function delete($where,$table){
     $this->db->where($where);
     $this->db->delete($table);
+    $this->db->query("ALTER TABLE $table AUTO_INCREMENT 0");
     }
 
      function getkode(){
