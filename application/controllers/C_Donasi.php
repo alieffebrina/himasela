@@ -84,11 +84,18 @@ class C_Donasi extends CI_Controller{
         $nourut = $this->session->userdata('nourut');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
+
+        $mx = $this->M_Level->selectmax();
+        foreach ($mx as $mx) {
+            $max = $mx->id_level;
+        }
+
         if ($id == 'anggota'){
-            $data['data'] = $this->M_Donasi->getuserupline($iduser);
+            $data['data'] = $this->M_Donasi->getuserupline($iduser, $max);
         } else {
             $data['data'] = $this->M_Donasi->getuser();            
         }
+        $data['levelmax'] = $max;
         $this->load->view('donasi/v_adddonasianggota',$data); 
         $this->load->view('template/footer');
     }
@@ -124,6 +131,13 @@ class C_Donasi extends CI_Controller{
     {  
         $this->M_Donasi->aprove($iduser,$idanggota,$level);
         $this->session->set_flashdata('Sukses', "Pembayaran berhasil di aprove!!!!");
+            redirect('C_Donasi'); //data calon anggota
+    }
+
+    function cancel($iduser,$idanggota,$level)
+    {  
+        $this->M_Donasi->cancel($iduser,$idanggota,$level);
+        $this->session->set_flashdata('Sukses', "Donasi berhasil di Cancel!!!!");
             redirect('C_Donasi'); //data calon anggota
     }
 

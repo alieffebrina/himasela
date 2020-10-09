@@ -10,12 +10,19 @@ class M_Donasi extends CI_Model {
     	return $query->result();
     }
 
-    function getuserupline($id_user){
+    function getuserupline($id_user, $level){
         $this->db->select('tb_anggota.*, b.nama namaupline');
         $this->db->join('tb_anggota b', 'b.id_anggota = tb_anggota.id_upline');
         $this->db->where('tb_anggota.statusanggota', 'anggota');
+
+        $this->db->group_start();
         $this->db->where('tb_anggota.id_upline', $id_user);
-        $this->db->or_where('tb_anggota.id_anggota', $id_user);
+        $this->db->where('tb_anggota.level <', $level);
+        $this->db->group_end();
+        $this->db->or_group_start();
+        $this->db->where('tb_anggota.id_anggota', $id_user);
+        $this->db->where('tb_anggota.level <', $level);
+        $this->db->group_end();
         $query = $this->db->get('tb_anggota');
         return $query->result();
     }
@@ -129,12 +136,25 @@ class M_Donasi extends CI_Model {
         $this->db->update('tb_anggota',$anggota);
     } 
 
+    function cancel($iduser, $idanggota,$level){
+        $user = array(
+            'tglaprove' => date('Y-m-d'),
+            'status' => 'Cancel',
+        );
+
+        $where = array(
+            'id_donasi' =>  $iduser,
+        );
+        
+        $this->db->where($where);
+        $this->db->update('tb_donasi',$user);
+    } 
+
     function anggotabayar($user, $hasilcel){
-        $this->db->join('tb_anggota b', 'tb_anggota.id_upline = b.id_anggota');
         $anggota = array(
-            'tb_anggota.level' => 'b.level',
-            'tb_anggota.statusanggota' => 'anggota',
-            'tb_anggota.id_upline' => $user,
+            'level>=' => $hasilcel,
+            'statusanggota' => 'anggota',
+            'id_upline' => $user,
         );
 
         $this->db->where($anggota);

@@ -23,7 +23,7 @@
       if($info >= $down) { ?>
     <div class="alert alert-danger left-icon-alert" role="alert">
 
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <!-- <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> -->
      <?php
 
        $idlevel = $this->db->query("SELECT MAX(id_level) as id_level from tb_level");

@@ -53,7 +53,8 @@
                     <td><?php echo $donasi->nama; ?></td>
                     <td><?php echo $donasi->levelupgrade; ?></td>
                     <td><?php echo $donasi->status; ?></td>
-                    <td> <a href="<?php echo site_url('C_Donasi/aprove/'.$donasi->id_donasi.'/'.$donasi->id_anggota.'/'.$donasi->levelupgrade); ?>"><button type="button" class="btn btn-info" <?php if($donasi->status!='menunggu aprove'){ echo "disabled"; } ?>><i class="fa fa-fw fa-check"></i></button></a></td>
+                    <td> <a href="<?php echo site_url('C_Donasi/aprove/'.$donasi->id_donasi.'/'.$donasi->id_anggota.'/'.$donasi->levelupgrade); ?>"><button type="button" class="btn btn-info" <?php if($donasi->status=='aproval'){ echo "disabled"; } ?>><i class="fa fa-fw fa-check"></i></button></a>
+                      <a href="<?php echo site_url('C_Donasi/cancel/'.$donasi->id_donasi.'/'.$donasi->id_anggota.'/'.$donasi->levelupgrade); ?>"><button type="button" class="btn btn-danger" <?php if($donasi->status!='menunggu aprove'){ echo "disabled"; } ?>><i class="fa fa-fw fa-close"></i></button></a></td>
                   </tr>
                   <?php } ?>
                 </tbody>
