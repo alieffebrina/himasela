@@ -31,45 +31,27 @@
               
             } 
 
-            // $id_upline = $a
-            // $f = $this->db->query("select * from tb_anggota where id_upline = '$e->id_anggota' and id_anggota != $e->id_anggota"); 
-            // $g = $c->result();
-            // if($g != NULL){
-            //   echo '<ul>';
-            //   foreach ($g as $h) {
-            //     echo '<li>'.$h->nama.'<li>';
-            //   }
-            // }  
-
               ?>
-            <div class="box-body no-padding">
-                  <!-- <ul type='Horizontal'> -->
-                     <?php
-                       echo '<ul>';
-                        $id_upline = 1; 
-                        echo $id_upline;
-                        $e = $this->db->query("select * from tb_anggota where id_upline = '$id_upline'"); 
-                        $b = $e->result();
-                        if($b != NULL){
-                          foreach ($b as $b) {
-                            echo '<li>'.$b->nama.' - '.$b->nourut.'</li>';
+            <div class="box-body table-responsive">
+              <?php function setCategoryTree($objTree)
+                {
+                    if (count($objTree->arrChilds) > 0)
+                    {
+                        echo "<ul>";
+                        foreach($objTree->arrChilds AS $objItem)
+                        {
+                            echo "<li>".$objItem->nama;
 
-                            $id_upline = $b->id_anggota;
-                            $c = $this->db->query("select * from tb_anggota where nourut LIKE '$b->nourut%' and nourut != $b->nourut"); 
-                            $d = $c->result();
-                            if($d != NULL){
-                              echo '<ul>';
-                              foreach ($d as $d) {
-                                echo '<li>'.$d->nama.' - '.$d->nourut.'</li>';
-                              }  
-                            } else {
-                              echo '</ul>';   
-                            }
-                          }
-                        } else {
-                          echo '</ul>';
+                            setCategoryTree($objItem);
+                            echo "</li>";
+
                         }
-                          ?>
+                        echo "</ul>";
+
+                    }
+                }
+
+                setCategoryTree($objTree); ?>
             </div>
           </div>
         </div>

@@ -115,13 +115,9 @@ class C_Donasi extends CI_Controller{
             $this->session->set_flashdata('sukses','<div class="alert alert-warning left-icon-alert" role="alert">
                                                     <strong>Sukses!</strong> Silahkan tunggu aprove admin.
                                                 </div>');
+
+            
             redirect('C_Donasi');  
-        } else if ($lv == $max){
-            $this->M_Donasi->donasiadmin($upload);
-            $this->session->set_flashdata('sukses','<div class="alert alert-warning left-icon-alert" role="alert">
-                                                    <strong>Sukses!</strong> Silahkan tunggu aprove admin.
-                                                </div>');
-            redirect('C_Donasi'); 
         } else {
             'gagal';
         }
@@ -130,9 +126,83 @@ class C_Donasi extends CI_Controller{
     function aprove($iduser,$idanggota,$level)
     {  
         $this->M_Donasi->aprove($iduser,$idanggota,$level);
-        $this->session->set_flashdata('Sukses', "Pembayaran berhasil di aprove!!!!");
+
+        //kirim pesan
+
+        $idlevel = $this->db->query("SELECT MAX(id_level) as id_level from tb_level");
+        $lev = $idlevel->result();
+        foreach ($lev as $lev) {  $levelmax = $lev->id_level; } 
+
+        $downline = $this->M_Setting->getdownline();
+        foreach ($downline as $downline) {
+          $down = $downline->downline;
+        }
+
+        $cariupline = $this->M_Donasi->ceklevel($idanggota);
+        foreach ($cariupline as $key) {
+            $totalbawah = $this->M_Donasi->anggotabayar($key->id_upline, $key->level);
+            if ($totalbawah >= $down){
+                $dapatupline = $this->M_Donasi->ceklevel($key->id_upline);
+                foreach ($dapatupline as $dapatupline) {
+                    $level = $dapatupline->level;
+                    $up = $level+1;
+                    if($level < $levelmax){
+                        $getuserspek = $this->M_Donasi->getuserspek($key->id_upline);
+                        foreach ($getuserspek as $getuserspek) {
+                            $getspek = $this->M_Level->getspek($level);
+                            foreach ($getspek as $getspek) {
+
+                                $cariuplinenya = $this->M_Donasi->ceklevel($dapatupline->id_upline);
+                                foreach ($cariuplinenya as $cariuplinenya) {
+                                $pesan = 'Silahkan upgrade ke Level '.$up.' dan Donasi ke Upline '.$getuserspek->namaupline.' sebesar Rp '.number_format($getspek->nominal).' No Rek '.$cariuplinenya->norek.' Bank '.$cariuplinenya->bank.' No HP '.$cariuplinenya->tlp;
+                                }
+                            }
+                        }
+                    }
+                    $nohp = $dapatupline->tlp;
+                }
+            } else {
+                echo 'belum';
+            }
+        }
+
+        // echo $nohp.$pesan.$level.$down;
+        $a = '+'.$nohp;
+        $no = str_split($a, 3);
+        $n = $no[0];
+
+        $ganti = str_replace($n,"628",$a);
+        // echo $ganti;
+
+            $demokey='5fa0891178423f215b2b5c082522b61d617adab5e8a2969b'; //this is demo key please change with your own key
+            $url='http://116.203.92.59/api/send_message';
+            $data = array(
+              "phone_no"=> $ganti,
+              "key"     =>$demokey,
+              "message" => $pesan
+            );
+            $data_string = json_encode($data);
+            
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_VERBOSE, 0);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 360);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+              'Content-Type: application/json',
+              'Content-Length: ' . strlen($data_string))
+            );
+            echo $res=curl_exec($ch);
+            curl_close($ch);
+
+            $this->session->set_flashdata('Sukses', "Pembayaran berhasil di aprove!!!!");
             redirect('C_Donasi'); //data calon anggota
-    }
+
+        }
 
     function cancel($iduser,$idanggota,$level)
     {  
@@ -169,6 +239,35 @@ class C_Donasi extends CI_Controller{
         $data['data'] = $this->M_Donasi->gethistory($iduser);
         $this->load->view('donasi/v_history',$data); 
         $this->load->view('template/footer');
+    }
+
+    function teswa()
+    {
+        $key='5fa0891178423f215b2b5c082522b61d617adab5e8a2969b'; //this is demo key please change with your own key
+        $url='http://116.203.92.59/api/send_message';
+        $data = array(
+          "phone_no"=> '6283857913752',
+          "key"     =>$key,
+          "message" =>'DEMO AKUN WOOWA. tes woowa api v3.0 mohon di abaikan'
+        );
+        $data_string = json_encode($data);
+        
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_VERBOSE, 0);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 360);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+          'Content-Type: application/json',
+          'Content-Length: ' . strlen($data_string))
+        );
+        echo $res=curl_exec($ch);
+        curl_close($ch);
+          redirect('C_Donasi');
     }
 
 }

@@ -163,11 +163,9 @@ class M_Donasi extends CI_Model {
     }
 
      function ceklevel($user){
-        $this->db->select('level');
+        $this->db->select('*');
         $this->db->where('id_anggota',$user);
         $result = $this->db->get('tb_anggota');
         return $result->result();
     }
-
-
 }

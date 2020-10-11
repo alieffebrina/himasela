@@ -70,6 +70,7 @@
               <div class="box-footer">
                   <div class="col-sm-10">
                     <a href="<?php echo site_url('C_Donasi'); ?>" class="btn btn-default">Batal</a>
+                   <!-- <a href=" https://wa.me/6283849390112?text=I'm%20interested%20in%20your%20car%20for%20sale" class="btn btn-default">Batal</a> -->
                     <button type="submit" class="btn btn-info">Tambah Data</button>
                   </div>
               </div>

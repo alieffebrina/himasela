@@ -175,11 +175,14 @@ class C_User extends CI_Controller{
 
             $this->M_User->tambahdata($nourut, $upline, $username);
             if($username == $this->input->post('nik')){
-                $this->session->set_flashdata('Sukses', "Username anda sama dengan Nik dengan password 123456 !!");                
+                $this->session->set_flashdata('Sukses', "Username anda sama dengan Nik dengan password 123456 !!");   
+            // header("location: https://api.whatsapp.com/send?phone=6283849390112&text=Halo%20mau%20order%20gan");             
             } else {
                 $this->session->set_flashdata('Sukses', "Username dan password silahkan hubungi admin !!");   
             }
+            // https://api.whatsapp.com/send?phone=628981234567&text=Halo%20mau%20order%20gan
             redirect('C_User');  
+
         // }
     }
 
