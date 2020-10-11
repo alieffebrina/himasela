@@ -24,39 +24,4 @@
               <h3 class="box-title">Struktur Himasela</h3>
             </div>
             <!-- /.box-header -->
-            <!-- form start -->
-            <?php foreach ($total as $key) {
-              $jumlah = intval($key->nouruta); 
-              // echo $jumlah;
-              
-            } 
-
-              ?>
             <div class="box-body table-responsive">
-              <?php function setCategoryTree($objTree)
-                {
-                    if (count($objTree->arrChilds) > 0)
-                    {
-                        echo "<ul>";
-                        foreach($objTree->arrChilds AS $objItem)
-                        {
-                            echo "<li>".$objItem->nama;
-
-                            setCategoryTree($objItem);
-                            echo "</li>";
-
-                        }
-                        echo "</ul>";
-
-                    }
-                }
-
-                setCategoryTree($objTree); ?>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /.row -->
-    </section>
-    <!-- /.content -->
-  </div>
