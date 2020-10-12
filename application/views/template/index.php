@@ -48,7 +48,27 @@
           }
          ?>
     </div>
-  <?php } } ?>
+  <?php } } 
+    foreach ($level as $level) {
+      $levelmax = $level->id_level;
+    }
+    $id = $this->session->userdata('id_user');
+    $a = $this->db->query("select * from tb_anggota where id_anggota = '$id'"); 
+    $b = $a->result();
+    foreach ($b as $b) { 
+      if ($b->level == $levelmax ){ 
+        $c = $this->db->query("select * from tb_detailsejahtera where id_anggota = '$id'"); 
+        $d = $c->num_rows();
+        if($d == NULL){ ?>
+          <div class="alert alert-danger left-icon-alert" role="alert">
+            <h2 style="text-align: center"><strong></strong> Selamat Anda telah dilevel Dana Kesejahteraan silahkan transfer ke Admin No Rekening......
+            Konfirmasi Hp No 081615879352 (admin).</h2>
+          </div>
+        <?php 
+        }
+      }
+    }
+  ?>
     <!-- Main content -->
     <section class="content">
       <!-- Small boxes (Stat box) -->

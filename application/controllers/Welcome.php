@@ -27,6 +27,7 @@ class Welcome extends CI_Controller {
         $this->load->model('M_Berita');
         $this->load->model('M_User');
         $this->load->model('M_Donasi');
+        $this->load->model('M_Level');
         if(!$this->session->userdata('id_user')){
             redirect('C_Login');
         }
@@ -60,6 +61,7 @@ class Welcome extends CI_Controller {
         	$data['listanggota'] = $this->M_User->getallspek($user);
 		}
 		
+       	$data['level'] = $this->M_Level->selectmax();
         $data['downline'] = $this->M_Setting->getdownline();
         $data['berita'] = $this->M_Berita->getBerita();
 		$this->load->view('template/index.php', $data);

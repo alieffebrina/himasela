@@ -8,6 +8,7 @@ class C_Donasi extends CI_Controller{
         $this->load->model('M_Donasi');
         $this->load->model('M_Level');
         $this->load->model('M_Setting');
+        $this->load->model('M_Sejahtera');
         if(!$this->session->userdata('id_user')){
             redirect('C_Login');
         }
@@ -110,7 +111,7 @@ class C_Donasi extends CI_Controller{
         // echo $max;
         $lv = $this->input->post('level');
         $upload = $this->M_Donasi->upload();
-        if ($upload['result'] == "success" && $lv != $max){
+        if ($upload['result'] == "success" && $lv <= $max){
             $this->M_Donasi->upgrade($upload);
             $this->session->set_flashdata('sukses','<div class="alert alert-warning left-icon-alert" role="alert">
                                                     <strong>Sukses!</strong> Silahkan tunggu aprove admin.
@@ -118,7 +119,7 @@ class C_Donasi extends CI_Controller{
 
             
             redirect('C_Donasi');  
-        } else {
+        }  else {
             'gagal';
         }
     }
@@ -164,7 +165,20 @@ class C_Donasi extends CI_Controller{
             } else {
                 echo 'belum';
             }
+            if ($key->level == $levelmax) {
+                $sejahtera = $this->M_Sejahtera->cekuser($idanggota);
+                if($sejahtera == NULL){
+                    $pesan = "Selamat Anda telah dilevel Dana Kesejahteraan silahkan transfer ke Admin No Rekening...... Konfirmasi Hp No 081615879352 (admin)";
+
+                    $nohp = $key->tlp;
+                }
+            }
+           
         }
+
+        
+
+
 
         // echo $nohp.$pesan.$level.$down;
         $a = '+'.$nohp;
