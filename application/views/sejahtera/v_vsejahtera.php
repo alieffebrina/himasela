@@ -81,7 +81,7 @@
                   <th>NIK</th>
                   <th>Nama</th>
                   <th>Alamat</th>
-                  <th>Action</th>
+                  <!-- <th>Action</th> -->
                 </tr>
                 </thead>
                 <tbody>
@@ -93,10 +93,10 @@
                     <td><?php echo $anggota->nik; ?></td>
                     <td><?php echo $anggota->nama; ?></td>
                     <td><?php echo $anggota->alamat; ?></td>
-                    <td>
+                    <!-- <td>
                       <a href="<?php echo site_url('sejahtera-anggota-edit/'.$anggota->id_detailsejahtera.'/'.$anggota->id_sejahtera); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
                       <a href="<?php echo site_url('C_Sejahtera/hapusanggota/'.$anggota->id_detailsejahtera.'/'.$anggota->id_sejahtera); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
-                    </td>
+                    </td> -->
                   </tr>
                   <?php } ?>
                 </tbody>
