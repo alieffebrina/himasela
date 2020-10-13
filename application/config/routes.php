@@ -76,3 +76,10 @@ $route['sejahtera-anggota-edit/(:any)/(:any)'] = 'C_Sejahtera/editanggota/$1/$2'
 
 //sejahtera anggota
 $route['hkesejahteraan'] = 'C_Sejahtera/history';
+
+
+//setting
+$route['akses'] = 'C_Setting';
+
+//profil
+$route['profil'] = 'C_User/profil';

@@ -393,4 +393,19 @@ class C_User extends CI_Controller{
         $this->load->view('user/v_exceluser', $data);
     }
 
+    function profil()
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('statusanggota');
+        $iduser = $this->session->userdata('id_user');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        $data['provinsi'] = $this->M_Setting->getprovinsi();
+        $data['user'] = $this->M_User->getspek($iduser);
+        $data['upline'] = $this->M_User->getuserall();
+        $data['downline'] = $this->M_Setting->getdownline();  
+        $this->load->view('user/v_euser',$data); 
+        $this->load->view('template/footer');
+    }
+
 }

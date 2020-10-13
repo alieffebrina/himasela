@@ -54,7 +54,7 @@ class C_Setting extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['user'] = $this->M_User->getuser();
-        $this->load->view('master/setting/v_akses',$data); 
+        $this->load->view('setting/v_akses',$data); 
         $this->load->view('template/footer');
     }
 
@@ -87,9 +87,11 @@ class C_Setting extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        $akses['akses'] = $this->M_Setting->getakses($ida);
-        $akses['user'] = $this->M_User->getnama($ida);
-        $this->load->view('master/setting/v_vakses',$akses); 
+        $i = str_replace("%20", " ", $ida);
+        $akses['akses'] = $this->M_Setting->getakses($i);
+        $akses['user'] = $this->M_User->getnama($i);
+        $akses['tipeuser']= $i;
+        $this->load->view('setting/v_vakses',$akses); 
         $this->load->view('template/footer');
     }
 
