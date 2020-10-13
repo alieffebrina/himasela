@@ -173,13 +173,15 @@ class C_User extends CI_Controller{
             $username = $st;
         }
 
+
+
             $this->M_User->tambahdata($nourut, $upline, $username);
             if($username == $this->input->post('nik')){
-                $pesan = "Terima kasih sudah bergabung dengan Himasela. Username anda ".$this->input->post('nik')." dan password 123456 !!";
+                $pesan = "Terima kasih sudah bergabung dengan *HIMASELA*.\nSilahkan login dengan cara berikut ini\n=================================\n*URL : www.app.himasela.com*\n*Username : ".$this->input->post('nik')."*\n*Password : 123456*";
                 $this->session->set_flashdata('Sukses', "Username anda sama dengan Nik dengan password 123456 !!");   
             // header("location: https://api.whatsapp.com/send?phone=6283849390112&text=Halo%20mau%20order%20gan");             
             } else {
-                $pesan = "Terima kasih sudah bergabung dengan Himasela. Username anda ".$username." dan password 123456 !!";
+                $pesan = "Terima kasih sudah bergabung dengan *HIMASELA*.\nSilahkan login dengan cara berikut ini\n=================================\n*URL : www.app.himasela.com*\n*Username : ".$username."*\n*Password : 123456*";
                 $this->session->set_flashdata('Sukses', "Username dan password silahkan hubungi admin !!");   
             }
 
@@ -194,7 +196,7 @@ class C_User extends CI_Controller{
             $data = array(
               "phone_no"=> $ganti,
               "key"     =>$demokey,
-              "message" => $pesan
+              "message" => $pesan,
             );
             $data_string = json_encode($data);
             

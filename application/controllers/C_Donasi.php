@@ -155,7 +155,7 @@ class C_Donasi extends CI_Controller{
 
                                 $cariuplinenya = $this->M_Donasi->ceklevel($dapatupline->id_upline);
                                 foreach ($cariuplinenya as $cariuplinenya) {
-                                $pesan = 'Silahkan upgrade ke Level '.$up.' dan Donasi ke Upline '.$getuserspek->namaupline.' sebesar Rp '.number_format($getspek->nominal).' No Rek '.$cariuplinenya->norek.' Bank '.$cariuplinenya->bank.' No HP '.$cariuplinenya->tlp;
+                                $pesan = "*Silahkan upgrade ke *Level ".$up."* dan *DONASI* ke *Upline ".$getuserspek->namaupline."*\nsebesar *Rp ".number_format($getspek->nominal)."*\n*No Rek : ".$cariuplinenya->norek."*\n*Bank : ".$cariuplinenya->bank."*\n*Atas Nama :".$cariuplinenya->pemilik."\nNo HP : ".$cariuplinenya->tlp."*";
                                 }
                             }
                         }
@@ -168,7 +168,7 @@ class C_Donasi extends CI_Controller{
             if ($key->level == $levelmax) {
                 $sejahtera = $this->M_Sejahtera->cekuser($idanggota);
                 if($sejahtera == NULL){
-                    $pesan = "Selamat Anda telah dilevel Dana Kesejahteraan silahkan transfer ke Admin BANK BRI No Rekening 6299-01-019907-53-9 ( Atas nama TITIMMATUL HIMMAH) Konfirmasi Hp No 081615879352 (admin)";
+                    $pesan = "[Selamat]\n==========================\nAnda telah dilevel *DANA KESEJAHTERAAN*\nSilahkan transfer ke Admin melalui rekening berikut ini\n*BANK : BANK BRI*\n*No Rekening : 6299-01-019907-53-9*\n*A.n TITIMMATUL HIMMAH*\n==========================\n Untuk Konfirmasi Silahkan Hubungi Contact Person dibawah ini\n*081615879352 ( admin)*";
 
                     $nohp = $key->tlp;
                 }
