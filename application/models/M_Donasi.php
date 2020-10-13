@@ -150,9 +150,10 @@ class M_Donasi extends CI_Model {
         $this->db->update('tb_donasi',$user);
     } 
 
-    function anggotabayar($user, $hasilcel){
+    function anggotabayar($user){
+        // if ($hasilcel = 0)
         $anggota = array(
-            'level>=' => $hasilcel,
+            // 'level>=' => $hasilcel,
             'statusanggota' => 'anggota',
             'id_upline' => $user,
         );
