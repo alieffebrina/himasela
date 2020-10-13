@@ -54,9 +54,10 @@ class Welcome extends CI_Controller {
 			$data['konfirmadmin'] = $this->M_User->waitadmindwonline($user);		
 			$data['sdhbayar'] = $this->M_User->sdhbayardwonline($user);
 			$ceklevel = $this->M_Donasi->ceklevel($user);
-			// foreach ($ceklevel as $key) {
-			$data['info'] = $this->M_Donasi->anggotabayar($user);
-			// }
+			foreach ($ceklevel as $key) {
+				$hasilcel = $key->level;
+			}
+			$data['info'] = $this->M_Donasi->anggotabayar($user, $hasilcel);
         	$data['listanggota'] = $this->M_User->getallspek($user);
 		}
 		

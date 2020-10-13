@@ -25,7 +25,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <?php echo form_open("C_level/tambah", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
+            <?php echo form_open("C_Level/tambah", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
               <div class="box-body">
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Level</label>

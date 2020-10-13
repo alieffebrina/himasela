@@ -218,4 +218,17 @@ class C_Sejahtera extends CI_Controller{
                                                 </div>');
         redirect('sejahtera-anggota/'.$sejahtera);
     } 
+
+    function history()
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('statusanggota');
+        $iduser = $this->session->userdata('id_user');
+        $nourut = $this->session->userdata('nourut');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        $data['data'] = $this->M_Sejahtera->gethistory($iduser);
+        $this->load->view('sejahtera/v_history',$data); 
+        $this->load->view('template/footer');
+    }
 }

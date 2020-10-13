@@ -24,4 +24,52 @@
               <h3 class="box-title">Struktur Himasela</h3>
             </div>
             <!-- /.box-header -->
-            <div class="box-body table-responsive">
+            <!-- form start -->
+            <?php foreach ($total as $key) {
+              $jumlah = $key->nouruta; 
+              echo $jumlah;
+            } ?>
+           <!--  <div class="box-body table-responsive">
+              <table>
+                <thead>
+                </thead>
+                <tbody>
+                <tr><td>aaaa</td>
+                </tr>
+                <tr><td>b</td>
+                  <td>b</td>
+                </tr>
+                </tbody>
+              </table>
+            </div> <li>
+                          <img src="dist/img/user1-128x128.jpg" alt="User Image">
+                          <a class="users-list-name" href="#"><?php echo '$user->nama' ?> </a>
+                          <span class="users-list-date"><?php echo $user->nourut ?></span>
+                        </li> -->
+            <div class="box-body no-padding">
+                  <!-- <ul type='Horizontal'> -->
+                  <?php
+                  foreach ($length as $length) {
+                    echo '<ul>';
+                    foreach ($user as $user) { 
+                      $us = $user->nourut;
+                      $cari = strlen($us);
+                      $total = $length->no;
+                      // if($cari == $total) {
+                      echo '<li>'.$us.' - '.$cari.'</li>';
+                        // $index ++;
+                      // } 
+                    }
+                    echo '</ul><br>';
+                  } ?>
+                   
+
+                    <!-- </ul> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>

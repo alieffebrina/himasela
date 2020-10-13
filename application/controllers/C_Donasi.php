@@ -168,7 +168,7 @@ class C_Donasi extends CI_Controller{
             if ($key->level == $levelmax) {
                 $sejahtera = $this->M_Sejahtera->cekuser($idanggota);
                 if($sejahtera == NULL){
-                    $pesan = "Selamat Anda telah dilevel Dana Kesejahteraan silahkan transfer ke Admin No Rekening...... Konfirmasi Hp No 081615879352 (admin)";
+                    $pesan = "Selamat Anda telah dilevel Dana Kesejahteraan silahkan transfer ke Admin BANK BRI No Rekening 6299-01-019907-53-9 ( Atas nama TITIMMATUL HIMMAH) Konfirmasi Hp No 081615879352 (admin)";
 
                     $nohp = $key->tlp;
                 }

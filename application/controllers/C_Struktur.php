@@ -37,7 +37,6 @@ class C_Struktur extends CI_Controller{
                     <li class="active">Struktur Himasela</li>
                   </ol>
                 </section>
-
                 <section class="content">
                   <div class="row">
                     <div class="col-md-12">
@@ -92,4 +91,5 @@ class C_Struktur extends CI_Controller{
 
         $this->load->view("v_struktur",$arrViewData);
     }
+    
 }

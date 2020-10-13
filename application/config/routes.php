@@ -73,3 +73,6 @@ $route['sejahtera-edit/(:any)'] = 'C_Sejahtera/edit/$1';
 $route['sejahtera-view/(:any)'] = 'C_Sejahtera/view/$1';
 $route['sejahtera-anggota/(:any)'] = 'C_Sejahtera/anggota/$1';
 $route['sejahtera-anggota-edit/(:any)/(:any)'] = 'C_Sejahtera/editanggota/$1/$2';
+
+//sejahtera anggota
+$route['hkesejahteraan'] = 'C_Sejahtera/history';

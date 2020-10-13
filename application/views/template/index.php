@@ -49,6 +49,8 @@
          ?>
     </div>
   <?php } } 
+  
+    if($this->session->userdata('statusanggota') != 'administrator') { 
        $levelk = $this->db->query("SELECT MAX(id_level) as id_level from tb_level");
         $levelke = $levelk->result();
         foreach ($levelke as $levelke) {  $levelmax = $levelke->id_level; } 
@@ -61,13 +63,13 @@
         $d = $c->num_rows();
         if($d == NULL){ ?>
           <div class="alert alert-danger left-icon-alert" role="alert">
-            <h2 style="text-align: center"><strong></strong> Selamat Anda telah dilevel Dana Kesejahteraan silahkan transfer ke Admin No Rekening No rek BRI 6299-01-019907-53-9
-            Konfirmasi Hp No 081615879352 (admin).</h2>
+            <h2 style="text-align: center"><strong></strong> Selamat Anda telah dilevel Dana Kesejahteraan silahkan transfer ke Admin BANK BRI No Rekening 6299-01-019907-53-9 ( Atas nama TITIMMATUL HIMMAH) Konfirmasi Hp No 081615879352 (admin)</h2>
           </div>
         <?php 
         }
       }
     }
+    } 
   ?>
     <!-- Main content -->
     <section class="content">

@@ -104,4 +104,12 @@ class M_Sejahtera extends CI_Model {
         $result = $this->db->get('tb_detailsejahtera');
         return $result->num_rows();
     }
+
+    function gethistory($user){
+        $where = array(
+            'id_anggota' => $user
+        );
+        $this->db->join('tb_sejahtera', 'tb_sejahtera.id_sejahtera = tb_detailsejahtera.id_sejahtera');
+        return $this->db->get_where('tb_detailsejahtera', $where)->result();
+    }
 }
