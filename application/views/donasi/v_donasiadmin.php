@@ -39,7 +39,7 @@
                   <th>Nama</th>
                   <th>Level</th>
                   <th>Status</th>
-                  <th>Action</th>
+                  <th width="120">Action</th>
                 </tr>
                 </thead>
                 <tbody>

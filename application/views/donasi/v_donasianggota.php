@@ -36,7 +36,7 @@
                   <th>NIK</th>
                   <th>Nama</th>
                   <th>Level</th>
-                  <th>Status</th>
+                  <th width="120">Action</th>
                 </tr>
                 </thead>
                 <tbody>

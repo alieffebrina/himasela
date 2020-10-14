@@ -233,6 +233,7 @@ class M_User extends CI_Model {
         $user = array(
             'nik' => $this->input->post('nik'),
             'nama' => $this->input->post('nama'),
+            'username' => $this->input->post('username'),
             'alamat' => $this->input->post('alamat'),
             'id_kota' => $this->input->post('kota'),
             'id_provinsi' => $this->input->post('prov'),

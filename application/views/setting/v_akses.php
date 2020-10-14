@@ -37,7 +37,7 @@
                 <tr>
                   <th>No</th>
                   <th>Status Anggota</th>
-                  <th>Action</th>
+                  <th width="120">Action</th>
                 </tr>
                 </thead>
                 <tbody>

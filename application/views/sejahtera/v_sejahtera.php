@@ -40,7 +40,7 @@
                   <th>Anggota</th>
                   <th>Tabungan</th>
                   <th>Pasif Income</th>
-                  <th>Action</th>
+                  <th width="120">Action</th>
                 </tr>
                 </thead>
                 <tbody>

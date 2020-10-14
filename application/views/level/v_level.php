@@ -36,7 +36,7 @@
                   <th>No</th>
                   <th>Level</th>
                   <th>Donasi</th>
-                  <th>Action</th>
+                  <th width="120">Action</th>
                 </tr>
                 </thead>
                 <tbody>

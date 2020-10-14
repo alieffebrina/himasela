@@ -38,7 +38,7 @@
                   <th>User</th>
                   <th>Tanggal Upload</th>
                   <th>Judul Berita</th>
-                  <th>Action</th>
+                  <th width="120">Action</th>
                 </tr>
                 </thead>
                 <tbody>

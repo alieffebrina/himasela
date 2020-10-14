@@ -56,7 +56,7 @@ n<!-- Content Wrapper. Contains page content -->
                   <th>Upline</th>
                   <th>Pembayaran</th>
                   <th>Status</th>
-                  <th>Action</th>
+                  <th width="120">Action</th>
                 </tr>
                 </thead>
                 <tbody>
