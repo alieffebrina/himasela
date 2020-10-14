@@ -1,18 +1,26 @@
- <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Edit Anggota
+        Profil
         <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="<?php echo site_url('C_User'); ?>">Data Anggota</a></li>
-        <li class="active">Edit Anggota</li>
+        <li><a href="<?php echo site_url('C_User'); ?>">Profil</a></li>
+        <li class="active">Profil Anggota</li>
       </ol>
     </section>
-
+    <div class="box-body">
+    <?php if ($this->session->flashdata('Sukses')) { ?>
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h5><i class="icon fa fa-check"></i> Sukses!</h5>
+          <?=$this->session->flashdata('Sukses')?>.
+        </div>                 
+      <?php } ?>
+    </div>
     <!-- Main content -->
     <section class="content">
       <div class="row">
@@ -21,7 +29,7 @@
           <!-- Horizontal Form -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Edit Anggota</h3>
+              <h3 class="box-title">Profil Anggota</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -51,7 +59,7 @@
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
                   <div class="col-sm-9">
-                    <input type="hidden" class="form-control" id="password" name="password" value="<?php echo $key->password ?>" maxlength='16'>
+                    <input type="text" class="form-control" id="password" name="password" value="<?php echo $key->password ?>" maxlength='16'>
                   </div>
                 </div>
                 <div class="form-group">
@@ -102,20 +110,8 @@
                  <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Upline</label>
                   <div class="col-sm-9">
-                    <select class="form-control select2" id="upline" name="upline" style="width: 100%;">
+                    <select class="form-control" id="upline" name="upline" style="width: 100%;" readonly>
                       <option value="<?php echo $key->id_upline.'/'.$key->nourut?>" selected ><?php echo $key->namaupline ?></option>
-                      <?php 
-                      foreach($downline as $downline){ echo $downline->downline; } 
-                      $down = $downline->downline;
-                      foreach ($upline as $upline) { 
-                        $a = $this->db->query("select * from tb_anggota where id_upline = '$upline->id_anggota' and statusanggota != 'tidak aktif'"); 
-                        $b = $a->result();
-                        if(count($b)<5){ 
-                          if ($upline->id_anggota != $key->id_upline){ ?>
-                            <option value="<?php echo $upline->id_anggota.'/'.$upline->nourut?>"><?php echo $upline->nama ?></option>  
-                          <?php }
-                       } 
-                    }?>
                     </select>             
                   </div>
                 </div>
@@ -161,18 +157,11 @@
                     <input type="text" class="form-control" value="<?php echo $key->statusanggota ?>"readonly>
                   </div>
                 </div> 
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Foto Bukti Transfer</label>
-                    <div class="col-sm-6">
-                      <img class="img-responsive" src="<?php echo base_url() ?>images/<?php echo $key->buktitransfer ?>" alt="Photo" width="350px" height="197px">
-                    </div>
-                </div>
               </div>
             <?php } ?>
               <!-- /.box-body -->
               <div class="box-footer">
                   <div class="col-sm-10">
-                    <a href="<?php echo site_url('C_User/index'); ?>" class="btn btn-default">Batal</a>
                     <button type="submit" class="btn btn-info">Simpan Data</button>
                   </div>
               </div>
@@ -183,5 +172,4 @@
         </div>
       <!-- /.row -->
     </section>
-    <!-- /.content -->
   </div>

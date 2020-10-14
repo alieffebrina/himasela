@@ -18,42 +18,51 @@ class C_Struktur extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $nourut = $this->session->userdata('nourut');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
-        $this->load->view('template/sidebar.php', $data);
+        $data1['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data1);
         $data['total'] = $this->M_Struktur->gettotal();
         $data['user'] = $this->M_Struktur->getuser();
         $data['ida'] = $iduser;
         $data['length'] = $this->M_Struktur->getlenght();
-        echo '
-              <div class="content-wrapper">
-                <section class="content-header">
-                  <h1>
-                    Struktur Himasela
-                    <small></small>
-                  </h1>
-                  <ol class="breadcrumb">
-                    <li><a href="'.site_url('Welcome').'"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="'.site_url('Welcome').'">Struktur Himasela</a></li>
-                    <li class="active">Struktur Himasela</li>
-                  </ol>
-                </section>
-                <section class="content">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="box box-primary">
-                        <div class="box-header with-border">
-                          <h3 class="box-title">Struktur Himasela</h3>
-                        </div>';
-                echo "<div class='box-body table-responsive'>";
-                $data['child'] = $this->getChild($iduser);  
-                echo "            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-";
 
+        $data['child'] = $this->getAnak($iduser);
+        $this->load->view('struktur/v_struktur.php', $data);
+        $this->load->view('template/footer.php', $data);
+        // echo '
+        //       <div class="content-wrapper">
+        //         <section class="content-header">
+        //           <h1>
+        //             Struktur Himasela
+        //             <small></small>
+        //           </h1>
+        //           <ol class="breadcrumb">
+        //             <li><a href="'.site_url('Welcome').'"><i class="fa fa-dashboard"></i> Home</a></li>
+        //             <li><a href="'.site_url('Welcome').'">Struktur Himasela</a></li>
+        //             <li class="active">Struktur Himasela</li>
+        //           </ol>
+        //         </section>
+        //         <section class="content">
+        //           <div class="row">
+        //             <div class="col-md-12">
+        //               <div class="box box-primary">
+        //                 <div class="box-header with-border">
+        //                   <h3 class="box-title">Struktur Himasela</h3>
+        //                 </div>';
+        //         echo "<div class='box-body table-responsive'>";
+        //         $data['child'] = $this->getChild($iduser);  
+        //         echo '</div>
+        //           </div>
+        //         </div>
+        //       </div>
+        //     </section>
+        //   </div>
+        // ';
+
+
+    }
+
+    function getAnak($ida){
+        $data['child'] = $this->M_Struktur->getAnak($ida);
     }
 
     function getChild($ida){
@@ -73,7 +82,7 @@ class C_Struktur extends CI_Controller{
                 echo "<li>".$ch->id_anggota."-".$ch->nourut; 
                 $this->getChild($ch->id_anggota);
             }
-        }
+        } 
         echo "</ul>";
 
 
@@ -81,15 +90,4 @@ class C_Struktur extends CI_Controller{
         // $this->load->view('template/footer');
     }
 
-    public function setCategoryTree()
-    {
-        // $this->load->model("Category_Model");
-
-        $arrViewData = array(
-            "objTree" => $this->M_Struktur->getCategoryTreeData()
-        );
-
-        $this->load->view("v_struktur",$arrViewData);
-    }
-    
 }

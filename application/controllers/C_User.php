@@ -406,7 +406,7 @@ class C_User extends CI_Controller{
         $data['user'] = $this->M_User->getspek($iduser);
         $data['upline'] = $this->M_User->getuserall();
         $data['downline'] = $this->M_Setting->getdownline();  
-        $this->load->view('user/v_euser',$data); 
+        $this->load->view('user/v_profil',$data); 
         $this->load->view('template/footer');
     }
 
