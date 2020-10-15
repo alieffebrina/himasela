@@ -21,8 +21,7 @@
     // echo $info;
     if($this->session->userdata('statusanggota') != 'administrator') { 
       if($info >= $down) { ?>
-    <div class="alert alert-danger left-icon-alert" role="alert">
-
+asd
           <!-- <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> -->
      <?php
 
@@ -41,14 +40,17 @@
                 $donasi = $this->db->query("select * from tb_level where id_level = '$up'"); 
                 $donasiv = $donasi->result();
                 foreach ($donasiv as $donasiv) { ?>
-                  <h2 style="text-align: center"><strong></strong> Silahkan upgrade ke Level <?php echo $level->level+1 ?> dan Donasi ke upline <?php echo $uplinev->nama; ?> sebesar <?php echo 'Rp. '.number_format($donasiv->nominal); ?> No Rek. <?php echo $uplinev->norek.' Bank '.$uplinev->bank.' No HP '.$uplinev->tlp.'</h2>';
+
+    <div class="alert alert-danger left-icon-alert" role="alert">
+                  <h2 style="text-align: center"><strong></strong> Silahkan upgrade ke Level <?php echo $level->level+1 ?> dan Donasi ke upline <?php echo $uplinev->nama; ?> sebesar <?php echo 'Rp. '.number_format($donasiv->nominal); ?> No Rek. <?php echo $uplinev->norek.' Bank '.$uplinev->bank.' No HP '.$uplinev->tlp.'</h2>
+    </div>';
                 }
               }
             } 
           }
          ?>
-    </div>
-  <?php } } 
+  <?php } 
+} 
   
     if($this->session->userdata('statusanggota') != 'administrator') { 
        $levelk = $this->db->query("SELECT MAX(id_level) as id_level from tb_level");
@@ -59,16 +61,14 @@
     $b = $a->result();
     foreach ($b as $b) { 
       if ($b->level == $levelmax ){ 
-        $c = $this->db->query("select * from tb_detailsejahtera where id_anggota = '$id'"); 
-        $d = $c->num_rows();
-        if($d == NULL){ ?>
+        ?>
           <div class="alert alert-danger left-icon-alert" role="alert">
             <h2 style="text-align: center"><strong></strong> Selamat Anda telah dilevel Dana Kesejahteraan silahkan transfer ke Admin BANK BRI No Rekening 6299-01-019907-53-9 ( Atas nama TITIMMATUL HIMMAH) Konfirmasi Hp No 081615879352 (admin)</h2>
           </div>
         <?php 
         }
       }
-    }
+    
     } 
   ?>
     <!-- Main content -->
