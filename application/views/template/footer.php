@@ -343,29 +343,6 @@ function toggle(source) {
       return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
     }
   </script>
-<!-- <script type='text/javascript'>
-    var error = 1; // nilai default untuk error 1
-    function cek_nik(){
-        $("#pesannik").hide();
-        var nik = $("#nik").val();
-        if(nik != ""){
-            $.ajax({
-                url: "<?php echo site_url() . '/C_User/cek_nik'; ?>", //arahkan pada proses_tambah di controller member
-                data: 'nik='+nik,
-                type: "POST",
-                success: function(msg){
-                  $("#nik").html(response.nika).show();
-                  $("#nama").html(response.nama).show();
-                  $("#alamat").html(response.alamat).show();
-                },
-                error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
-                  alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
-                }
-            });
-        }                
-    }
-     
-</script> -->
 <script type="text/javascript">
 function ValidateSize(file) {
     var FileSize = file.files[0].size / 1024 / 1024; // in MB
