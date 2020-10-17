@@ -107,7 +107,7 @@ asd
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-yellow">
+          <div class="small-box bg-maroon">
             <div class="inner">
             <h3><?php echo $konfirmadmin; ?><sup style="font-size: 20px"></sup></h3>
 
@@ -142,7 +142,7 @@ asd
 
         <div class="col-md-12">
           <!-- Info Boxes Style 2 -->
-          <div class="info-box bg-yellow">
+          <div class="info-box bg-orange">
             <!-- <span class="info-icon"><i class="ion-ios-chatbubble-outline"></i></span>
  -->
           <?php foreach ($admin as $admin) { ?>

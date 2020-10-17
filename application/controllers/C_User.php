@@ -369,12 +369,45 @@ class C_User extends CI_Controller{
         $iduser = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        if ($id == 'upline' || $id == 'downline'){
+
+        if ($id == 'anggota'){
             $data['user'] = $this->M_User->getallspek($iduser);
         } else {
             $data['user'] = $this->M_User->getall();            
         }
-        $data['header'] = 'Anggota';
+
+        $tabel = 'tb_akses';
+        $edit = array(
+            'tipeuser' => $id,
+            'edit' => '1',
+            'id_menu' => '6'
+        );
+        $hasiledit = $this->M_Setting->cekakses($tabel, $edit);
+        if(count($hasiledit)!=0){ 
+            $tomboledit = 'aktif';
+        } else {
+            $tomboledit = 'tidak';
+        }
+
+        $hapus = array(
+            'tipeuser' => $id,
+            'delete' => '1',
+            'id_menu' => '6'
+        );
+        $hasilhapus = $this->M_Setting->cekakses($tabel, $hapus);
+        if(count($hasilhapus)!=0){ 
+            $tombolhapus = 'aktif';
+        } else{
+            $tombolhapus = 'tidak';
+        }
+        $data['akseshapus'] = $tombolhapus;
+        $data['aksesedit'] = $tomboledit;
+
+        if ($id == 'anggota'){
+            $data['user'] = $this->M_User->getallspek($iduser);
+        } else {
+            $data['user'] = $this->M_User->getall();            
+        }
         $this->load->view('user/v_laporanuser',$data); 
         $this->load->view('template/footer');
     }

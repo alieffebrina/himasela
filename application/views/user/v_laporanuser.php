@@ -3,13 +3,12 @@ n<!-- Content Wrapper. Contains page content -->
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Laporan User
+        Data Laporan Anggota
         <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="<?php echo site_url('C_User'); ?>">Data Laporan Anggota</a></li>
-        <li class="active"><?php echo $header; ?></li>
       </ol>
     </section>
     <div class="box-body">
@@ -56,7 +55,6 @@ n<!-- Content Wrapper. Contains page content -->
                   <th>Upline</th>
                   <th>Pembayaran</th>
                   <th>Status</th>
-                  <th width="120">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -73,16 +71,6 @@ n<!-- Content Wrapper. Contains page content -->
                   <td><?php echo $user->namaupline; ?></td>
                   <td><?php echo $user->statusbayar; ?></td>
                   <td><?php echo $user->statusanggota; ?></td>
-                  <td> 
-                    <div class="btn-group">
-                    <?php if($header == 'Calon Anggota'){ ?>
-                      <a href="<?php echo site_url('C_User/konfirm/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning"><i class="fa fa-fw fa-check"></i></button></a>
-                    <?php } ?>
-                      <a href="<?php echo site_url('C_User/view/'.$user->id_anggota); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
-                      <a href="<?php echo site_url('C_User/edit/'.$user->id_anggota); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
-                      <a href="<?php echo site_url('C_User/hapus/'.$user->id_anggota); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
-                    </div>
-                  </td>
                 </tr>
                   <?php } ?>
                 </tbody>

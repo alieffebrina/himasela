@@ -343,7 +343,7 @@ function toggle(source) {
       return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
     }
   </script>
-<script type='text/javascript'>
+<!-- <script type='text/javascript'>
     var error = 1; // nilai default untuk error 1
     function cek_nik(){
         $("#pesannik").hide();
@@ -365,7 +365,7 @@ function toggle(source) {
         }                
     }
      
-</script>
+</script> -->
 <script type="text/javascript">
 function ValidateSize(file) {
     var FileSize = file.files[0].size / 1024 / 1024; // in MB

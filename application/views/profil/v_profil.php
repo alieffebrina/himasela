@@ -119,19 +119,22 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Bank</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="bank" name="bank" value="<?php echo $key->bank; ?>" >
+                    <input type="text" class="form-control" id="bank" name="bank" value="<?php echo $key->bank; ?>" 
+                <?php if($key->statusanggota != 'administrator' ) {  echo "readonly"; } ?>>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">No Rekening</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="norek" name="norek" value="<?php echo $key->norek; ?>" >
+                    <input type="text" class="form-control" id="norek" name="norek" value="<?php echo $key->norek; ?>" 
+                <?php if($key->statusanggota != 'administrator' ) {  echo "readonly"; } ?>>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Nama Pemilik</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="pemilik" name="pemilik" value="<?php echo $key->pemilik; ?>" >
+                    <input type="text" class="form-control" id="pemilik" name="pemilik" value="<?php echo $key->pemilik; ?>" 
+                <?php if($key->statusanggota != 'administrator' ) {  echo "readonly"; } ?>>
                   </div>
                 </div>
                 <div class="form-group">

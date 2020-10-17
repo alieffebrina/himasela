@@ -227,6 +227,48 @@ class C_Sejahtera extends CI_Controller{
         $nourut = $this->session->userdata('nourut');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
+
+        $tabel = 'tb_akses';
+        $edit = array(
+            'tipeuser' => $id,
+            'edit' => '1',
+            'id_menu' => '12'
+        );
+        $hasiledit = $this->M_Setting->cekakses($tabel, $edit);
+        if(count($hasiledit)!=0){ 
+            $tomboledit = 'aktif';
+        } else {
+            $tomboledit = 'tidak';
+        }
+
+        $hapus = array(
+            'tipeuser' => $id,
+            'delete' => '1',
+            'id_menu' => '12'
+        );
+        $hasilhapus = $this->M_Setting->cekakses($tabel, $hapus);
+        if(count($hasilhapus)!=0){ 
+            $tombolhapus = 'aktif';
+        } else{
+            $tombolhapus = 'tidak';
+        }
+
+        $add = array(
+            'tipeuser' => $id,
+            'add' => '1',
+            'id_menu' => '12'
+        );
+        $hasiladd = $this->M_Setting->cekakses($tabel, $add);
+        if(count($hasiladd)!=0){ 
+            $tomboladd = 'aktif';
+        } else{
+            $tomboladd = 'tidak';
+        }
+
+        $data['aksesadd'] = $tomboladd;
+        $data['akseshapus'] = $tombolhapus;
+        $data['aksesedit'] = $tomboledit;   
+
         $data['data'] = $this->M_Sejahtera->gethistory($iduser);
         $this->load->view('sejahtera/v_history',$data); 
         $this->load->view('template/footer');

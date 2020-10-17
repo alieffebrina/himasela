@@ -30,8 +30,7 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">NIK</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nik" name="nik" maxlength="16" minlength="16" placeholder="NIK" onkeypress="return Angkasaja(event)" onkeyup="cek_nik()">
-                  <span id="pesannik"></span>
+                    <input type="text" class="form-control" id="nik" name="nik" maxlength="16" minlength="16" placeholder="NIK" onkeypress="return Angkasaja(event)">
                   </div>
                 </div>
                 <div class="form-group">
