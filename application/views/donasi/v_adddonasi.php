@@ -8,7 +8,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="<?php echo site_url('C_DOnasi'); ?>">Data Upgrade Member</a></li>
+        <li><a href="<?php echo site_url('donasi'); ?>">Data Upgrade Member</a></li>
         <li class="active">Data Upgrade Member</li>
       </ol>
     </section>
@@ -68,7 +68,7 @@
               <!-- /.box-body -->
               <div class="box-footer">
                   <div class="col-sm-10">
-                    <a href="<?php echo site_url('C_Donasi'); ?>" class="btn btn-default">Batal</a>
+                    <a href="<?php echo site_url('donasi'); ?>" class="btn btn-default">Batal</a>
                     <button type="submit" class="btn btn-info">Simpan Data</button>
                   </div>
               </div>

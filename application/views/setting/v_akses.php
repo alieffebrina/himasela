@@ -46,7 +46,7 @@
                   <td><?php echo 'Administrator'; ?></td>
                   <td>
                     <div class="btn-group">
-                      <a href="<?php echo site_url('C_Setting/view/administrator'); ?>"><button type="button" class="btn btn-success">Hak Akses Login</button></a>
+                      <a href="<?php echo site_url('akses-admin'); ?>"><button type="button" class="btn btn-success">Hak Akses Login</button></a>
                     </div>
                   </td>
                 </tr>
@@ -55,7 +55,7 @@
                   <td><?php echo 'Anggota'; ?></td>
                   <td>
                     <div class="btn-group">
-                      <a href="<?php echo site_url('C_Setting/view/Anggota'); ?>"><button type="button" class="btn btn-success">Hak Akses Login</button></a>
+                      <a href="<?php echo site_url('akses-Anggota'); ?>"><button type="button" class="btn btn-success">Hak Akses Login</button></a>
                     </div>
                   </td>
                 </tr>
@@ -64,7 +64,7 @@
                   <td><?php echo 'Menunggu Konfirmasi Admin'; ?></td>
                   <td>
                     <div class="btn-group">
-                      <a href="<?php echo site_url('C_Setting/view/Menunggu Konfirmasi Admin'); ?>"><button type="button" class="btn btn-success">Hak Akses Login</button></a>
+                      <a href="<?php echo site_url('akses-menunggukonfirm'); ?>"><button type="button" class="btn btn-success">Hak Akses Login</button></a>
                     </div>
                   </td>
                 </tr>
@@ -73,7 +73,7 @@
                   <td><?php echo 'Tidak Aktif'; ?></td>
                   <td>
                     <div class="btn-group">
-                      <a href="<?php echo site_url('C_Setting/view/Tidak Aktif'); ?>"><button type="button" class="btn btn-success">Hak Akses Login</button></a>
+                      <a href="<?php echo site_url('akses-tidakaktif'); ?>"><button type="button" class="btn btn-success">Hak Akses Login</button></a>
                     </div>
                   </td>
                 </tr>

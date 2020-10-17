@@ -24,8 +24,8 @@ class C_Struktur extends CI_Controller{
         $data['user'] = $this->M_Struktur->getuser();
         $data['ida'] = $iduser;
         $data['length'] = $this->M_Struktur->getlenght();
-
-        $data['child'] = $this->getAnak($iduser);
+        // if($)
+        $data['child'] = $this->M_Struktur->getAnak($iduser);
         $this->load->view('struktur/v_struktur.php', $data);
         $this->load->view('template/footer.php', $data);
         // echo '

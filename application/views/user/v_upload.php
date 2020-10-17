@@ -115,16 +115,16 @@
                     <div class="btn-group">
                     <?php if($header == 'Calon Anggota'){ 
                       if($user->statusanggota == 'menunggu konfirmasi admin'){ ?>     
-                        <a href="<?php echo site_url('C_User/ttf/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning"><i class="fa fa-fw fa-check"></i></button></a>                   
+                        <a href="<?php echo site_url('user-aprove/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning"><i class="fa fa-fw fa-check"></i></button></a>                  
                           <!-- <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modaluploadbuktitransfer" data-id="<?php echo $user->id_anggota ?>"><i class="fa fa-fw fa-check"></i></button> -->
                       <?php } else { ?>
-                        <a href="<?php echo site_url('C_User/konfirm/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning"><i class="fa fa-fw fa-check"></i></button></a>
+                        <a href="<?php echo site_url('user-konfirm/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning"><i class="fa fa-fw fa-check"></i></button></a>
                     <?php } } ?>
-                      <a href="<?php echo site_url('C_User/view/'.$user->id_anggota); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
+                      <a href="<?php echo site_url('user-view/'.$user->id_anggota); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
                       <?php if($aksesedit == 'aktif'){?>
-                      <a href="<?php echo site_url('C_User/edit/'.$user->id_anggota); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
+                      <a href="<?php echo site_url('user-edit/'.$user->id_anggota); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
                       <?php } ?>
-                      <?php if($akseshapus == 'aktif'){?>
+                      <?php if($akseshapus == 'aktif' && $user->statusanggota == 'anggota'){?>
                       <a href="<?php echo site_url('C_User/hapus/'.$user->id_anggota); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
                       <?php } ?>
                     </div>

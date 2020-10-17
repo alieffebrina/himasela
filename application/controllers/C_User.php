@@ -215,7 +215,7 @@ class C_User extends CI_Controller{
         echo $res=curl_exec($ch);
         curl_close($ch);
 
-        redirect('C_User');  
+        redirect('calonanggota');  
     }
 
     function tambahtf()
@@ -224,7 +224,7 @@ class C_User extends CI_Controller{
         if ($upload['result'] == "success"){
             $this->M_User->konfirmadmin($upload);
             $this->session->set_flashdata('Sukses', "Data Berhasil Di Simpan!!");
-            redirect('C_User/all');  
+            redirect('anggota');  
         } else {
             'gagal';
         }
@@ -324,22 +324,22 @@ class C_User extends CI_Controller{
         $this->M_User->edit($nourut, $upline);
         $this->session->set_flashdata('Sukses', "Data Berhasil Di Rubah!!");
         if($this->input->post('statusanggota') == 'menunggu konfirmasi admin' || $this->input->post('statusanggota') == 'menunggu konfirmasi upline' ){
-            redirect('C_User');
+            redirect('calonanggota');
         } else {
-            redirect('C_User/all');
+            redirect('anggota');
         }
     }
 
     function hapus($id){
         $this->M_User->hapus($id);
         $this->session->set_flashdata('Sukses', "Data Berhasil Di Hapus!!!!");
-        redirect('C_User/all');
+        redirect('anggota');
     }
 
     function aktif($id){
         $this->M_User->aktif($id);
         $this->session->set_flashdata('Sukses', "Data Berhasil Di Aktifkan Kembali!!!!");
-        redirect('C_User/all');
+        redirect('anggota');
     }
 
     function konfirm($iduser)
@@ -356,9 +356,9 @@ class C_User extends CI_Controller{
         $this->session->set_flashdata('Sukses', "Data berhasil di konfirmasi!!!!");
 
         if($anggota == 'menunggu konfirmasi admin' || $anggota == 'menunggu konfirmasi upline' ){
-            redirect('C_User'); //data calon anggota
+            redirect('calonanggota'); //data calon anggota
         } else {
-            redirect('C_User/all'); //data anggota
+            redirect('anggota'); //data anggota
         }
     }
 

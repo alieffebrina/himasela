@@ -30,7 +30,7 @@
               <h3 class="box-title">Data <?php echo $header; ?></h3>
             </div>
             <div class="box-header">
-              <a href="<?php echo site_url('C_User/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data</button></a>
+              <a href="<?php echo site_url('anggota-add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data</button></a>
             </div> 
             <!-- /.box-header -->
             <div class="box-body table-responsive">
@@ -74,14 +74,14 @@
                     <?php 
                     $id = $this->session->userdata('statusanggota');
                     if($header == 'Calon Anggota' && $id == 'administrator'){ ?>     
-                        <a href="<?php echo site_url('C_User/ttf/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning"><i class="fa fa-fw fa-check"></i></button></a> 
+                        <a href="<?php echo site_url('user-aprove/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning"><i class="fa fa-fw fa-check"></i></button></a> 
                       <?php } ?>
                       <?php if($user->statusanggota == 'tidak aktif'){?>
-                      <a href="<?php echo site_url('C_User/aktif/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning"><i class="fa fa-fw fa-check"></i></button></a> 
+                      <a href="<?php echo site_url('user-aktivasi/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning"><i class="fa fa-fw fa-check"></i></button></a> 
                       <?php } ?>
-                      <a href="<?php echo site_url('C_User/view/'.$user->id_anggota); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
+                      <a href="<?php echo site_url('user-view/'.$user->id_anggota); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
                       <?php if($aksesedit == 'aktif'){?>
-                      <a href="<?php echo site_url('C_User/edit/'.$user->id_anggota); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
+                      <a href="<?php echo site_url('user-edit/'.$user->id_anggota); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
                       <?php } ?>
                       <?php if($akseshapus == 'aktif' && $user->statusanggota == 'anggota'){?>
                       <a href="<?php echo site_url('C_User/hapus/'.$user->id_anggota); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>

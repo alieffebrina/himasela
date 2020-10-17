@@ -8,7 +8,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="<?php echo site_url('C_DOnasi'); ?>">Data Upgrade Member</a></li>
+        <li><a href="<?php echo site_url('donasi'); ?>">Data Upgrade Member</a></li>
         <li class="active">Data Upgrade Member</li>
       </ol>
     </section>
@@ -62,7 +62,7 @@
                               } else { echo "Upgrade Level"; ?></td>
                             <td> 
 
-                                <a href="<?php echo site_url('C_Donasi/bayar/'.$upline->id_anggota.'/'.$levelup); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-dollar"></i></button></a>
+                                <a href="<?php echo site_url('donasi-bayar/'.$upline->id_anggota.'/'.$levelup); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-dollar"></i></button></a>
                             </td>
                           <?php } ?>
                           </tr>

@@ -83,7 +83,7 @@
                   <td><?php echo $tipe->tipeuser; ?></td>
                   <td>
                     <div class="btn-group">
-                      <a href="<?php echo site_url('C_User/edittipe/'.$tipe->id_tipeuser); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
+                      <a href="<?php echo site_url('user-etipe/'.$tipe->id_tipeuser); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
                       <a href="<?php echo site_url('C_User/hapustipeuser/'.$tipe->id_tipeuser); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
                     </div>
                   </td>

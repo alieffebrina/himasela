@@ -8,7 +8,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="<?php echo site_url('C_Setting'); ?>">Hak Akses Login</a></li>
+        <li><a href="<?php echo site_url('akses'); ?>">Hak Akses Login</a></li>
         <li class="active">Hak Akses Login</li>
       </ol>
     </section>
@@ -55,7 +55,7 @@
                   <?php } ?>
                 </tbody>
               </table>
-              <a href="<?php echo site_url('C_Setting'); ?>" class="btn btn-default">Batal</a>
+              <a href="<?php echo site_url('akses'); ?>" class="btn btn-default">Batal</a>
               <button type="submit" class="btn btn-warning" name="save" >Simpan</button>
             </div>
                 </form>

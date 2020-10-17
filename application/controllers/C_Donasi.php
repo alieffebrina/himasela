@@ -118,7 +118,7 @@ class C_Donasi extends CI_Controller{
                                                 </div>');
 
             
-            redirect('C_Donasi');  
+            redirect('donasi');  
         }  else {
             'gagal';
         }
@@ -214,7 +214,7 @@ class C_Donasi extends CI_Controller{
             curl_close($ch);
 
             $this->session->set_flashdata('Sukses', "Pembayaran berhasil di aprove!!!!");
-            redirect('C_Donasi'); //data calon anggota
+            redirect('donasi'); //data calon anggota
 
         }
 
@@ -222,7 +222,7 @@ class C_Donasi extends CI_Controller{
     {  
         $this->M_Donasi->cancel($iduser,$idanggota,$level);
         $this->session->set_flashdata('Sukses', "Donasi berhasil di Cancel!!!!");
-            redirect('C_Donasi'); //data calon anggota
+            redirect('donasi'); //data calon anggota
     }
 
     function getuserspek(){
@@ -281,7 +281,7 @@ class C_Donasi extends CI_Controller{
         );
         echo $res=curl_exec($ch);
         curl_close($ch);
-          redirect('C_Donasi');
+          redirect('donasi');
     }
 
 }

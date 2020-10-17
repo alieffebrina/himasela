@@ -136,7 +136,7 @@ class C_Setting extends CI_Controller{
                 
             }
             $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
-            redirect('C_Setting');
+            redirect('akses');
         }
     }
 
@@ -166,13 +166,13 @@ class C_Setting extends CI_Controller{
     {
         $this->M_Setting->tambahdata();
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
-        redirect('C_Setting/vkode');
+        redirect('kode');
     } 
 
     function hapuskode($id){
         $where = array('id_kode' => $id);
         $this->M_Setting->delete($where,'tb_kode');
         $this->session->set_flashdata('SUCCESS', "Record Deleted Successfully!!");
-        redirect('C_Setting/vkode');
+        redirect('kode');
     }
 }
