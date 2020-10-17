@@ -34,7 +34,7 @@
                 <tr>
                   <th>No</th>
                   <th>NIK</th>
-                  <th>Nama</th>
+                  <th>Username</th>
                   <th>Level</th>
                   <th width="120">Action</th>
                 </tr>
@@ -47,7 +47,7 @@
                     <tr>
                       <td><?php echo $no++; ?></td>
                       <td><?php echo $donasianggota->nik; ?></td>
-                      <td><?php echo $donasianggota->nama; ?></td>
+                      <td><?php echo $donasianggota->username; ?></td>
                       <td><?php echo $donasianggota->levelupgrade; ?></td>
                       <td><?php echo $donasianggota->status; ?></td>
                     </tr>

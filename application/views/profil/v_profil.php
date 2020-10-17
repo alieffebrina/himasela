@@ -31,7 +31,7 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">NIK</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nik" name="nik" maxlength="16" minlength="16" value="<?php echo $key->nik ?>" onkeypress="return Angkasaja(event)" readonly>
+                    <input type="text" class="form-control" id="nik" name="nik" maxlength="16" minlength="16" value="<?php echo $key->nik ?>" onkeypress="return Angkasaja(event)" >
                     <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $key->id_anggota ?>">
                   <span id="pesannik"></span>
                   </div>
@@ -39,7 +39,7 @@
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Nama</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $key->nama ?>" readonly>
+                    <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $key->nama ?>" >
                   </div>
                 </div>
                 <div class="form-group">
@@ -59,14 +59,18 @@
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
                   <div class="col-sm-9">
-                    
-                    <input type="text" class="form-control" id="prov" name="prov" value="<?php echo $key->name_prov ?>" readonly>
+                    <select class="form-control select2" id="prov" name="prov" style="width: 100%;" >
+                      <?php foreach ($provinsi as $provinsi) { ?>$key->provinsi
+                      <option value="<?php echo $provinsi->id_provinsi ?>" <?php if($provinsi->id_provinsi == $key->id_provinsi){ echo "selected"; } ?> ><?php echo $provinsi->name_prov ?></option>
+                      <?php } ?>
+                    </select>
+                    <!-- <input type="text" class="form-control" id="prov" name="prov" value="<?php echo $key->name_prov ?>" > -->
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Kota/Kabupaten</label>
                   <div class="col-sm-9">
-                  <select class="form-control select2" id="kota" name="kota" style="width: 100%;"readonly>
+                  <select class="form-control select2" id="kota" name="kota" style="width: 100%;">
                     <option value="<?php echo $key->id_kota ?>"><?php echo $key->name_kota ?></option>
                     </select>
                   </div>
@@ -74,7 +78,7 @@
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Kecamatan</label>
                   <div class="col-sm-9">
-                  <select class="form-control select2" id="kecamatan" name="kecamatan" style="width: 100%;" readonly>
+                  <select class="form-control select2" id="kecamatan" name="kecamatan" style="width: 100%;" >
                     <option value="<?php echo $key->id_kecamatan ?>"><?php echo $key->kecamatan ?></option>
                     </select>
                   </div>
@@ -82,21 +86,22 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Alamat</label>
                   <div class="col-sm-9">
-                    <textarea class="form-control" rows="3" id="alamat" name="alamat" readonly><?php echo $key->alamat; ?></textarea>
+                    <textarea class="form-control" rows="3" id="alamat" name="alamat" ><?php echo $key->alamat; ?></textarea>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">No HP</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="tlp" name="tlp" value="<?php echo $key->tlp; ?>" maxlength="12" minlength="6" onkeypress="return Angkasaja(event)" readonly>
+                    <input type="text" class="form-control" id="tlp" name="tlp" value="<?php echo $key->tlp; ?>" maxlength="12" minlength="6" onkeypress="return Angkasaja(event)">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">E-Mail</label>
                   <div class="col-sm-9"> 
-                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $key->email; ?>" readonly>
+                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $key->email; ?>" >
                   </div>
                 </div>
+                <?php if($key->statusanggota != 'administrator' ) {?>
                  <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Upline</label>
                   <div class="col-sm-9">
@@ -104,34 +109,35 @@
                     <input type="text" class="form-control" value="<?php echo $key->namaupline; ?>" readonly>               
                   </div>
                 </div>
+              <?php } ?>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Jumlah HU</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="jumlahhu" name="jumlahhu" value="<?php echo $key->jumlahhu; ?>" readonly>
+                    <input type="text" class="form-control" id="jumlahhu" name="jumlahhu" value="<?php echo $key->jumlahhu; ?>" >
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Bank</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="bank" name="bank" value="<?php echo $key->bank; ?>" readonly>
+                    <input type="text" class="form-control" id="bank" name="bank" value="<?php echo $key->bank; ?>" >
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">No Rekening</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="norek" name="norek" value="<?php echo $key->norek; ?>" readonly>
+                    <input type="text" class="form-control" id="norek" name="norek" value="<?php echo $key->norek; ?>" >
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Nama Pemilik</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="pemilik" name="pemilik" value="<?php echo $key->pemilik; ?>" readonly>
+                    <input type="text" class="form-control" id="pemilik" name="pemilik" value="<?php echo $key->pemilik; ?>" >
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Nama Sponsor</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="namasponsor" name="namasponsor" value="<?php echo $key->namasponsor; ?>" readonly>
+                    <input type="text" class="form-control" id="namasponsor" name="namasponsor" value="<?php echo $key->namasponsor; ?>" >
                   </div>
                 </div>
               </div>

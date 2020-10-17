@@ -36,7 +36,7 @@
                 <tr>
                   <th>No</th>
                   <th>NIK</th>
-                  <th>Nama</th>
+                  <th>Username</th>
                   <th>Level</th>
                   <th>Status</th>
                   <th width="120">Action</th>
@@ -50,7 +50,7 @@
                   <tr>
                     <td><?php echo $no++; ?></td>
                     <td><?php echo $donasi->nik; ?></td>
-                    <td><?php echo $donasi->nama; ?></td>
+                    <td><?php echo $donasi->username; ?></td>
                     <td><?php echo $donasi->levelupgrade; ?></td>
                     <td><?php echo $donasi->status; ?></td>
                     <td> <a href="<?php echo site_url('C_Donasi/aprove/'.$donasi->id_donasi.'/'.$donasi->id_anggota.'/'.$donasi->levelupgrade); ?>"><button type="button" class="btn btn-info" <?php if($donasi->status=='aproval'){ echo "disabled"; } ?>><i class="fa fa-fw fa-check"></i></button></a>

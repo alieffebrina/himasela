@@ -174,51 +174,48 @@ class C_User extends CI_Controller{
         }
 
 
+        $this->M_User->tambahdata($nourut, $upline, $username);
+        if($username == $this->input->post('nik')){
+            $pesan = "Terima kasih sudah bergabung dengan *HIMASELA*.\nSilahkan login dengan cara berikut ini\n=================================\n*URL : www.app.himasela.com*\n*Username : ".$this->input->post('nik')."*\n*Password : 123456*";
+            $this->session->set_flashdata('Sukses', "Username anda sama dengan Nik dengan password 123456 !!");   
+        // header("location: https://api.whatsapp.com/send?phone=6283849390112&text=Halo%20mau%20order%20gan");             
+        } else {
+            $pesan = "Terima kasih sudah bergabung dengan *HIMASELA*.\nSilahkan login dengan cara berikut ini\n=================================\n*URL : www.app.himasela.com*\n*Username : ".$username."*\n*Password : 123456*";
+            $this->session->set_flashdata('Sukses', "Username dan password silahkan hubungi admin !!");   
+        }
 
-            $this->M_User->tambahdata($nourut, $upline, $username);
-            if($username == $this->input->post('nik')){
-                $pesan = "Terima kasih sudah bergabung dengan *HIMASELA*.\nSilahkan login dengan cara berikut ini\n=================================\n*URL : www.app.himasela.com*\n*Username : ".$this->input->post('nik')."*\n*Password : 123456*";
-                $this->session->set_flashdata('Sukses', "Username anda sama dengan Nik dengan password 123456 !!");   
-            // header("location: https://api.whatsapp.com/send?phone=6283849390112&text=Halo%20mau%20order%20gan");             
-            } else {
-                $pesan = "Terima kasih sudah bergabung dengan *HIMASELA*.\nSilahkan login dengan cara berikut ini\n=================================\n*URL : www.app.himasela.com*\n*Username : ".$username."*\n*Password : 123456*";
-                $this->session->set_flashdata('Sukses', "Username dan password silahkan hubungi admin !!");   
-            }
+        $a = '+'.$this->input->post('tlp');
+        $no = str_split($a, 3);
+        $n = $no[0];
 
-            $a = '+'.$this->input->post('tlp');
-            $no = str_split($a, 3);
-            $n = $no[0];
+        $ganti = str_replace($n,"628",$a);
 
-            $ganti = str_replace($n,"628",$a);
+        $demokey='5fa0891178423f215b2b5c082522b61d617adab5e8a2969b'; //this is demo key please change with your own key
+        $url='http://116.203.92.59/api/send_message';
+        $data = array(
+          "phone_no"=> $ganti,
+          "key"     =>$demokey,
+          "message" => $pesan,
+        );
+        $data_string = json_encode($data);
+        
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_VERBOSE, 0);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 360);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+          'Content-Type: application/json',
+          'Content-Length: ' . strlen($data_string))
+        );
+        echo $res=curl_exec($ch);
+        curl_close($ch);
 
-            $demokey='5fa0891178423f215b2b5c082522b61d617adab5e8a2969b'; //this is demo key please change with your own key
-            $url='http://116.203.92.59/api/send_message';
-            $data = array(
-              "phone_no"=> $ganti,
-              "key"     =>$demokey,
-              "message" => $pesan,
-            );
-            $data_string = json_encode($data);
-            
-            $ch = curl_init($url);
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_VERBOSE, 0);
-            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
-            curl_setopt($ch, CURLOPT_TIMEOUT, 360);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-              'Content-Type: application/json',
-              'Content-Length: ' . strlen($data_string))
-            );
-            echo $res=curl_exec($ch);
-            curl_close($ch);
-
-            redirect('C_User');  
-
-        // }
+        redirect('C_User');  
     }
 
     function tambahtf()

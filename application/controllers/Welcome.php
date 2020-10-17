@@ -61,6 +61,7 @@ class Welcome extends CI_Controller {
         	$data['listanggota'] = $this->M_User->getallspek($user);
 		}
 		
+        $data['admin'] = $this->M_User->getspekadmin();
        	$data['level'] = $this->M_Level->selectmax();
         $data['downline'] = $this->M_Setting->getdownline();
         $data['berita'] = $this->M_Berita->getBerita();

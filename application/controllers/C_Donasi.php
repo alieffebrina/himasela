@@ -155,7 +155,7 @@ class C_Donasi extends CI_Controller{
 
                                 $cariuplinenya = $this->M_Donasi->ceklevel($dapatupline->id_upline);
                                 foreach ($cariuplinenya as $cariuplinenya) {
-                                $pesan = "*Silahkan upgrade ke *Level ".$up."* dan *DONASI* ke *Upline ".$getuserspek->namaupline."*\nsebesar *Rp ".number_format($getspek->nominal)."*\n*No Rek : ".$cariuplinenya->norek."*\n*Bank : ".$cariuplinenya->bank."*\n*Atas Nama :".$cariuplinenya->pemilik."\nNo HP : ".$cariuplinenya->tlp."*";
+                                $pesan = "*Silahkan upgrade ke Level ".$up."* dan *DONASI* ke *Upline ".$getuserspek->namaupline."*\nsebesar *Rp ".number_format($getspek->nominal)."*\n*No Rek : ".$cariuplinenya->norek."*\n*Bank : ".$cariuplinenya->bank."*\n*Atas Nama :".$cariuplinenya->pemilik."*\n*No HP : ".$cariuplinenya->tlp."*";
                                 }
                             }
                         }

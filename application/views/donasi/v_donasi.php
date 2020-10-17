@@ -30,7 +30,7 @@
                 <tr>
                   <th>No</th>
                   <th>NIK</th>
-                  <th>Nama</th>
+                  <th>Username</th>
                   <th>Upline</th>
                   <th>Level</th>
                   <th>Status</th>
@@ -48,7 +48,7 @@
                       ?>  <tr>
                             <td><?php echo $no++; ?></td>
                             <td><?php echo $upline->nik; ?></td>
-                            <td><?php echo $upline->nama; ?></td>
+                            <td><?php echo $upline->username; ?></td>
                             <td><?php echo $upline->namaupline; ?></td>
                             <td><?php echo $upline->level; ?></td>
                             <td><?php 

@@ -63,7 +63,7 @@ asd
       if ($b->level == $levelmax ){ 
         ?>
           <div class="alert alert-danger left-icon-alert" role="alert">
-            <h2 style="text-align: center"><strong></strong> Selamat Anda telah dilevel Dana Kesejahteraan silahkan transfer ke Admin BANK BRI No Rekening 6299-01-019907-53-9 ( Atas nama TITIMMATUL HIMMAH) Konfirmasi Hp No 081615879352 (admin)</h2>
+            <h2 style="text-align: center"><strong></strong> Selamat Anda telah dilevel Dana Kesejahteraan silahkan transfer ke Admin BANK BRI No Rekening 6299-01-019907-53-9 ( Atas nama TITIMMATUL HIMMAH) Sebesar Rp. 5.000.000,- dan Konfirmasi Hp No 081615879352 (admin)</h2>
           </div>
         <?php 
         }
@@ -135,7 +135,37 @@ asd
           </div>
         </div>
         <!-- ./col -->
+        <!-- ./col -->
       </div>
+
+      <div class="row">
+
+        <div class="col-md-12">
+          <!-- Info Boxes Style 2 -->
+          <div class="info-box bg-yellow">
+            <!-- <span class="info-icon"><i class="ion-ios-chatbubble-outline"></i></span>
+ -->
+          <?php foreach ($admin as $admin) { ?>
+            <!-- <div class="info-box-content"> -->
+              <!-- <span class="info-box-text">Data Administrator</span> -->
+              <span class="info-box-number" style="text-align: center;">No Rek Administrator : <?php echo $admin->norek ?></span>
+              <span class="info-box-number" style="text-align: center;">Bank : <?php echo $admin->bank ?></span>
+              <span class="info-box-number" style="text-align: center;">Atas Nama : <?php echo $admin->pemilik ?></span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width: 100%"></div>
+              </div>
+              <span class="progress-description" style="text-align: center;">
+                    Silahkan konfirmasi jika sudah melakukan transaksi
+                  </span>
+            <!-- </div> -->
+          <?php } ?>
+            <!-- /.info-box-content -->
+          </div>
+        </div>
+      </div>
+      </section>
+      <section class="content">
       <div class="box box-info">
             <div class="box-header with-border">
               <h3 class="box-title">List Anggota</h3>

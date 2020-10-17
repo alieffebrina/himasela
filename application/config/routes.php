@@ -82,4 +82,4 @@ $route['hkesejahteraan'] = 'C_Sejahtera/history';
 $route['akses'] = 'C_Setting';
 
 //profil
-$route['profil'] = 'C_User/profil';
+$route['profil'] = 'C_Profil';

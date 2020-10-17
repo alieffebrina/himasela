@@ -229,6 +229,17 @@ class M_User extends CI_Model {
     	return $query->result();
     }
 
+     function getspekadmin(){
+        $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
+        $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
+        $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
+        $where = array(
+            'id_anggota' => '1'
+        );
+        $query = $this->db->get_where('tb_anggota', $where);
+        return $query->result();
+    }
+
     function edit($nourut, $upline){
         $user = array(
             'nik' => $this->input->post('nik'),

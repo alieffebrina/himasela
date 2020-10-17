@@ -19,7 +19,14 @@ class C_Profil extends CI_Controller{
         $iduser = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        $data['user'] = $this->M_User->getspek($iduser); 
+
+        $data['provinsi'] = $this->M_Setting->getprovinsi();
+        if($id == 'administrator'){
+            $data['user'] = $this->M_User->getspekadmin($iduser); 
+        } else {
+            $data['user'] = $this->M_User->getspek($iduser); 
+        }
+
         $this->load->view('profil/v_profil',$data); 
         $this->load->view('template/footer');
     }
@@ -28,6 +35,6 @@ class C_Profil extends CI_Controller{
     {   
         $this->M_User->username();
         $this->session->set_flashdata('Sukses', "Data Berhasil Di Rubah!!");
-        redirect('Welcome');
+        redirect('profil');
     }
 }
