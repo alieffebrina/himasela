@@ -35,7 +35,7 @@
                   <ul class="list-inline" align='center'>
                     <?php foreach ($parent as $parent) { ?>
                     <li><?php echo "<a class='link' href='".site_url('strukturd/'.$parent->id_anggota)."'>$parent->level<br><img class='image0' src='".base_url()."assets/images/administrator.jpg'></a><br>
-                   <a style='width:100px; border-radius:0px' class='btn btn-xs btn-success' href='".site_url('strukturd/'.$parent->id_anggota)."'>".substr($parent->nama,0,17)."</a>"; ?>
+                   <a style='width:100px; border-radius:0px' class='btn btn-xs btn-success' href='".site_url('strukturd/'.$parent->id_anggota)."'>".substr($parent->username,0,10)."</a>"; ?>
                     <?php } ?>
                         <ul class="list-inline">
 
@@ -43,7 +43,7 @@
                          $no = 0;
                          foreach ($child as $child) {
                             echo "<li><a class='link' href='".site_url('strukturd/'.$child->id_anggota)."'>$child->level<br><img class='image0' src='".base_url()."assets/images/administrator.jpg'></a><br>
-                           <a style='width:100px; border-radius:0px' class='btn btn-xs btn-success' href='".site_url('strukturd/'.$child->id_anggota)."'>".substr($child->nama,0,17)."</a>";
+                           <a style='width:100px; border-radius:0px' class='btn btn-xs btn-success' href='".site_url('strukturd/'.$child->id_anggota)."'>".substr($child->username,0,10)."</a>";
                               $query = $this->db->query('select * from tb_anggota where id_upline = '.$child->id_anggota.'');
                               $down = $query->result();
                               $row = $query->num_rows();
@@ -51,7 +51,7 @@
                               echo "<ul class = 'list-inline'>";
                                 foreach ($down as $down) { 
                                     echo "<li><a class='link' href='".site_url('strukturd/'.$down->id_anggota)."'>$down->level<br><img class='image0' src='".base_url()."assets/images/administrator.jpg'></a><br>
-                                            <a style='width:100px; border-radius:0px' class='btn btn-xs btn-success' href='".site_url('strukturd/'.$down->id_anggota)."'>".substr($down->nama,0,17)."</a></li>";
+                                            <a style='width:100px; border-radius:0px' class='btn btn-xs btn-success' href='".site_url('strukturd/'.$down->id_anggota)."'>".substr($down->username,0,10)."</a></li>";
                                 }
                                 if ($row < $downline->downline ){
                                     
