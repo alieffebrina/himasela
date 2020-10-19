@@ -17,14 +17,26 @@ class M_Struktur extends CI_Model {
     }
 
     function getAnak($anak){
-        $where = array('id_upline' => $anak);
-        $child = $this->db->get_where('tb_anggota', $where);
+        $this->db->where('id_upline', $anak);
+        $this->db->where('statusanggota', 'anggota');
+        return $this->db->get('tb_anggota')->result();
+    }
+
+
+    function getAdmin($anak){
+        $this->db->where('id_anggota', $anak);
+        return $this->db->get('tb_anggota')->result();
     }
 
      function getlenght(){
         $this->db->select('Length(nourut) no');
         $this->db->distinct();
         $query = $this->db->get('tb_anggota');
+        return $query->result();
+    }
+
+    function getdownline(){
+        $query = $this->db->get('tb_setting');
         return $query->result();
     }
 
