@@ -55,6 +55,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 $route['struktur'] = 'C_Struktur';
+$route['strukturd/(:any)'] = 'C_Struktur/strukturd/$1';
 $route['downline'] = 'C_Setting/downline';
 
 

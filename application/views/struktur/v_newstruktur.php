@@ -31,55 +31,47 @@
             } ?> 
             <div class="box-body table-responsive" align="center">
               <div style='overflow-x:scroll; width:100%' align='center'>
-                <div style='align-content: center; width: 1230px' class='tree1'>
+                <div style='align-content: center; width: 2700px' class='tree1'>
                   <ul class="list-inline" align='center'>
                     <?php foreach ($parent as $parent) { ?>
-                    <li><?php echo "<a class='link' href='#'>$parent->level<br><img class='image0' src='".base_url()."assets/images/administrator.jpg'></a><br>
-                   <a style='width:120px; border-radius:0px' class='btn btn-xs btn-success' href='#'>".substr($parent->nama,0,17)."</a>"; ?>
+                    <li><?php echo "<a class='link' href='".site_url('strukturd/'.$parent->id_anggota)."'>$parent->level<br><img class='image0' src='".base_url()."assets/images/administrator.jpg'></a><br>
+                   <a style='width:100px; border-radius:0px' class='btn btn-xs btn-success' href='".site_url('strukturd/'.$parent->id_anggota)."'>".substr($parent->nama,0,17)."</a>"; ?>
                     <?php } ?>
                         <ul class="list-inline">
 
                          <?php 
                          $no = 0;
                          foreach ($child as $child) {
-                            echo "<li><a class='link' href='#'>$child->level<br><img class='image0' src='".base_url()."assets/images/administrator.jpg'></a><br>
-                           <a style='width:120px; border-radius:0px' class='btn btn-xs btn-success' href='#'>".substr($child->nama,0,17)."</a>";
+                            echo "<li><a class='link' href='".site_url('strukturd/'.$child->id_anggota)."'>$child->level<br><img class='image0' src='".base_url()."assets/images/administrator.jpg'></a><br>
+                           <a style='width:100px; border-radius:0px' class='btn btn-xs btn-success' href='".site_url('strukturd/'.$child->id_anggota)."'>".substr($child->nama,0,17)."</a>";
                               $query = $this->db->query('select * from tb_anggota where id_upline = '.$child->id_anggota.'');
                               $down = $query->result();
                               $row = $query->num_rows();
-                              $a = 1;
                               if ($row != NULL ){
                               echo "<ul class = 'list-inline'>";
                                 foreach ($down as $down) { 
-                                    echo "<li><a class='link' href='#'>$down->level<br><img class='image0' src='".base_url()."assets/images/administrator.jpg'></a><br>
-                                            <a style='width:120px; border-radius:0px' class='btn btn-xs btn-success' href='#'>".substr($down->nama,0,17)."</a>";
+                                    echo "<li><a class='link' href='".site_url('strukturd/'.$down->id_anggota)."'>$down->level<br><img class='image0' src='".base_url()."assets/images/administrator.jpg'></a><br>
+                                            <a style='width:100px; border-radius:0px' class='btn btn-xs btn-success' href='".site_url('strukturd/'.$down->id_anggota)."'>".substr($down->nama,0,17)."</a></li>";
                                 }
-                                if ($a<$downline->downline){
-                                  $s = $downline->downline - $a;
-                                  for ($i=$a; $i <$downline->downline ; $i++) { 
-                                    echo "<li><a class='link' href='#'>0<br><img class='image0' src='".base_url()."assets/images/user01.png'></a><br>
-                                   <a style='width:120px; border-radius:0px' class='btn btn-xs btn-danger' href='#'>-</a>";
+                                if ($row < $downline->downline ){
+                                    
+                                  for ($i=$row; $i <$downline->downline ; $i++) { 
+                                    echo "<li><a class='link' href='".site_url('anggota-add')."'>0<br><img class='image0' src='".base_url()."assets/images/user01.png'></a><br>
+                                   <a style='width:100px; border-radius:0px' class='btn btn-xs btn-danger' href='".site_url('anggota-add')."'>-</a>";
                                   }
                                 }
+                              echo "</ul>";
+                              } else {
+                              echo "<ul class = 'list-inline'>";
+                                  for ($i=$row; $i <$downline->downline ; $i++) { 
+                                    echo "<li><a class='link'  href='".site_url('anggota-add')."'>0<br><img class='image0' src='".base_url()."assets/images/user01.png'></a><br>
+                                   <a style='width:100px; border-radius:0px' class='btn btn-xs btn-danger'  href='".site_url('anggota-add')."'>-</a>";
+                                  }
                               echo "</ul>";
                               }
                             echo "</li>";
                             $no++;
-                          } 
-                          if ($no < $downline->downline){ ?>
-                              <li><a class='link' href='#'>0<br><img class='image0' src='<?php echo base_url() ?>assets/images/user01.png'></a><br>
-                                   <a style='width:120px; border-radius:0px' class='btn btn-xs btn-danger' href='#'>-</a>
-                                  <ul class = 'list-inline'>
-                                    <li><a class='link' href='#'>0<br><img class='image0' src='<?php echo base_url() ?>assets/images/user01.png'></a><br>
-                                   <a style='width:120px; border-radius:0px' class='btn btn-xs btn-danger' href='#'>-</a></li>
-                                    <li><a class='link' href='#'>0<br><img class='image0' src='<?php echo base_url() ?>assets/images/user01.png'></a><br>
-                                   <a style='width:120px; border-radius:0px' class='btn btn-xs btn-danger' href='#'>-</a></li>
-                                    <li><a class='link' href='#'>0<br><img class='image0' src='<?php echo base_url() ?>assets/images/user01.png'></a><br>
-                                   <a style='width:120px; border-radius:0px' class='btn btn-xs btn-danger' href='#'>-</a></li>
-                                 </ul>
-                              </li>
-                              
-                          <?php } ?>
+                          } ?>
                         </ul>
                     </li>
                   </ul>
@@ -221,7 +213,7 @@ right connector from last child*/
 
 
 .image0{
-  border-radius:80px; width:70px;
+  border-radius:60px; width:40px;
   border:2px solid #fff;
 }
 
