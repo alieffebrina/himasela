@@ -23,6 +23,10 @@
             <div class="box-header with-border">
               <h3 class="box-title">Struktur Himasela</h3>
             </div>
+
+            <div class="box-header">
+              <a href="<?php echo site_url('anggota-add'); ?>"><button type="button" class="btn btn-warning" >Kembali</button></a>
+            </div>
             <!-- /.box-header -->
             <!-- form start -->
             <?php foreach ($total as $key) {
