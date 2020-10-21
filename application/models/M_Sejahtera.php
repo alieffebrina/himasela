@@ -57,7 +57,9 @@ class M_Sejahtera extends CI_Model {
     }
 
     function getanggota($where){
+        $this->db->select('b.nama namaupline, tb_anggota.*, tb_detailsejahtera.*');
         $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_detailsejahtera.id_anggota');
+        $this->db->join('tb_anggota b', 'tb_anggota.id_upline = b.id_anggota');
         return $this->db->get_where('tb_detailsejahtera', $where)->result();
     }
 
@@ -112,4 +114,5 @@ class M_Sejahtera extends CI_Model {
         $this->db->join('tb_sejahtera', 'tb_sejahtera.id_sejahtera = tb_detailsejahtera.id_sejahtera');
         return $this->db->get_where('tb_detailsejahtera', $where)->result();
     }
+
 }

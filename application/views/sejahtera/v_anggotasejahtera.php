@@ -112,7 +112,9 @@
                 <tr>
                   <th>No</th>
                   <th>NIK</th>
+                  <th>Username</th>
                   <th>Nama</th>
+                  <th>Nama Upline</th>
                   <th>Alamat</th>
                   <th>Action</th>
                 </tr>
@@ -124,7 +126,9 @@
                   <tr>
                     <td><?php echo $no++; ?></td>
                     <td><?php echo $anggota->nik; ?></td>
+                    <td><?php echo $anggota->username; ?></td>
                     <td><?php echo $anggota->nama; ?></td>
+                    <td><?php echo $anggota->namaupline; ?></td>
                     <td><?php echo $anggota->alamat; ?></td>
                     <td>
                       <a href="<?php echo site_url('sejahtera-anggota-edit/'.$anggota->id_detailsejahtera.'/'.$anggota->id_sejahtera); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>

@@ -51,7 +51,7 @@
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
                   <div class="col-sm-9">
-                    <input type="hidden" class="form-control" id="password" name="password" value="<?php echo $key->password ?>" maxlength='16'>
+                    <input type="text" class="form-control" id="password" name="password" value="<?php echo $key->password ?>" >
                   </div>
                 </div>
                 <div class="form-group">

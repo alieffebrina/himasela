@@ -55,8 +55,12 @@
                       <td><?php echo 'Rp. '.number_format($income->income,2,',','.'); ?></td> 
                       <td><a href="<?php echo site_url('sejahtera-view/'.$income->id_sejahtera); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
                       <?php if($this->session->userdata('statusanggota') == 'administrator'){?>
+                        <?php $query = $this->db->query('select * from tb_detailsejahtera where id_sejahtera = '.$income->id_sejahtera.'')->num_rows();
+                        //echo $query; 
+                        if($query<$income->anggota){?>
                       <a href="<?php echo site_url('sejahtera-anggota/'.$income->id_sejahtera); ?>"><button type="button" class="btn btn-primary"><i class="fa fa-fw fa-users"></i></button></a>
-                      <?php } ?>
+                      <?php } 
+                    } ?>
                       <?php if($aksesedit == 'aktif'){?>
                       <a href="<?php echo site_url('sejahtera-edit/'.$income->id_sejahtera); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
                       <?php } ?>
