@@ -75,6 +75,7 @@
                     $id = $this->session->userdata('statusanggota');
                     if($header == 'Calon Anggota' && $id == 'administrator'){ ?>     
                         <a href="<?php echo site_url('user-aprove/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning"><i class="fa fa-fw fa-check"></i></button></a> 
+                        <a href="<?php echo site_url('C_User/hapuscalon/'.$user->id_anggota); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a> 
                       <?php } ?>
                       <?php if($user->statusanggota == 'tidak aktif'){?>
                       <a href="<?php echo site_url('user-aktivasi/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning"><i class="fa fa-fw fa-check"></i></button></a> 

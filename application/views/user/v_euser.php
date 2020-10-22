@@ -31,7 +31,7 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">NIK</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nik" name="nik" maxlength="16" minlength="16" value="<?php echo $key->nik ?>" onkeypress="return Angkasaja(event)" readonly>
+                    <input type="text" class="form-control" id="nik" name="nik" maxlength="16" minlength="16" value="<?php echo $key->nik ?>" onkeypress="return Angkasaja(event)" <?php if($this->session->userdata('statusanggota') != 'administrator'){ echo "readonly"; } ?>>
                     <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $key->id_anggota ?>">
                   <span id="pesannik"></span>
                   </div>

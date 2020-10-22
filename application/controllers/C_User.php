@@ -330,6 +330,13 @@ class C_User extends CI_Controller{
         }
     }
 
+    function hapuscalon($id){
+        $where = array('id_anggota' => $id);
+        $this->M_Setting->delete($where,'tb_anggota');
+        $this->session->set_flashdata('SUCCESS', "Data Berhasil Di Hapus!!");
+        redirect('anggota');
+    }
+
     function hapus($id){
         $this->M_User->hapus($id);
         $this->session->set_flashdata('Sukses', "Data Berhasil Di Hapus!!!!");
