@@ -8,6 +8,15 @@ class M_Sejahtera extends CI_Model {
     	return $query->result();
     }
 
+    function getdetail(){
+        $this->db->order_by('tb_detailsejahtera.tglupdate', 'ASC');
+        $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_detailsejahtera.id_anggota');
+        $this->db->join('tb_sejahtera', 'tb_sejahtera.id_sejahtera = tb_detailsejahtera.id_sejahtera');
+        $query = $this->db->get('tb_detailsejahtera');
+        return $query->result();
+    }
+
+
     function getspek($ida){
     	$this->db->where('id_sejahtera', $ida);
         return $this->db->get('tb_sejahtera')->result();
@@ -109,8 +118,9 @@ class M_Sejahtera extends CI_Model {
 
     function gethistory($user){
         $where = array(
-            'id_anggota' => $user
+            'tb_detailsejahtera.id_anggota' => $user
         );
+        $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_detailsejahtera.id_anggota');
         $this->db->join('tb_sejahtera', 'tb_sejahtera.id_sejahtera = tb_detailsejahtera.id_sejahtera');
         return $this->db->get_where('tb_detailsejahtera', $where)->result();
     }

@@ -30,8 +30,8 @@
                 <tr>
                   <th>No</th>
                   <th>Tanggal Transfer</th>
-                  <th>Pasif Income</th>
-                  <!-- <th>Kredit</th> -->
+                  <th>Debit</th>
+                  <th>Kredit</th>
                   <th>Keterangan</th>
                 </tr>
                 </thead>
@@ -39,13 +39,14 @@
                   <?php 
                   $no=1;
                   foreach ($data as $data){ 
-                  $iduser = $this->session->userdata('id_user'); ?>  
+                  $iduser = $this->session->userdata('id_user');
+                  $anggota = $this->session->userdata('statusanggota');  ?>  
                     <tr>
                       <td><?php echo $no++; ?></td>
                       <td><?php echo date('d-m-Y', strtotime($data->tglupdate)); ?></td>
                       <td><?php if($iduser == $data->id_anggota){ echo 'Rp. '.number_format($data->income) ; } else { echo 'Rp. -'; } ?></td>
-                     <!--  <td><?php if($iduser == $data->id_anggota){ echo 'Rp. '.number_format($data->nominal) ; } else { echo 'Rp. -'; } ?></td> -->
-                      <td>Pasif Income Dana Kesejahteraan</td>
+                      <td><?php if($anggota == 'administrator'){ echo 'Rp. '.number_format($data->income) ; } else { echo 'Rp. -'; } ?></td>
+                      <td>Pasif Income Dana Kesejahteraan <?php echo $data->username ?></td>
                     </tr>
                   <?php } ?>
                 </tbody>
