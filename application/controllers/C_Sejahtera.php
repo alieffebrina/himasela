@@ -268,11 +268,11 @@ class C_Sejahtera extends CI_Controller{
         $data['aksesadd'] = $tomboladd;
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;   
-        if($id == 'administrator'){
+        // if($id == 'administrator'){
             $data['data'] = $this->M_Sejahtera->getdetail();
-        } else {
-            $data['data'] = $this->M_Sejahtera->gethistory($iduser);
-        }
+        // } else {
+        //     $data['data'] = $this->M_Sejahtera->gethistory($iduser);
+        // }
         $this->load->view('sejahtera/v_history',$data); 
         $this->load->view('template/footer');
     }

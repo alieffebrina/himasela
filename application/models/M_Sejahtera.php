@@ -2,36 +2,29 @@
 
 class M_Sejahtera extends CI_Model {
 
-	function getsejahtera(){
-		$this->db->order_by('id_sejahtera', 'ASC');
+    function getsejahtera(){
+        $this->db->order_by('id_sejahtera', 'ASC');
         $query = $this->db->get('tb_sejahtera');
-    	return $query->result();
-    }
-
-    function getdetail(){
-        $this->db->order_by('tb_detailsejahtera.tglupdate', 'ASC');
-        $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_detailsejahtera.id_anggota');
-        $this->db->join('tb_sejahtera', 'tb_sejahtera.id_sejahtera = tb_detailsejahtera.id_sejahtera');
-        $query = $this->db->get('tb_detailsejahtera');
         return $query->result();
     }
 
+   
 
     function getspek($ida){
-    	$this->db->where('id_sejahtera', $ida);
+        $this->db->where('id_sejahtera', $ida);
         return $this->db->get('tb_sejahtera')->result();
     }
 
     function tambahdata(){
-    	$user = array(
+        $user = array(
             'id_sejahtera' => $this->input->post('level'),
-    		'anggota' => $this->input->post('anggota'),
+            'anggota' => $this->input->post('anggota'),
             'tabungan' => preg_replace('/([^0-9]+)/','',$this->input->post('tabungan')),
             'income' => preg_replace('/([^0-9]+)/','',$this->input->post('income')),
             'id_user' => $this->session->userdata('id_user'),
             'tglupdate' => date('Y-m-d h:i:s')
-    	);
-    	$this->db->insert('tb_sejahtera', $user);
+        );
+        $this->db->insert('tb_sejahtera', $user);
     }
 
     public function cekSejahtera($sejahtera){
@@ -117,12 +110,24 @@ class M_Sejahtera extends CI_Model {
     }
 
     function gethistory($user){
+        $this->db->select('b.id_anggota iddupline, b.username userupline, b.nama namaupline, tb_detailsejahtera.*, tb_anggota.*, tb_sejahtera.*');
         $where = array(
             'tb_detailsejahtera.id_anggota' => $user
         );
         $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_detailsejahtera.id_anggota');
+        $this->db->join('tb_anggota b', 'b.id_anggota = tb_anggota.id_upline');
         $this->db->join('tb_sejahtera', 'tb_sejahtera.id_sejahtera = tb_detailsejahtera.id_sejahtera');
         return $this->db->get_where('tb_detailsejahtera', $where)->result();
+    }
+    
+    function getdetail(){
+        $this->db->select('b.id_anggota iddupline, b.username userupline, b.nama namaupline, tb_detailsejahtera.*, tb_anggota.*, tb_sejahtera.*');
+        $this->db->order_by('tb_detailsejahtera.tglupdate', 'ASC');
+        $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_detailsejahtera.id_anggota');
+        $this->db->join('tb_anggota b', 'b.id_anggota = tb_anggota.id_upline');
+        $this->db->join('tb_sejahtera', 'tb_sejahtera.id_sejahtera = tb_detailsejahtera.id_sejahtera');
+        $query = $this->db->get('tb_detailsejahtera');
+        return $query->result();
     }
 
 }
