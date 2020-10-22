@@ -7,6 +7,7 @@ class C_User extends CI_Controller{
         $this->load->library('session');
         $this->load->model('M_User');
         $this->load->model('M_Setting');
+        $this->load->model('M_Level');
         if(!$this->session->userdata('id_user')){
             redirect('C_Login');
         }
@@ -223,6 +224,67 @@ class C_User extends CI_Controller{
         $upload = $this->M_User->upload();
         if ($upload['result'] == "success"){
             $this->M_User->konfirmadmin($upload);
+            $userup = $this->input->post('upline');
+            $cekup = $this->M_User->getnama($userup);
+            foreach ($cekup as $cekup) {
+                $levelup = $cekup->level;
+            }
+            
+           $cek = $this->M_User->cekdownline($userup);
+           echo $cek;
+
+           if($cek = '5'){
+
+            $cekup = $this->M_User->getnama($userup);
+            foreach ($cekup as $cekup) {
+                $ceku = $cekup->id_upline;
+               $tes = $this->M_User->getspek($ceku);
+               foreach ($tes as $tes) {
+                    $level = 1;
+                    $getspek = $this->M_Level->getspek($level);
+                    foreach ($getspek as $getspek) {
+                        $pesan = "*Silahkan upgrade ke Level 1* dan *DONASI* ke *Upline ".$tes->namaupline."*\nsebesar *Rp ".number_format($getspek->nominal)."*\n*No Rek : ".$tes->norek."*\n*Bank : ".$tes->bank."*\n*Atas Nama :".$tes->pemilik."*\n*No HP : ".$tes->tlp."*";
+                        // $pesan =  "Silahkan upgrade ke Level 1 dan DONASI ke Upline ".$tes->namaupline."ebesar Rp ".number_format($getspek->nominal)."No Rek : ".$tes->norek."Bank : ".$tes->bank."Atas Nama :".$tes->pemilik."No HP : ".$tes->tlp;
+
+                    }
+               }
+                $nohp = $cekup->tlp;
+            }
+               
+            }
+            $a = '+'.$nohp;
+            $no = str_split($a, 3);
+            $n = $no[0];
+
+            $ganti = str_replace($n,"628",$a);
+        // echo $ganti;
+
+            $demokey='5fa0891178423f215b2b5c082522b61d617adab5e8a2969b'; //this is demo key please change with your own key
+            $url='http://116.203.92.59/api/send_message';
+            $data = array(
+              "phone_no"=> $ganti,
+              "key"     =>$demokey,
+              "message" => $pesan
+            );
+            $data_string = json_encode($data);
+            
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_VERBOSE, 0);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 360);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+              'Content-Type: application/json',
+              'Content-Length: ' . strlen($data_string))
+            );
+            echo $res=curl_exec($ch);
+            curl_close($ch);
+
+            // echo $pesan;
             $this->session->set_flashdata('Sukses', "Data Berhasil Di Simpan!!");
             redirect('anggota');  
         } else {
@@ -358,6 +420,8 @@ class C_User extends CI_Controller{
             $anggota = $data->statusanggota;
             $username = $data->nik;
             $foto = $data->buktitransfer;
+            $userup = $data->id_upline;
+            $notlp = $data->tlp;
         }
         $this->M_User->konfirm($iduser,$bayar,$anggota,$id,$username);
         $this->session->set_flashdata('Sukses', "Data berhasil di konfirmasi!!!!");

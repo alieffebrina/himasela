@@ -2,8 +2,8 @@
 
 class M_User extends CI_Model {
 
-	function getuser(){
-		$this->db->select('tb_anggota.*, b.nama namaupline, tb_provinsi.*, tb_kota.*, tb_kecamatan.*');
+    function getuser(){
+        $this->db->select('tb_anggota.*, b.nama namaupline, tb_provinsi.*, tb_kota.*, tb_kecamatan.*');
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
@@ -11,7 +11,7 @@ class M_User extends CI_Model {
         $anggota = array('anggota', 'administrator', 'admin','tidak aktif');
         $this->db->where_not_in('tb_anggota.statusanggota', $anggota);
         $query = $this->db->get('tb_anggota');
-    	return $query->result();
+        return $query->result();
     }
 
     function getcalonanggota($nourut){
@@ -226,7 +226,7 @@ class M_User extends CI_Model {
             'tb_anggota.id_anggota' => $iduser
         );
         $query = $this->db->get_where('tb_anggota', $where);
-    	return $query->result();
+        return $query->result();
     }
 
      function getspekadmin(){
@@ -389,5 +389,19 @@ class M_User extends CI_Model {
         $this->db->where($where);
         $this->db->update('tb_anggota',$user);
     }
+
+    function cekdown($id, $levelup){
+        $this->db->where('level', $levelup);
+        $this->db->where('id_upline', $id);
+        $query = $this->db->get('tb_anggota');
+        return $query->num_rows();
+    }
+    
+    function cekdownline($id){
+        $this->db->where('id_upline', $id);
+        $query = $this->db->get('tb_anggota');
+        return $query->num_rows();
+    }
+
 
 }

@@ -21,7 +21,6 @@
     // echo $info;
     if($this->session->userdata('statusanggota') != 'administrator') { 
       if($info >= $down) { ?>
-asd
           <!-- <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> -->
      <?php
 
@@ -33,7 +32,7 @@ asd
           $b = $a->result();
           foreach ($b as $level) { 
             if ($level->level < $levelmax ){ 
-              $upline = $this->db->query("select * from tb_anggota where id_anggota = '$level->id_upline'"); 
+              $upline = $this->db->query("select * from tb_anggota inner join tb_anggota b on b.id_anggota = tb_anggota.id_upline where tb_anggota.id_anggota = '$level->id_upline'"); 
               $uplinev = $upline->result();
               foreach ($uplinev as $uplinev) { 
                 $up = $level->level+1;
@@ -41,9 +40,9 @@ asd
                 $donasiv = $donasi->result();
                 foreach ($donasiv as $donasiv) { ?>
 
-    <div class="alert alert-danger left-icon-alert" role="alert">
-                  <h2 style="text-align: center"><strong></strong> Silahkan upgrade ke Level <?php echo $level->level+1 ?> dan Donasi ke upline <?php echo $uplinev->nama; ?> sebesar <?php echo 'Rp. '.number_format($donasiv->nominal); ?> No Rek. <?php echo $uplinev->norek.' Bank '.$uplinev->bank.' No HP '.$uplinev->tlp.'</h2>
-    </div>';
+              <div class="alert alert-danger left-icon-alert" role="alert">
+                            <h2 style="text-align: center"><strong></strong> Silahkan upgrade ke Level <?php echo $level->level+1 ?> dan Donasi ke upline <?php echo $uplinev->nama; ?> sebesar <?php echo 'Rp. '.number_format($donasiv->nominal); ?> No Rek. <?php echo $uplinev->norek.' Bank '.$uplinev->bank.' No HP '.$uplinev->tlp.'</h2>
+              </div>';
                 }
               }
             } 

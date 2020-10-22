@@ -138,7 +138,7 @@ class C_Donasi extends CI_Controller{
         foreach ($downline as $downline) {
           $down = $downline->downline;
         }
-
+        
         $cariupline = $this->M_Donasi->ceklevel($idanggota);
         foreach ($cariupline as $key) {
             $totalbawah = $this->M_Donasi->anggotabayar($key->id_upline, $key->level);
