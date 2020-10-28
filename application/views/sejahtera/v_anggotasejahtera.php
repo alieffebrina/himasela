@@ -60,8 +60,7 @@
           </div>
           <!-- /.box -->
         </div>
-        <?php 
-        if($cekanggota < $key->anggota) { ?>
+        <?php //       if($cekanggota < $key->anggota) { ?>
         <!-- left column -->
         <div class="col-md-12">
           <!-- Horizontal Form -->
@@ -77,11 +76,12 @@
                   <label for="inputPassword3" class="col-sm-2 control-label">Anggota</label>
                   <div class="col-sm-9">
                     <input type="hidden" class="form-control" id="id" name="idsejahtera" value="<?php echo $key->id_sejahtera ?>" readonly>
+                    <input type="hidden" class="form-control" id="ang" name="ang" value="<?php echo $key->anggota ?>" readonly>
                     <select class="form-control select2" id="idanggota" name="idanggota" style="width: 100%;" required onchange="">
                       <option value="">--Pilih--</option>
                       <?php 
                       foreach ($user as $data) { ?> 
-                        <option value="<?php echo $data->id_anggota; ?>"><?php echo $data->nama ?></option>  
+                        <option value="<?php echo $data->id_anggota; ?>"><?php echo $data->nama.' / '.$data->username.' / '.$data->namaupline?></option>  
                       <?php } ?>
                     </select>   
                   </div>
@@ -99,7 +99,6 @@
           </div>
           <!-- /.box -->
         </div>
-      <?php } ?>
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">

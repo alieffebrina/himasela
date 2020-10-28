@@ -8,7 +8,18 @@ class M_Sejahtera extends CI_Model {
         return $query->result();
     }
 
-   
+   function getdk($ida, $ang){
+        $this->db->where('id_sejahtera', $ida);
+        // $this->db->where('jumlahanggota < ', $ang);
+        return $this->db->get('tb_detailsejahtera')->result();
+    }
+
+    function getdetaildk($ida, $ang){
+        $this->db->select_min('id_detailsejahtera');
+        $this->db->where('id_sejahtera', $ida);
+        $this->db->where('jumlahanggota < ', $ang);
+        return $this->db->get('tb_detailsejahtera')->result();
+    }
 
     function getspek($ida){
         $this->db->where('id_sejahtera', $ida);
@@ -66,14 +77,36 @@ class M_Sejahtera extends CI_Model {
     }
 
 
-     function tambahanggota(){
+     function tambahanggota($a, $jml){
         $user = array(
             'id_sejahtera' => $this->input->post('idsejahtera'),
             'id_anggota' => $this->input->post('idanggota'),
+            'id_up' => $a,
             'id_user' => $this->session->userdata('id_user'),
             'tglupdate' => date('Y-m-d h:i:s')
         );
         $this->db->insert('tb_detailsejahtera', $user);
+    }
+
+    function tambahleveldk($a, $jml){
+        $user = array(
+            'id_sejahtera' => $this->input->post('idsejahtera'),
+            'jumlahanggota' => $jml,
+            'id_dk' => $a,
+            'tgldaftar' => date('Y-m-d h:i:s')
+        );
+        $this->db->insert('tb_leveldk', $user);
+    }
+
+    function updateleveldk($a, $jml){
+        $where = array(
+            'id_detailsejahtera' => $a,
+        );
+        $Berita = array(
+            'jumlahanggota' => $jml,
+        );
+        $this->db->where($where);
+        $this->db->update('tb_detailsejahtera',$Berita);
     }
 
     function updateanggota() {
@@ -110,14 +143,12 @@ class M_Sejahtera extends CI_Model {
     }
 
     function gethistory($user){
-        $this->db->select('b.id_anggota iddupline, b.username userupline, b.nama namaupline, tb_detailsejahtera.*, tb_anggota.*, tb_sejahtera.*');
-        $where = array(
-            'tb_detailsejahtera.id_anggota' => $user
-        );
+        $this->db->where('tb_detailsejahtera.id_anggota', $user);
+        $this->db->or_where('tb_detailsejahtera.id_up', $user);
         $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_detailsejahtera.id_anggota');
-        $this->db->join('tb_anggota b', 'b.id_anggota = tb_anggota.id_upline');
+        // $this->db->join('tb_anggota b', 'b.id_anggota = tb_detailsejahtera.id_up');
         $this->db->join('tb_sejahtera', 'tb_sejahtera.id_sejahtera = tb_detailsejahtera.id_sejahtera');
-        return $this->db->get_where('tb_detailsejahtera', $where)->result();
+        return $this->db->get('tb_detailsejahtera')->result();
     }
     
     function getdetail(){
@@ -129,5 +160,7 @@ class M_Sejahtera extends CI_Model {
         $query = $this->db->get('tb_detailsejahtera');
         return $query->result();
     }
+
+    
 
 }

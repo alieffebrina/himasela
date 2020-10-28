@@ -159,8 +159,38 @@ class C_Sejahtera extends CI_Controller{
 
     function tambahanggota()
     {
+        $ang = $this->input->post('ang');
         $sejahtera = $this->input->post('idsejahtera');
-        $this->M_Sejahtera->tambahanggota();
+        $dk = $this->M_Sejahtera->getdk($sejahtera, $ang);
+        $getdetaildk = $this->M_Sejahtera->getdetaildk($sejahtera, $ang);
+        if ($dk == NULL){
+            $a = $this->input->post('idanggota');
+            $jml = 1;
+
+            // $this->M_Sejahtera->tambahleveldk($a, $jml);
+        } else {
+            // if($getdetaildk == NULL){
+            //     echo "null";
+            // } else {
+            //     echo "ok";
+            // }
+            foreach ($getdetaildk as $key) {
+                $detail = $key->id_detailsejahtera;
+                echo $detail;
+                $where = array('id_detailsejahtera' => $detail );
+                $ddk = $this->M_Setting->cekakses('tb_detailsejahtera',$where);
+                foreach ($ddk as $ddk) {
+                    $a = $ddk->id_anggota;
+                    $jml = $ddk->jumlahanggota+1;
+                    echo $a.$jml;
+                }
+            }
+
+            echo $detail;
+
+            $this->M_Sejahtera->updateleveldk($detail, $jml);
+        }
+        $this->M_Sejahtera->tambahanggota($a, $jml);
         $this->session->set_flashdata('sukses','<div class="alert alert-warning left-icon-alert" role="alert">
                                                     <strong>Sukses!</strong> Data Berhasil di Tambah.
                                                 </div>');
@@ -178,6 +208,11 @@ class C_Sejahtera extends CI_Controller{
         $data['cekanggota'] = $this->M_Sejahtera->cekanggota($ida);
         $data['anggota'] = $this->M_Sejahtera->getanggota($detail);
         $data['sejahtera'] = $this->M_Sejahtera->getspek($ida);
+        // if ($dk == NULL){
+        //     $data['dk'] = 'null';
+        // } else {
+        //     $data['dk'] = $this->M_Sejahtera->getdk($ida, $ang);
+        // }
         $data['user'] = $this->M_User->getall();
         $this->load->view('sejahtera/v_anggotasejahtera',$data); 
         $this->load->view('template/footer');
@@ -211,6 +246,21 @@ class C_Sejahtera extends CI_Controller{
 
     function hapusanggota($id, $sejahtera)
     {
+
+        $as = array('id_detailsejahtera' => $id );
+        $ddk = $this->M_Setting->cekakses('tb_detailsejahtera',$as);
+        foreach ($ddk as $ddk) {
+            $a = $ddk->id_up;
+
+            $bs = array('id_anggota' => $a );
+            $bbs = $this->M_Setting->cekakses('tb_detailsejahtera',$bs);
+            foreach ($bbs as $bbs) {
+                $idd = $bbs->id_detailsejahtera;
+                $jml = $bbs->jumlahanggota-1;
+            $this->M_Sejahtera->updateleveldk($idd, $jml);
+            }
+
+        }
         $where = array('id_detailsejahtera' => $id);
         $this->M_Setting->delete($where,'tb_detailsejahtera');
         $this->session->set_flashdata('sukses', '<div class="alert alert-success left-icon-alert" role="alert">
@@ -268,11 +318,11 @@ class C_Sejahtera extends CI_Controller{
         $data['aksesadd'] = $tomboladd;
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;   
-        // if($id == 'administrator'){
+        if($id == 'administrator'){
             $data['data'] = $this->M_Sejahtera->getdetail();
-        // } else {
-        //     $data['data'] = $this->M_Sejahtera->gethistory($iduser);
-        // }
+        } else {
+            $data['data'] = $this->M_Sejahtera->gethistory($iduser);
+        }
         $this->load->view('sejahtera/v_history',$data); 
         $this->load->view('template/footer');
     }
