@@ -217,7 +217,7 @@ class M_User extends CI_Model {
     }
 
     function getspek($iduser){
-        $this->db->select('tb_anggota.*, b.nama namaupline, tb_provinsi.*, tb_kota.*, tb_kecamatan.*');
+        $this->db->select('tb_anggota.*, b.nama namaupline, b.norek norekupline, b.bank bankupline,b.pemilik pemilikupline, b.tlp tlpupline, tb_provinsi.*, tb_kota.*, tb_kecamatan.*');
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');

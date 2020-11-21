@@ -54,7 +54,7 @@
                     <tr>
                       <td><?php echo $no++; ?></td>
                       <td><?php echo date('d-m-Y', strtotime($data->tglupdate)); ?></td>
-                      <td><?php if($iduser == $data->id_up) { echo 'Rp. '.number_format($data->tabungan) ; } else { echo 'Rp. -'; } ?></td>
+                      <td><?php if($iduser == $data->id_up) { echo 'Rp. '.number_format($data->income) ; } else { echo 'Rp. -'; } ?></td>
                       <td><?php if($iduser == $data->id_anggota){ echo 'Rp. '.number_format($data->tabungan) ; } else { echo 'Rp. -'; } ?></td>
                       <td>Pasif Income Dana Kesejahteraan <?php echo $data->username ?></td>
                     </tr>

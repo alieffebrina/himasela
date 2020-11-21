@@ -243,7 +243,7 @@ class C_User extends CI_Controller{
                     $level = 1;
                     $getspek = $this->M_Level->getspek($level);
                     foreach ($getspek as $getspek) {
-                        $pesan = "*Silahkan upgrade ke Level 1* dan *DONASI* ke *Upline ".$tes->namaupline."*\nsebesar *Rp ".number_format($getspek->nominal)."*\n*No Rek : ".$tes->norek."*\n*Bank : ".$tes->bank."*\n*Atas Nama :".$tes->pemilik."*\n*No HP : ".$tes->tlp."*";
+                        $pesan = "*Silahkan upgrade ke Level 1* dan *DONASI* ke *Upline ".$tes->namaupline."*\nsebesar *Rp ".number_format($getspek->nominal)."*\n*No Rek : ".$tes->norekupline."*\n*Bank : ".$tes->bankupline."*\n*Atas Nama :".$tes->pemilikupline."*\n*No HP : ".$tes->tlpupline."*";
                         // $pesan =  "Silahkan upgrade ke Level 1 dan DONASI ke Upline ".$tes->namaupline."ebesar Rp ".number_format($getspek->nominal)."No Rek : ".$tes->norek."Bank : ".$tes->bank."Atas Nama :".$tes->pemilik."No HP : ".$tes->tlp;
 
                     }
