@@ -13,7 +13,14 @@
         <li class="active">Dashboard</li>
       </ol>
     </section>
-    <?php 
+    <?php
+    $admina = $this->db->query("select * from tb_anggota where id_anggota = '1'"); 
+              $adminv = $admina->result();
+              foreach($adminv as $adminv ){ 
+                $norekadmin = $adminv->norek;
+                $bankadmin =  $adminv->bank;
+                $tlpadmin = $adminv->tlp;
+              }
     foreach ($downline as $downline) {
       $down = $downline->downline;
       // echo 'down'.$down;
@@ -38,11 +45,21 @@
                 $up = $level->level+1;
                 $donasi = $this->db->query("select * from tb_level where id_level = '$up'"); 
                 $donasiv = $donasi->result();
-                foreach ($donasiv as $donasiv) { ?>
-
-              <div class="alert alert-danger left-icon-alert" role="alert">
+                foreach ($donasiv as $donasiv) { 
+                    $lev = $level->level+1;
+                    if($lev == 1){ ?>
+                    <div class="alert alert-danger left-icon-alert" role="alert">
+                            <h2 style="text-align: center"><strong></strong> Silahkan upgrade ke Level 1 (Supervisor) dan transfer administrasi ke admin sebesar <?php echo 'Rp. '.number_format($donasiv->nominal); ?> No Rek. <?php echo $norekadmin.' Bank '.$bankadmin.' No HP '.$tlpadmin.'</h2>
+                      </div>';
+                    } else if ($lev == 2) { ?>
+                        <div class="alert alert-danger left-icon-alert" role="alert">
+                            <h2 style="text-align: center"><strong></strong> Silahkan upgrade ke Level 2 (Manager) dan transfer administrasi ke admin  sebesar <?php echo 'Rp. '.number_format($donasiv->nominal); ?> No Rek. <?php echo $norekadmin.' Bank '.$bankadmin.' No HP '.$tlpadmin.'</h2>
+                      </div>';
+                    } else { ?>
+                        <div class="alert alert-danger left-icon-alert" role="alert">
                             <h2 style="text-align: center"><strong></strong> Silahkan upgrade ke Level <?php echo $level->level+1 ?> dan Donasi ke upline <?php echo $uplinev->nama; ?> sebesar <?php echo 'Rp. '.number_format($donasiv->nominal); ?> No Rek. <?php echo $uplinev->norek.' Bank '.$uplinev->bank.' No HP '.$uplinev->tlp.'</h2>
-              </div>';
+                        </div>';
+                    }
                 }
               }
             } 
@@ -62,7 +79,7 @@
       if ($b->level == $levelmax ){ 
         ?>
           <div class="alert alert-danger left-icon-alert" role="alert">
-            <h2 style="text-align: center"><strong></strong> Selamat Anda telah dilevel Dana Kesejahteraan silahkan transfer ke Admin BANK BRI No Rekening 6299-01-019907-53-9 ( Atas nama TITIMMATUL HIMMAH) Sebesar Rp. 5.000.000,- dan Konfirmasi Hp No 081615879352 (admin)</h2>
+            <h2 style="text-align: center"><strong></strong> Selamat Anda telah dilevel Dana Kesejahteraan silahkan transfer ke Admin BANK BRI No Rekening 6299-01-019907-53-9 ( Atas nama TITIMMATUL HIMMAH) Sebesar Rp. 10.000.000,- dan Konfirmasi Hp No 081615879352 (admin)</h2>
           </div>
         <?php 
         }
