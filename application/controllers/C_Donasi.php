@@ -129,6 +129,13 @@ class C_Donasi extends CI_Controller{
         $this->M_Donasi->aprove($iduser,$idanggota,$level);
 
         //kirim pesan
+        $admina = $this->db->query("SELECT * from tb_anggota where id_anggota = '1'"); 
+              $adminv = $admina->result();
+              foreach($adminv as $adminv ){ 
+                $norekadmin = $adminv->norek;
+                $bankadmin =  $adminv->bank;
+                $tlpadmin = $adminv->tlp;
+              }
 
         $idlevel = $this->db->query("SELECT MAX(id_level) as id_level from tb_level");
         $lev = $idlevel->result();
@@ -152,10 +159,15 @@ class C_Donasi extends CI_Controller{
                         foreach ($getuserspek as $getuserspek) {
                             $getspek = $this->M_Level->getspek($level);
                             foreach ($getspek as $getspek) {
-
                                 $cariuplinenya = $this->M_Donasi->ceklevel($dapatupline->id_upline);
                                 foreach ($cariuplinenya as $cariuplinenya) {
-                                $pesan = "*Silahkan upgrade ke Level ".$up."* dan *DONASI* ke *Upline ".$getuserspek->namaupline."*\nsebesar *Rp ".number_format($getspek->nominal)."*\n*No Rek : ".$cariuplinenya->norek."*\n*Bank : ".$cariuplinenya->bank."*\n*Atas Nama :".$cariuplinenya->pemilik."*\n*No HP : ".$cariuplinenya->tlp."*";
+                                    if($up == '1'){
+                                         $pesan = "*Silahkan upgrade ke Level 1 (Supervisor)* dan *transfer administrasi ke admin *\nsebesar *Rp ".number_format($getspek->nominal)."*\n*No Rek : ".$norekadmin."*\n*Bank : ".$bankadmin."*\n*No HP : ".$tlpadmin."*";
+                                    } else if($up == '2'){
+                                         $pesan = "*Silahkan upgrade ke Level 2 (Manager)* dan *transfer administrasi ke admin *\nsebesar *Rp ".number_format($getspek->nominal)."*\n*No Rek : ".$norekadmin."*\n*Bank : ".$bankadmin."*\n*No HP : ".$tlpadmin."*";
+                                    } else {
+                                        $pesan = "*Silahkan upgrade ke Level ".$up."* dan *DONASI* ke *Upline ".$getuserspek->namaupline."*\nsebesar *Rp ".number_format($getspek->nominal)."*\n*No Rek : ".$cariuplinenya->norek."*\n*Bank : ".$cariuplinenya->bank."*\n*Atas Nama :".$cariuplinenya->pemilik."*\n*No HP : ".$cariuplinenya->tlp."*";
+                                    }
                                 }
                             }
                         }

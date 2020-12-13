@@ -221,6 +221,14 @@ class C_User extends CI_Controller{
 
     function tambahtf()
     {   
+         $admina = $this->db->query("select * from tb_anggota where id_anggota = '1'"); 
+              $adminv = $admina->result();
+              foreach($adminv as $adminv ){ 
+                $norekadmin = $adminv->norek;
+                $bankadmin =  $adminv->bank;
+                $tlpadmin = $adminv->tlp;
+              }
+
         $upload = $this->M_User->upload();
         if ($upload['result'] == "success"){
             $this->M_User->konfirmadmin($upload);
@@ -243,9 +251,8 @@ class C_User extends CI_Controller{
                     $level = 1;
                     $getspek = $this->M_Level->getspek($level);
                     foreach ($getspek as $getspek) {
-                        $pesan = "*Silahkan upgrade ke Level 1* dan *DONASI* ke *Upline ".$tes->namaupline."*\nsebesar *Rp ".number_format($getspek->nominal)."*\n*No Rek : ".$tes->norekupline."*\n*Bank : ".$tes->bankupline."*\n*Atas Nama :".$tes->pemilikupline."*\n*No HP : ".$tes->tlpupline."*";
+                        $pesan = "*Silahkan upgrade ke Level 1 (Supervisor)* dan *transfer administrasi ke admin *\nsebesar *Rp ".number_format($getspek->nominal)."*\n*No Rek : ".$norekadmin."*\n*Bank : ".$bankadmin."*\n*No HP : ".$tlpadmin."*";
                         // $pesan =  "Silahkan upgrade ke Level 1 dan DONASI ke Upline ".$tes->namaupline."ebesar Rp ".number_format($getspek->nominal)."No Rek : ".$tes->norek."Bank : ".$tes->bank."Atas Nama :".$tes->pemilik."No HP : ".$tes->tlp;
-
                     }
                }
                 $nohp = $cekup->tlp;
