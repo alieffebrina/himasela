@@ -42,6 +42,7 @@
                     <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $key->nama ?>" >
                   </div>
                 </div>
+                <?php if($this->session->userdata('statusanggota') == 'administrator' ){ ?>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Username</label>
                   <div class="col-sm-9">
@@ -56,6 +57,7 @@
                     <span style="color: red"> Maksimal 10 karakter</span>
                   </div>
                 </div>
+              <?php } ?>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
                   <div class="col-sm-9">

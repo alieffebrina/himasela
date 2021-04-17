@@ -40,6 +40,12 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Voucher</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="voucher" name="voucher" placeholder="Voucher">
+                  </div>
+                </div>
+                <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
                   <div class="col-sm-9">
                     <select class="form-control select2" id="prov" name="prov" style="width: 100%;" required>

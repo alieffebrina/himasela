@@ -17,9 +17,10 @@
         <div class="alert alert-success alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
           <h5><i class="icon fa fa-check"></i> Sukses!</h5>
-          <?=$this->session->flashdata('Sukses')?>.
+          <?=$this->session->flashdata('Sukses')?>
         </div>                 
       <?php } ?>
+          <?=$this->session->flashdata('Gagal')?>
     </div>
     <!-- Main content -->
     <section class="content">
@@ -30,7 +31,22 @@
               <h3 class="box-title">Data <?php echo $header; ?></h3>
             </div>
             <div class="box-header">
-              <a href="<?php echo site_url('anggota-add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data</button></a>
+              <?php echo form_open("C_User/get_levelcheck", array('enctype'=>'multipart/form-data') ); ?>
+              <div class="input-group input-group-sm" width='20%'>
+              
+             <select class="form-control" id="levelc" name="levelc">
+                <option value="">--Level--</option>
+                <option value="0"><?php echo '0'; ?></option>
+                <?php foreach ($level as $level) { ?>
+                <option value="<?php echo $level->id_level ?>"><?php echo $level->id_level ?></option>
+                <?php } ?>
+              </select>
+
+                    <span class="input-group-btn">
+                    <button type="submit" class="btn btn-info">Cari</button>
+                  </span>
+                  </div>
+           <?php echo form_close(); ?>
             </div> 
             <!-- /.box-header -->
             <div class="box-body table-responsive">
@@ -66,7 +82,7 @@
                   <?php } ?>
                   <td><?php echo $user->alamat.', '.$user->name_kota.', '.$user->name_prov; ?></td>
                   <td><?php echo $user->namaupline; ?></td>
-                  <td><?php echo $user->level; ?></td>
+                  <td>level <?php echo $user->level; ?></td>
                   <td><?php echo $user->statusanggota; ?></td>
                   <input type="hidden" id="id_anggota" name="id_anggota" value="<?php echo $user->id_anggota ?>">
                   <td> 
@@ -93,6 +109,7 @@
                   <?php } ?>
                 </tbody>
               </table>
+
             </div>
             <!-- /.box-body -->
           </div>

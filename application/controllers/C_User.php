@@ -13,6 +13,60 @@ class C_User extends CI_Controller{
         }
     }
 
+    public function get_levelcheck(){
+            // Ambil data ID Provinsi yang dikirim via ajax post
+            $idlevelcheck = $this->input->post('levelc');
+            
+            // $kota = $this->db->get_where('tb_anggota', ['level' => $id])->result();
+            redirect('anggota/l/'.$idlevelcheck);
+    }
+
+    function levelcheck($idlevelcheck){
+
+            $this->load->view('template/header');
+            $id = $this->session->userdata('statusanggota');
+            $iduser = $this->session->userdata('id_user');
+            $nourut = $this->session->userdata('nourut');
+            $data['menu'] = $this->M_Setting->getmenu1($id);
+            $this->load->view('template/sidebar.php', $data);
+            if ($id == 'anggota'){
+                $data['user'] = $this->M_User->getlevelspek($iduser, $idlevelcheck);
+            } else {
+                $data['user'] = $this->M_User->getalllevel($idlevelcheck);          
+            }
+            $tabel = 'tb_akses';
+            $edit = array(
+                'tipeuser' => $id,
+                'edit' => '1',
+                'id_menu' => '1'
+            );
+            $hasiledit = $this->M_Setting->cekakses($tabel, $edit);
+            if(count($hasiledit)!=0){ 
+                $tomboledit = 'aktif';
+            } else {
+                $tomboledit = 'tidak';
+            }
+
+            $hapus = array(
+                'tipeuser' => $id,
+                'delete' => '1',
+                'id_menu' => '1'
+            );
+            $hasilhapus = $this->M_Setting->cekakses($tabel, $hapus);
+            if(count($hasilhapus)!=0){ 
+                $tombolhapus = 'aktif';
+            } else{
+                $tombolhapus = 'tidak';
+            }
+            $data['akseshapus'] = $tombolhapus;
+            $data['aksesedit'] = $tomboledit;
+            $data['header'] = 'Anggota';
+
+            $data['level'] = $this->db->get('tb_level')->result();
+            $this->load->view('user/v_user',$data); 
+            $this->load->view('template/footer');
+    }
+
     function index()
     {
         $this->load->view('template/header');
@@ -55,6 +109,7 @@ class C_User extends CI_Controller{
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;
         $data['header'] = 'Calon Anggota';      
+            $data['level'] = $this->db->get('tb_level')->result();
         $this->load->view('user/v_user',$data); 
         $this->load->view('user/v_modal',$data); 
         $this->load->view('template/footer');
@@ -100,6 +155,7 @@ class C_User extends CI_Controller{
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;
         $data['header'] = 'Anggota';
+            $data['level'] = $this->db->get('tb_level')->result();
         $this->load->view('user/v_user',$data); 
         $this->load->view('template/footer');
     }
@@ -145,79 +201,88 @@ class C_User extends CI_Controller{
     
     public function tambah()
     {   
-        $kalimat = $this->input->post('upline');
-        $data = explode("/" , $kalimat);
-        $upline =  $data[0];
-        $tabel = 'tb_anggota';
-        $cek = 'id_upline';
-        $hasil_kode = $this->M_Setting->cek($cek,$upline,$tabel);
-        $hitung = count($hasil_kode);
-        if(count($hasil_kode) == 0){
-            $nourut = 1;
-        } else {
-            $nourut = $hitung+1;
-        }
-        $no = $data[1].' '.+$nourut.' ';
-        $nourut = str_replace(' ', '', $no);
-        // $upload = $this->M_User->upload();
-        // if ($upload['result'] == "success"){
-        if ($this->M_User->cekUsername($this->input->post('nik', true))) {
-            $username = $this->input->post('nik');
-        } else {
-            $huruf = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';//buat karakter yang akan digunakan sebagai password
-            $st = '';
-            for($i=0; $i<8; $i++){
-                $p = rand(0, strlen($huruf)-1);
-                $st .=$huruf{$p};
+        if ($this->M_User->cekVoucher($this->input->post('voucher', true))) {       
+
+            $kalimat = $this->input->post('upline');
+            $data = explode("/" , $kalimat);
+            $upline =  $data[0];
+            $tabel = 'tb_anggota';
+            $cek = 'id_upline';
+            $hasil_kode = $this->M_Setting->cek($cek,$upline,$tabel);
+            $hitung = count($hasil_kode);
+            if(count($hasil_kode) == 0){
+                $nourut = 1;
+            } else {
+                $nourut = $hitung+1;
             }
-            // $user = $this->input->post('nik');
-            $username = $st;
-        }
+            $no = $data[1].' '.+$nourut.' ';
+            $nourut = str_replace(' ', '', $no);
+            // $upload = $this->M_User->upload();
+            // if ($upload['result'] == "success"){
+            if ($this->M_User->cekUsername($this->input->post('nik', true))) {
+                $username = $this->input->post('nik');
+            } else {
+                $huruf = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';//buat karakter yang akan digunakan sebagai password
+                $st = '';
+                for($i=0; $i<8; $i++){
+                    $p = rand(0, strlen($huruf)-1);
+                    $st .=$huruf{$p};
+                }
+                // $user = $this->input->post('nik');
+                $username = $st;
+            }
 
 
-        $this->M_User->tambahdata($nourut, $upline, $username);
-        if($username == $this->input->post('nik')){
-            $pesan = "Terima kasih sudah bergabung dengan *HIMASELA*.\nSilahkan login dengan cara berikut ini\n=================================\n*URL : www.app.himasela.com*\n*Username : ".$this->input->post('nik')."*\n*Password : 123456*";
-            $this->session->set_flashdata('Sukses', "Username anda sama dengan Nik dengan password 123456 !!");   
-        // header("location: https://api.whatsapp.com/send?phone=6283849390112&text=Halo%20mau%20order%20gan");             
+            $this->M_User->tambahdata($nourut, $upline, $username);
+            if($username == $this->input->post('nik')){
+                $pesan = "Terima kasih sudah bergabung dengan *HIMASELA*.\nSilahkan login dengan cara berikut ini\n=================================\n*URL : www.app.himasela.com*\n*Username : ".$this->input->post('nik')."*\n*Password : 123456*";
+                $this->session->set_flashdata('Sukses', "Username anda sama dengan Nik dengan password 123456 !!");   
+            // header("location: https://api.whatsapp.com/send?phone=6283849390112&text=Halo%20mau%20order%20gan");             
+            } else {
+                $pesan = "Terima kasih sudah bergabung dengan *HIMASELA*.\nSilahkan login dengan cara berikut ini\n=================================\n*URL : www.app.himasela.com*\n*Username : ".$username."*\n*Password : 123456*";
+                $this->session->set_flashdata('Sukses', "Username dan password silahkan hubungi admin !!");   
+            }
+
+            $a = '+'.$this->input->post('tlp');
+            $no = str_split($a, 3);
+            $n = $no[0];
+
+            $ganti = str_replace($n,"628",$a);
+
+            $demokey='5fa0891178423f215b2b5c082522b61d617adab5e8a2969b'; //this is demo key please change with your own key
+            $url='http://116.203.92.59/api/send_message';
+            $data = array(
+              "phone_no"=> $ganti,
+              "key"     =>$demokey,
+              "message" => $pesan,
+            );
+            $data_string = json_encode($data);
+            
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_VERBOSE, 0);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 360);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+              'Content-Type: application/json',
+              'Content-Length: ' . strlen($data_string))
+            );
+            echo $res=curl_exec($ch);
+            curl_close($ch);
+
+            redirect('calonanggota');  
         } else {
-            $pesan = "Terima kasih sudah bergabung dengan *HIMASELA*.\nSilahkan login dengan cara berikut ini\n=================================\n*URL : www.app.himasela.com*\n*Username : ".$username."*\n*Password : 123456*";
-            $this->session->set_flashdata('Sukses', "Username dan password silahkan hubungi admin !!");   
+
+        $this->session->set_flashdata('Gagal','<div class="alert alert-warning left-icon-alert" role="alert">
+                                                    <strong>Gagal!</strong> Kode Voucher tidak tersedia .
+                                                </div>');
+            redirect('calonanggota'); 
         }
-
-        $a = '+'.$this->input->post('tlp');
-        $no = str_split($a, 3);
-        $n = $no[0];
-
-        $ganti = str_replace($n,"628",$a);
-
-        $demokey='5fa0891178423f215b2b5c082522b61d617adab5e8a2969b'; //this is demo key please change with your own key
-        $url='http://116.203.92.59/api/send_message';
-        $data = array(
-          "phone_no"=> $ganti,
-          "key"     =>$demokey,
-          "message" => $pesan,
-        );
-        $data_string = json_encode($data);
-        
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_VERBOSE, 0);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 360);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-          'Content-Type: application/json',
-          'Content-Length: ' . strlen($data_string))
-        );
-        echo $res=curl_exec($ch);
-        curl_close($ch);
-
-        redirect('calonanggota');  
-    }
+    }   
 
     function tambahtf()
     {   

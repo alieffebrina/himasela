@@ -37,6 +37,16 @@ class M_User extends CI_Model {
         }
     }
 
+    public function cekVoucher($voucher){
+        // $this->db->where('kelas', $kelas);
+        $cek = $this->db->get_where('tb_voucher', ['voucher' => $voucher, 'status' => 'tidak'])->row();
+        if(!empty($cek)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     function totalanggota(){
         $this->db->where_not_in('statusanggota', 'tidak aktif');
         $query = $this->db->get('tb_anggota');
@@ -103,6 +113,20 @@ class M_User extends CI_Model {
         return $query->result();
     }
 
+    function getalllevel($level){
+        $this->db->select('tb_anggota.*, b.nama namaupline, tb_provinsi.*, tb_kota.*, tb_kecamatan.*');
+        $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
+        $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
+        $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
+        $this->db->join('tb_anggota b', 'b.id_anggota = tb_anggota.id_upline');
+        $anggota = array('menunggu konfirmasi admin', 'menunggu konfirmasi upline');
+        $this->db->where_not_in('tb_anggota.statusanggota', $anggota);
+
+        $this->db->where('tb_anggota.level', $level);
+        $query = $this->db->get('tb_anggota');
+        return $query->result();
+    }
+
     function getuserspek($nourut){
         $this->db->select('tb_anggota.*, b.nama namaupline, tb_provinsi.*, tb_kota.*, tb_kecamatan.*');
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
@@ -130,6 +154,25 @@ class M_User extends CI_Model {
         $query = $this->db->get('tb_anggota');
         return $query->result();
     }
+
+
+    function getlevelspek($iduser, $level){
+        $this->db->select('tb_anggota.*, b.nama namaupline, tb_provinsi.*, tb_kota.*, tb_kecamatan.*');
+        $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
+        $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
+        $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
+        $this->db->join('tb_anggota b', 'b.id_anggota = tb_anggota.id_upline');
+        $anggota = array('menunggu konfirmasi admin', 'menunggu konfirmasi upline','tidak aktif');
+
+        $this->db->where('tb_anggota.level', $level);
+        $this->db->where_not_in('tb_anggota.statusanggota', $anggota);       
+        $this->db->where('tb_anggota.id_upline', $iduser);
+        $this->db->or_where('tb_anggota.id_anggota', $iduser);
+        // $this->db->like('tb_anggota.id_upline', $nourut, 'after');
+        $query = $this->db->get('tb_anggota');
+        return $query->result();
+    }
+
 
     function getnama($ida){
         $where = array(
@@ -177,6 +220,7 @@ class M_User extends CI_Model {
             'id_kota' => $this->input->post('kota'),
             'id_provinsi' => $this->input->post('prov'),
             'id_kecamatan' => $this->input->post('kecamatan'),
+            // 'password' => $this->input->post('voucher'),
             'email' => $this->input->post('email'),
             'tlp' => $this->input->post('tlp'),
             'bank' => $this->input->post('bank'),
@@ -196,6 +240,18 @@ class M_User extends CI_Model {
         );
         
         $this->db->insert('tb_anggota', $user);
+
+        $voucher = array(
+            'status' => 'aktif',
+            'username' => $username
+        );
+
+        $where = array(
+            'voucher' =>  $this->input->post('voucher'),
+        );
+        
+        $this->db->where($where);
+        $this->db->update('tb_voucher',$voucher);
     }
 
     function getuserall(){

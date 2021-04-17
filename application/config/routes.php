@@ -58,6 +58,7 @@ $route['struktur'] = 'C_Struktur';
 $route['strukturd/(:any)'] = 'C_Struktur/strukturd/$1';
 $route['downline'] = 'C_Setting/downline';
 
+$route['welcome'] = 'welcome';
 
 // sejahtera
 $route['sejahtera'] = 'C_Sejahtera';
@@ -86,6 +87,7 @@ $route['profil'] = 'C_Profil';
 $route['anggota'] = 'C_User/all';
 $route['calonanggota'] = 'C_User';
 $route['anggota-add'] = 'C_User/add';
+$route['anggota/l/(:any)'] = 'C_User/levelcheck/$1';
 $route['laporan'] = 'C_User/laporan';
 $route['user-aprove/(:any)'] = 'C_User/ttf/$1';
 $route['user-aktivasi/(:any)'] = 'C_User/aktif/$1';
@@ -113,3 +115,6 @@ $route['level-view/(:any)'] = 'C_Level/view/$1';
 $route['level-edit/(:any)'] = 'C_Level/edit/$1';
 $route['level'] = 'C_Level';
 $route['level-add'] = 'C_Level/add';
+
+//voucher
+$route['voucher'] = 'C_Voucher';
