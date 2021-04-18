@@ -73,4 +73,16 @@ class C_Voucher extends CI_Controller{
                                                 </div>');
         redirect('voucher');
     }
+
+    function hapus($id)
+    {
+
+        $where = array('id_voucher' => $id);
+        $this->M_Setting->delete($where,'tb_voucher');
+        $this->session->set_flashdata('sukses', '<div class="alert alert-success left-icon-alert" role="alert">
+                                                    <strong>Sukses!</strong> Voucher Berhasil di Hapus.
+                                                </div>');
+            redirect('voucher'); 
+    } 
+
 }

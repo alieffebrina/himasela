@@ -31,10 +31,14 @@
               <h3 class="box-title">Data <?php echo $header; ?></h3>
             </div>
             <div class="box-header">
+                <div class="form-group">
+                  <a href="<?php echo site_url('anggota-add'); ?>"><button type="button" class="btn btn-warning">Tambah</button></a> 
+                  
+                  <div class="col-sm-10">
               <?php echo form_open("C_User/get_levelcheck", array('enctype'=>'multipart/form-data') ); ?>
-              <div class="input-group input-group-sm" width='20%'>
+              <div class="input-group">
               
-             <select class="form-control" id="levelc" name="levelc">
+             <select class="form-control" id="levelc" name="levelc" width='10px'>
                 <option value="">--Level--</option>
                 <option value="0"><?php echo '0'; ?></option>
                 <?php foreach ($level as $level) { ?>
@@ -47,6 +51,8 @@
                   </span>
                   </div>
            <?php echo form_close(); ?>
+         </div>
+                </div>
             </div> 
             <!-- /.box-header -->
             <div class="box-body table-responsive">
