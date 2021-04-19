@@ -77,7 +77,7 @@
                       <td><?php echo $voucher->username; ?></td>
                       <td>
                       <?php if($voucher->username==NULL){ ?>
-                        <a href="<?php echo site_url('anggota-add'); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-user-plus"></i></button></a>
+                        <a href="<?php echo site_url('anggota-addv/'.$voucher->voucher); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-user-plus"></i></button></a>
                       <?php if($akseshapus == 'aktif'){?>
                       <a href="<?php echo site_url('C_Voucher/hapus/'.$voucher->id_voucher); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
                       <?php } } ?>

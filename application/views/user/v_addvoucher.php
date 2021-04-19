@@ -42,11 +42,10 @@
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Voucher</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="voucher" name="voucher" placeholder="Voucher" onblur="cek_voucher()">
+                    <input type="text" class="form-control" id="voucher" name="voucher" value="<?php echo $voucher ?>" readonly onblur="cek_voucher()">
                     
                   <span id="pesanvoucher"></span>
                   </div>
-                  <span id="pesanvoucher"></span>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>

@@ -173,6 +173,21 @@ class C_User extends CI_Controller{
         $this->load->view('template/footer');
     }
 
+    function addv($voucher)
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('statusanggota');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        $data['provinsi'] = $this->M_Setting->getprovinsi();
+        $data['user'] = $this->M_User->getuserall();
+        $data['voucher'] = $voucher;
+        $data['downline'] = $this->M_Setting->getdownline();  
+        $this->load->view('user/v_addvoucher', $data); 
+        $this->load->view('template/footer');
+    }
+
+
      function cek_nik(){
         $tabel = 'tb_anggota';
         $cek = 'nik';

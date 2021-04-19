@@ -85,4 +85,18 @@ class C_Voucher extends CI_Controller{
             redirect('voucher'); 
     } 
 
+    function cek_voucher(){
+        $tabel = 'tb_voucher';
+        $cek = 'voucher';
+        $kode = $this->input->post('voucher');
+        $hasil_kode = $this->db->get_where('tb_voucher', ['status' => 'tidak', 'voucher' => $kode])->result();
+        // $hasil_kode = $this->M_Setting->cek($cek,$kode,$tabel);
+        if(count($hasil_kode)!=0){ 
+            echo '2';
+        }else{
+            echo '1';
+        }
+         
+    }
+
 }

@@ -205,6 +205,38 @@
   });
   </script>
 
+<script type='text/javascript'>
+    var error = 1; // nilai default untuk error 1
+    function cek_voucher(){
+        $("#pesanvoucher").hide();
+        var voucher = $("#voucher").val();
+        if(voucher != ""){
+            $.ajax({
+                url: "<?php echo site_url() . '/C_Voucher/cek_voucher'; ?>", //arahkan pada proses_tambah di controller member
+                data: 'voucher='+voucher,
+                type: "POST",
+                success: function(msg){
+                    if(msg==1){
+                        $("#pesanvoucher").css("color","#fc5d32");
+                        $("#voucher").css("border-color","#fc5d32");
+                        $("#pesanvoucher").html("Mohon Maaf Voucher yang Anda Masukkan Salah !");
+ 
+                        $("#voucher").val("");
+                        error = 1;
+                    }else{
+                        $("#pesanvoucher").css("color","#59c113");
+                        $("#voucher").css("border-color","#59c113");
+                        $("#pesanvoucher").html("");
+                        error = 0;
+                    }
+ 
+                    $("#pesanvoucher").fadeIn(1000);
+                }
+            });
+        }                
+    }
+     
+</script>
 <script>
   $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
     // Kita sembunyikan dulu untuk loadingnya
