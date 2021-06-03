@@ -51,7 +51,8 @@ class C_Setting extends CI_Controller{
     {
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
         $data['user'] = $this->M_User->getuser();
         $this->load->view('setting/v_akses',$data); 
@@ -62,7 +63,8 @@ class C_Setting extends CI_Controller{
     {
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
         $data['downline'] = $this->M_Setting->getdownline();
         $this->load->view('template/v_downline',$data); 
@@ -85,7 +87,8 @@ class C_Setting extends CI_Controller{
     {
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
         $i = str_replace("%20", " ", $ida);
         $akses['akses'] = $this->M_Setting->getakses($i);
@@ -144,7 +147,8 @@ class C_Setting extends CI_Controller{
     {
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
         $data['kode'] = $this->M_Setting->getkode();
         $this->load->view('master/setting/v_kode',$data); 
@@ -155,7 +159,8 @@ class C_Setting extends CI_Controller{
     {
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
         $data['kode'] = $this->M_Setting->getkode();
         $this->load->view('master/setting/v_addkode',$data); 

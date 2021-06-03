@@ -17,7 +17,8 @@ class C_Profil extends CI_Controller{
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
 
         $data['provinsi'] = $this->M_Setting->getprovinsi();

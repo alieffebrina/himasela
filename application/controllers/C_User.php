@@ -27,7 +27,8 @@ class C_User extends CI_Controller{
             $id = $this->session->userdata('statusanggota');
             $iduser = $this->session->userdata('id_user');
             $nourut = $this->session->userdata('nourut');
-            $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
             $this->load->view('template/sidebar.php', $data);
             if ($id == 'anggota'){
                 $data['user'] = $this->M_User->getlevelspek($iduser, $idlevelcheck);

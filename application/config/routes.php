@@ -119,3 +119,7 @@ $route['level-add'] = 'C_Level/add';
 
 //voucher
 $route['voucher'] = 'C_Voucher';
+
+
+//kategori barang
+$route['kategori'] = 'C_Kategoribarang';

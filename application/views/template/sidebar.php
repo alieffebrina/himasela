@@ -35,18 +35,46 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <!-- <li class="header">MAIN NAVIGATION</li> -->
+        <li class="header">MAIN NAVIGATION</li>
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-book"></i> <span>Dashboard</span></a></li>
-        <?php foreach ($menu as $menu) { 
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-sitemap"></i> <span>Komunitas</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <?php foreach ($menukom as $menu) { 
           $a = $menu->id_menu; 
           ?>
           <li>
             <a href="<?php echo site_url($menu->link); ?>">
               <i class="<?php echo $menu->icon; ?>"></i> <span><?php echo $menu->menu; ?></span>
-              
             </a>
           </li>
         <?php } ?>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-money"></i> <span>POS</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <?php foreach ($menupos as $menupos) { 
+          $a = $menupos->id_menu; 
+          ?>
+          <li>
+            <a href="<?php echo site_url($menupos->link); ?>">
+              <i class="<?php echo $menupos->icon; ?>"></i> <span><?php echo $menupos->menu; ?></span>
+            </a>
+          </li>
+        <?php } ?>
+          </ul>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->

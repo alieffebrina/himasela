@@ -18,7 +18,8 @@ class C_Level extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $nourut = $this->session->userdata('nourut');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
         $tabel = 'tb_akses';
         $edit = array(
@@ -57,7 +58,8 @@ class C_Level extends CI_Controller{
     {
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
         $data['level'] = $this->M_Level->getspek($ida);
         $this->load->view('level/v_vlevel',$data); 
@@ -68,7 +70,8 @@ class C_Level extends CI_Controller{
     {
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
         $data['level'] = $this->M_Level->getspek($ida);
         $this->load->view('level/v_editlevel',$data); 
@@ -79,7 +82,8 @@ class C_Level extends CI_Controller{
     {
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
         $this->load->view('level/v_addlevel',$data); 
         $this->load->view('template/footer');

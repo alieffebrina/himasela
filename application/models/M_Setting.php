@@ -51,13 +51,25 @@ class M_Setting extends CI_Model {
         return $query->result();
     }
 
-    function getmenu1($id){
+    function getmenukom($id){
         $this->db->distinct();
         $this->db->select('tb_menu.*');
         $this->db->order_by('urutan', 'ASC');
         $this->db->join('tb_akses', 'tb_akses.id_menu = tb_menu.id_menu');
         $where = array(
-            'tb_akses.tipeuser' => $id, 'tb_akses.view' => '1', 'tb_menu.status'=>'aktif'
+            'tb_akses.tipeuser' => $id, 'tb_akses.view' => '1', 'tb_menu.status'=>'aktif', 'tb_menu.jenis'=>'komunitas'
+        );
+        $query = $this->db->get_where('tb_menu', $where);
+        return $query->result();
+    }
+
+    function getmenupos($id){
+        $this->db->distinct();
+        $this->db->select('tb_menu.*');
+        $this->db->order_by('urutan', 'ASC');
+        $this->db->join('tb_akses', 'tb_akses.id_menu = tb_menu.id_menu');
+        $where = array(
+            'tb_akses.tipeuser' => $id, 'tb_akses.view' => '1', 'tb_menu.status'=>'aktif', 'tb_menu.jenis'=>'pos'
         );
         $query = $this->db->get_where('tb_menu', $where);
         return $query->result();

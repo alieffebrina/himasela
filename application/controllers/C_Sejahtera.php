@@ -19,7 +19,8 @@ class C_Sejahtera extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $nourut = $this->session->userdata('nourut');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
         $tabel = 'tb_akses';
         $edit = array(
@@ -71,7 +72,8 @@ class C_Sejahtera extends CI_Controller{
     {
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
         $detail = array('id_sejahtera' => $ida );
         $data['anggota'] = $this->M_Sejahtera->getanggota($detail);
@@ -84,7 +86,8 @@ class C_Sejahtera extends CI_Controller{
     {
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
         $detail = array('id_sejahtera' => $ida );
         $data['anggota'] = $this->M_Sejahtera->getanggota($detail);
@@ -97,7 +100,8 @@ class C_Sejahtera extends CI_Controller{
     {
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
         $this->load->view('sejahtera/v_addsejahtera',$data); 
         $this->load->view('template/footer');
@@ -201,7 +205,8 @@ class C_Sejahtera extends CI_Controller{
     {
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
 
         $detail = array('id_sejahtera' => $ida );
@@ -222,7 +227,8 @@ class C_Sejahtera extends CI_Controller{
     {
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
         $sek = array('id_sejahtera' => $sejahtera );
         $detail = array('id_detailsejahtera' => $ida );
@@ -275,7 +281,8 @@ class C_Sejahtera extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $nourut = $this->session->userdata('nourut');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
 
         $tabel = 'tb_akses';
