@@ -11,7 +11,7 @@ class M_Kategoribarang extends CI_Model {
     	$user = array(
     		'kategoribarang' => $this->input->post('kategoribarang'),
             'id_user' => $this->session->userdata('id_user'),
-            'tglupdate' => date('Y-m-d h:i:s')
+            'tgl_update' => date('Y-m-d h:i:s')
     	);
     	$this->db->insert('tb_kategoribarang', $user);
     }

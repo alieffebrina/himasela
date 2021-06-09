@@ -123,3 +123,9 @@ $route['voucher'] = 'C_Voucher';
 
 //kategori barang
 $route['kategori'] = 'C_Kategoribarang';
+$route['Kategori-edit/(:any)'] = 'C_Kategoribarang/edit/$1';
+
+
+//master komisi
+$route['masterkomisi'] = 'C_MKomisi';
+$route['masterkomisi-edit/(:any)'] = 'C_MKomisi/edit/$1';

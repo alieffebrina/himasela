@@ -1,11 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class C_kategoribarang extends CI_Controller{
+class C_MKomisi extends CI_Controller{
     
     public function __construct(){
         parent::__construct();
         $this->load->helper(array('form','url'));
         $this->load->library('session');
-        $this->load->model('M_Kategoribarang');
+        $this->load->model('M_Komisi');
         $this->load->model('M_Setting');
         if(!$this->session->userdata('id_user')){
             redirect('C_Login');
@@ -33,8 +33,8 @@ class C_kategoribarang extends CI_Controller{
         } else {
             $tomboledit = 'tidak';
         }
-
         $tambah = array(
+
             'tipeuser' => $id,
             'add' => '1',
             'id_menu' => '15'
@@ -62,8 +62,8 @@ class C_kategoribarang extends CI_Controller{
         $data['aksesedit'] = $tomboledit;   
         $data['aksesadd'] = $tomboltambah;   
 
-        $data['kategoribarang'] = $this->db->get('tb_kategoribarang')->result(); 
-        $this->load->view('kategoribarang/v_kategoribarang',$data); 
+        $data['komisi'] = $this->db->get('tb_masterkomisi')->result(); 
+        $this->load->view('komisi/v_komisi',$data); 
         $this->load->view('template/footer');
     }
 
@@ -115,36 +115,36 @@ class C_kategoribarang extends CI_Controller{
         $data['aksesedit'] = $tomboledit;   
         $data['aksesadd'] = $tomboltambah;   
 
-        $data['kat'] = $this->db->get_where('tb_kategoribarang', ['id_kategoribarang' => $ida])->result();
-        $data['kategoribarang'] = $this->db->get('tb_kategoribarang')->result(); 
-        $this->load->view('kategoribarang/v_editkategori',$data); 
+        $data['kat'] = $this->db->get_where('tb_masterkomisi', ['id_komisi' => $ida])->result();
+        $data['komisi'] = $this->db->get('tb_masterkomisi')->result(); 
+        $this->load->view('komisi/v_editmkomisi',$data); 
         $this->load->view('template/footer');
     }
 
     function tambah()
     {
-        if($this->M_Kategoribarang->cekkategoribarang($this->input->post('kategoribarang', true))){
-            $this->M_Kategoribarang->tambahdata();
+        if($this->M_Komisi->cekkomisi($this->input->post('komisi', true))){
+            $this->M_Komisi->tambahdata();
             $this->session->set_flashdata('sukses','<div class="alert alert-warning left-icon-alert" role="alert">
                                                         <strong>Sukses!</strong> Data Berhasil di Tambah.
                                                     </div>');
-            redirect('kategori');
+            redirect('mkomisi');
         } else {
             $this->session->set_flashdata('gagal', '<div class="alert alert-danger left-icon-alert" role="alert">
                                                         <strong>Perhatian!</strong> Data Sudah Ada.
                                                     </div>');
-            redirect('kategori');            
+            redirect('mkomisi');            
         }
     } 
 
     function update()
     {   
         $id =  $this->input->post('id');
-        $where = array('id_kategoribarang' => $id );
-        $wherekategoribarang = array('kategoribarang' => $this->input->post('kategoribarang'));
+        $where = array('id_komisi' => $id );
+        $wherekomisi = array('komisi' => $this->input->post('komisi'));
         
-            if($this->M_Kategoribarang->cekkategoribarang($this->input->post('kategoribarang', true))){
-                $this->M_Kategoribarang->update($where, $wherekategoribarang);
+            if($this->M_Komisi->cekkomisi($this->input->post('komisi', true))){
+                $this->M_Komisi->update($where, $wherekomisi);
                 $this->session->set_flashdata('sukses','<div class="alert alert-warning left-icon-alert" role="alert">
                                                         <strong>Sukses!</strong> Data Berhasil di Tambah.
                                                     </div>');
@@ -154,18 +154,18 @@ class C_kategoribarang extends CI_Controller{
                                                         </div>');
             }
         
-        redirect('kategori');  
+        redirect('mkomisi');  
     }
 
 
     function hapus($id)
     {
 
-        $where = array('id_kategoribarang' => $id);
-        $this->M_Setting->delete($where,'tb_kategoribarang');
+        $where = array('id_komisi' => $id);
+        $this->M_Setting->delete($where,'tb_masterkomisi');
         $this->session->set_flashdata('sukses', '<div class="alert alert-success left-icon-alert" role="alert">
                                                     <strong>Sukses!</strong> Data Berhasil di Hapus.
                                                 </div>');
-            redirect('kategori'); 
+            redirect('mkomisi'); 
     } 
 }

@@ -19,7 +19,6 @@
 
     <!-- Main content -->
     <section class="content">
-      <?php if($aksesadd == 'aktif'){?>
       
       <div class="row">
         <!-- left column -->
@@ -27,23 +26,26 @@
           <!-- Horizontal Form -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Tambah Data Kategori Barang</h3>
+              <h3 class="box-title">Ubah Data Kategori Barang</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <?php echo form_open("C_Kategoribarang/tambah", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
+            <?php echo form_open("C_Kategoribarang/update", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
               <div class="box-body">
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Kategori Barang</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="kategoribarang" name="kategoribarang" placeholder="Kategori Barang" required>
+                    <!-- <?php foreach ($kat as $kat) { ?> -->
+                      <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $kat->id_kategoribarang ?>" required> 
+                      <input type="text" class="form-control" id="kategoribarang" name="kategoribarang" value="<?php echo $kat->kategoribarang ?>" required> 
+                    <!-- <?php } ?> -->
                   </div>
                 </div>
               <!-- /.box-body -->
               <div class="box-footer">
                   <div class="col-sm-10">
                     <button type="reset" class="btn btn-danger">Batal</button>
-                    <button type="submit" class="btn btn-info">Tambah Data</button>
+                    <button type="submit" class="btn btn-info">Simpan Data</button>
                   </div>
               </div>
               <!-- /.box-footer -->
@@ -51,7 +53,6 @@
           </div>
           <!-- /.box -->
         </div>
-      <?php } ?>
       <!-- /.row -->
       <div class="row">
         <div class="col-xs-12">
