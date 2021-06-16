@@ -37,7 +37,8 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-book"></i> <span>Dashboard</span></a></li>
-        <li class="treeview">
+        <li <?php if($menujenis == 'komunitas'){echo 'class="treeview active"';} else { echo 'class = 
+        "treeview"'; } ?> >
           <a href="#">
             <i class="fa fa-sitemap"></i> <span>Komunitas</span>
             <span class="pull-right-container">
@@ -48,7 +49,7 @@
             <?php foreach ($menukom as $menu) { 
           $a = $menu->id_menu; 
           ?>
-          <li>
+          <li <?php if($activeMenu == $menu->id_menu){echo 'class="active"';} ?> >
             <a href="<?php echo site_url($menu->link); ?>">
               <i class="<?php echo $menu->icon; ?>"></i> <span><?php echo $menu->menu; ?></span>
             </a>
@@ -56,7 +57,8 @@
         <?php } ?>
           </ul>
         </li>
-        <li class="treeview">
+        <li <?php if($menujenis == 'pos'){echo 'class="treeview active"';} else { echo 'class = 
+        "treeview"'; } ?> >
           <a href="#">
             <i class="fa fa-money"></i> <span>POS</span>
             <span class="pull-right-container">
@@ -67,7 +69,7 @@
             <?php foreach ($menupos as $menupos) { 
           $a = $menupos->id_menu; 
           ?>
-          <li>
+          <li <?php if($activeMenu == $menupos->id_menu){echo 'class="active"';} ?> >
             <a href="<?php echo site_url($menupos->link); ?>">
               <i class="<?php echo $menupos->icon; ?>"></i> <span><?php echo $menupos->menu; ?></span>
             </a>

@@ -29,6 +29,8 @@ class C_User extends CI_Controller{
             $nourut = $this->session->userdata('nourut');
         $data['menukom'] = $this->M_Setting->getmenukom($id);
         $data['menupos'] = $this->M_Setting->getmenupos($id);
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '1';
             $this->load->view('template/sidebar.php', $data);
             if ($id == 'anggota'){
                 $data['user'] = $this->M_User->getlevelspek($iduser, $idlevelcheck);
@@ -74,7 +76,10 @@ class C_User extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $nourut = $this->session->userdata('nourut');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '1';
         $this->load->view('template/sidebar.php', $data);
 
         if ($id == 'anggota'){
@@ -122,7 +127,10 @@ class C_User extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $nourut = $this->session->userdata('nourut');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '1';
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
         if ($id == 'anggota'){
             $data['user'] = $this->M_User->getallspek($iduser);
@@ -165,8 +173,11 @@ class C_User extends CI_Controller{
     {
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '1';
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['user'] = $this->M_User->getuserall();
         $data['downline'] = $this->M_Setting->getdownline();  
@@ -178,9 +189,12 @@ class C_User extends CI_Controller{
     {
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '1';
         $data['user'] = $this->M_User->getuserall();
         $data['voucher'] = $voucher;
         $data['downline'] = $this->M_Setting->getdownline();  
@@ -385,8 +399,11 @@ class C_User extends CI_Controller{
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '1';
         if ($id == 'upline' || $id == 'downline'){
             $data['user'] = $this->M_User->getuserspek($iduser);
         } else {
@@ -425,7 +442,10 @@ class C_User extends CI_Controller{
     {
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '1';
         $this->load->view('template/sidebar.php', $data);
         $data['user'] = $this->M_User->getspek($ida);
         $this->load->view('user/v_vuser',$data); 
@@ -436,9 +456,12 @@ class C_User extends CI_Controller{
     {
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '1';
         $data['user'] = $this->M_User->getspek($iduser);
         $data['upline'] = $this->M_User->getuserall();
         $data['downline'] = $this->M_Setting->getdownline();  
@@ -526,7 +549,10 @@ class C_User extends CI_Controller{
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '6';
         $this->load->view('template/sidebar.php', $data);
 
         if ($id == 'anggota'){
@@ -589,7 +615,10 @@ class C_User extends CI_Controller{
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
-        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '1';
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['user'] = $this->M_User->getspek($iduser);

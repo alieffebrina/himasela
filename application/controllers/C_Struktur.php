@@ -20,6 +20,8 @@ class C_Struktur extends CI_Controller{
         $nourut = $this->session->userdata('nourut');
         $data1['menukom'] = $this->M_Setting->getmenukom($id);
         $data1['menupos'] = $this->M_Setting->getmenupos($id);
+        $data1['menujenis'] = 'komunitas';
+        $data1['activeMenu'] = '10';
         $this->load->view('template/sidebar.php', $data1);
         $data['total'] = $this->M_Struktur->gettotal();
         $data['user'] = $this->M_Struktur->getuser();
@@ -41,6 +43,8 @@ class C_Struktur extends CI_Controller{
         $nourut = $this->session->userdata('nourut');
         $data1['menukom'] = $this->M_Setting->getmenukom($id);
         $data1['menupos'] = $this->M_Setting->getmenupos($id);
+        $data1['menujenis'] = 'komunitas';
+        $data1['activeMenu'] = '10';
         $this->load->view('template/sidebar.php', $data1);
         $data['total'] = $this->M_Struktur->gettotal();
         $data['user'] = $this->M_Struktur->getuser();

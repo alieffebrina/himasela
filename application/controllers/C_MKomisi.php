@@ -20,12 +20,14 @@ class C_MKomisi extends CI_Controller{
         $nourut = $this->session->userdata('nourut');
         $data['menukom'] = $this->M_Setting->getmenukom($id);
         $data['menupos'] = $this->M_Setting->getmenupos($id);
+        $data['menujenis'] = 'pos';
+        $data['activeMenu'] = '16';
         $this->load->view('template/sidebar.php', $data);
         $tabel = 'tb_akses';
         $edit = array(
             'tipeuser' => $id,
             'edit' => '1',
-            'id_menu' => '15'
+            'id_menu' => '16'
         );
         $hasiledit = $this->M_Setting->cekakses($tabel, $edit);
         if(count($hasiledit)!=0){ 
@@ -37,7 +39,7 @@ class C_MKomisi extends CI_Controller{
 
             'tipeuser' => $id,
             'add' => '1',
-            'id_menu' => '15'
+            'id_menu' => '16'
         );
         $hasiltambah = $this->M_Setting->cekakses($tabel, $tambah);
         if(count($hasiltambah)!=0){ 
@@ -49,7 +51,7 @@ class C_MKomisi extends CI_Controller{
         $hapus = array(
             'tipeuser' => $id,
             'delete' => '1',
-            'id_menu' => '15'
+            'id_menu' => '16'
         );
         $hasilhapus = $this->M_Setting->cekakses($tabel, $hapus);
         if(count($hasilhapus)!=0){ 
@@ -63,7 +65,64 @@ class C_MKomisi extends CI_Controller{
         $data['aksesadd'] = $tomboltambah;   
 
         $data['komisi'] = $this->db->get('tb_masterkomisi')->result(); 
-        $this->load->view('komisi/v_komisi',$data); 
+        $this->load->view('komisi/v_mkomisi',$data); 
+        $this->load->view('template/footer');
+    }
+
+     function add()
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('statusanggota');
+        $iduser = $this->session->userdata('id_user');
+        $nourut = $this->session->userdata('nourut');
+        $data['menukom'] = $this->M_Setting->getmenukom($id);
+        $data['menupos'] = $this->M_Setting->getmenupos($id);
+        $data['menujenis'] = 'pos';
+        $data['activeMenu'] = '16';
+        $this->load->view('template/sidebar.php', $data);
+        $tabel = 'tb_akses';
+        $edit = array(
+            'tipeuser' => $id,
+            'edit' => '1',
+            'id_menu' => '16'
+        );
+        $hasiledit = $this->M_Setting->cekakses($tabel, $edit);
+        if(count($hasiledit)!=0){ 
+            $tomboledit = 'aktif';
+        } else {
+            $tomboledit = 'tidak';
+        }
+        $tambah = array(
+
+            'tipeuser' => $id,
+            'add' => '1',
+            'id_menu' => '16'
+        );
+        $hasiltambah = $this->M_Setting->cekakses($tabel, $tambah);
+        if(count($hasiltambah)!=0){ 
+            $tomboltambah = 'aktif';
+        } else {
+            $tomboltambah = 'tidak';
+        }
+
+        $hapus = array(
+            'tipeuser' => $id,
+            'delete' => '1',
+            'id_menu' => '16'
+        );
+        $hasilhapus = $this->M_Setting->cekakses($tabel, $hapus);
+        if(count($hasilhapus)!=0){ 
+            $tombolhapus = 'aktif';
+        } else{
+            $tombolhapus = 'tidak';
+        }
+
+        $data['akseshapus'] = $tombolhapus;
+        $data['aksesedit'] = $tomboledit;   
+        $data['aksesadd'] = $tomboltambah;   
+
+        $data['komisi'] = $this->db->get('tb_masterkomisi')->result(); 
+        $this->load->view('komisi/v_addmkomisi',$data); 
         $this->load->view('template/footer');
     }
 
@@ -73,12 +132,14 @@ class C_MKomisi extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $data['menukom'] = $this->M_Setting->getmenukom($id);
         $data['menupos'] = $this->M_Setting->getmenupos($id);
+        $data['menujenis'] = 'pos';
+        $data['activeMenu'] = '16';
         $this->load->view('template/sidebar.php', $data);
                 $tabel = 'tb_akses';
         $edit = array(
             'tipeuser' => $id,
             'edit' => '1',
-            'id_menu' => '15'
+            'id_menu' => '16'
         );
         $hasiledit = $this->M_Setting->cekakses($tabel, $edit);
         if(count($hasiledit)!=0){ 
@@ -90,7 +151,7 @@ class C_MKomisi extends CI_Controller{
         $tambah = array(
             'tipeuser' => $id,
             'add' => '1',
-            'id_menu' => '15'
+            'id_menu' => '16'
         );
         $hasiltambah = $this->M_Setting->cekakses($tabel, $tambah);
         if(count($hasiltambah)!=0){ 
@@ -102,7 +163,7 @@ class C_MKomisi extends CI_Controller{
         $hapus = array(
             'tipeuser' => $id,
             'delete' => '1',
-            'id_menu' => '15'
+            'id_menu' => '16'
         );
         $hasilhapus = $this->M_Setting->cekakses($tabel, $hapus);
         if(count($hasilhapus)!=0){ 
@@ -115,7 +176,7 @@ class C_MKomisi extends CI_Controller{
         $data['aksesedit'] = $tomboledit;   
         $data['aksesadd'] = $tomboltambah;   
 
-        $data['kat'] = $this->db->get_where('tb_masterkomisi', ['id_komisi' => $ida])->result();
+        $data['kat'] = $this->db->get_where('tb_masterkomisi', ['id_masterkomisi' => $ida])->result();
         $data['komisi'] = $this->db->get('tb_masterkomisi')->result(); 
         $this->load->view('komisi/v_editmkomisi',$data); 
         $this->load->view('template/footer');
@@ -123,49 +184,38 @@ class C_MKomisi extends CI_Controller{
 
     function tambah()
     {
-        if($this->M_Komisi->cekkomisi($this->input->post('komisi', true))){
+        if($this->M_Komisi->cekmkomisi($this->input->post('level', true))){
             $this->M_Komisi->tambahdata();
             $this->session->set_flashdata('sukses','<div class="alert alert-warning left-icon-alert" role="alert">
                                                         <strong>Sukses!</strong> Data Berhasil di Tambah.
                                                     </div>');
-            redirect('mkomisi');
+            redirect('masterkomisi');
         } else {
             $this->session->set_flashdata('gagal', '<div class="alert alert-danger left-icon-alert" role="alert">
                                                         <strong>Perhatian!</strong> Data Sudah Ada.
                                                     </div>');
-            redirect('mkomisi');            
+            redirect('masterkomisi');            
         }
     } 
 
     function update()
     {   
-        $id =  $this->input->post('id');
-        $where = array('id_komisi' => $id );
-        $wherekomisi = array('komisi' => $this->input->post('komisi'));
-        
-            if($this->M_Komisi->cekkomisi($this->input->post('komisi', true))){
-                $this->M_Komisi->update($where, $wherekomisi);
-                $this->session->set_flashdata('sukses','<div class="alert alert-warning left-icon-alert" role="alert">
-                                                        <strong>Sukses!</strong> Data Berhasil di Tambah.
-                                                    </div>');
-            } else {
-                $this->session->set_flashdata('gagal', '<div class="alert alert-danger left-icon-alert" role="alert">
-                                                            <strong>Perhatian!</strong> Data Sudah Ada.
-                                                        </div>');
-            }
-        
-        redirect('mkomisi');  
+        $this->M_Komisi->update();
+        $this->session->set_flashdata('sukses','<div class="alert alert-warning left-icon-alert" role="alert">
+                                                <strong>Sukses!</strong> Data Berhasil di Rubah.
+                                            </div>');
+        redirect('masterkomisi');  
     }
 
 
     function hapus($id)
     {
 
-        $where = array('id_komisi' => $id);
+        $where = array('id_masterkomisi' => $id);
         $this->M_Setting->delete($where,'tb_masterkomisi');
         $this->session->set_flashdata('sukses', '<div class="alert alert-success left-icon-alert" role="alert">
                                                     <strong>Sukses!</strong> Data Berhasil di Hapus.
                                                 </div>');
-            redirect('mkomisi'); 
+            redirect('masterkomisi'); 
     } 
 }

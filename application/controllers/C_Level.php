@@ -20,6 +20,8 @@ class C_Level extends CI_Controller{
         $nourut = $this->session->userdata('nourut');
         $data['menukom'] = $this->M_Setting->getmenukom($id);
         $data['menupos'] = $this->M_Setting->getmenupos($id);
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '7';
         $this->load->view('template/sidebar.php', $data);
         $tabel = 'tb_akses';
         $edit = array(
@@ -60,6 +62,8 @@ class C_Level extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $data['menukom'] = $this->M_Setting->getmenukom($id);
         $data['menupos'] = $this->M_Setting->getmenupos($id);
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '7';
         $this->load->view('template/sidebar.php', $data);
         $data['level'] = $this->M_Level->getspek($ida);
         $this->load->view('level/v_vlevel',$data); 
@@ -72,6 +76,8 @@ class C_Level extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $data['menukom'] = $this->M_Setting->getmenukom($id);
         $data['menupos'] = $this->M_Setting->getmenupos($id);
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '7';
         $this->load->view('template/sidebar.php', $data);
         $data['level'] = $this->M_Level->getspek($ida);
         $this->load->view('level/v_editlevel',$data); 
@@ -84,6 +90,8 @@ class C_Level extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $data['menukom'] = $this->M_Setting->getmenukom($id);
         $data['menupos'] = $this->M_Setting->getmenupos($id);
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '7';
         $this->load->view('template/sidebar.php', $data);
         $this->load->view('level/v_addlevel',$data); 
         $this->load->view('template/footer');

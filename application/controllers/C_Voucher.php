@@ -20,6 +20,8 @@ class C_Voucher extends CI_Controller{
         $nourut = $this->session->userdata('nourut');
         $data['menukom'] = $this->M_Setting->getmenukom($id);
         $data['menupos'] = $this->M_Setting->getmenupos($id);
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '14';
         $this->load->view('template/sidebar.php', $data);
         $tabel = 'tb_akses';
         $edit = array(

@@ -21,6 +21,8 @@ class C_Berita extends CI_Controller{
         $data['menukom'] = $this->M_Setting->getmenukom($id);
         $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '9';
         $tabel = 'tb_akses';
         $edit = array(
             'tipeuser' => $id,
@@ -73,6 +75,8 @@ class C_Berita extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $data['menukom'] = $this->M_Setting->getmenukom($id);
         $data['menupos'] = $this->M_Setting->getmenupos($id);
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '9';
         $this->load->view('template/sidebar.php', $data);
         $data['berita'] = $this->M_Berita->getspek($ida);
         $this->load->view('berita/v_vberita',$data); 
@@ -85,6 +89,8 @@ class C_Berita extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $data['menukom'] = $this->M_Setting->getmenukom($id);
         $data['menupos'] = $this->M_Setting->getmenupos($id);
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '9';
         $this->load->view('template/sidebar.php', $data);
         $data['berita'] = $this->M_Berita->getspek($ida);
         $this->load->view('berita/v_eberita',$data); 
@@ -97,6 +103,8 @@ class C_Berita extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $data['menukom'] = $this->M_Setting->getmenukom($id);
         $data['menupos'] = $this->M_Setting->getmenupos($id);
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '9';
         $this->load->view('template/sidebar.php', $data);
         $this->load->view('berita/v_addberita',$data); 
         $this->load->view('template/footer');

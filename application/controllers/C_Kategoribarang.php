@@ -20,6 +20,8 @@ class C_kategoribarang extends CI_Controller{
         $nourut = $this->session->userdata('nourut');
         $data['menukom'] = $this->M_Setting->getmenukom($id);
         $data['menupos'] = $this->M_Setting->getmenupos($id);
+        $data['menujenis'] = 'pos';
+        $data['activeMenu'] = '15';
         $this->load->view('template/sidebar.php', $data);
         $tabel = 'tb_akses';
         $edit = array(
@@ -73,6 +75,8 @@ class C_kategoribarang extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $data['menukom'] = $this->M_Setting->getmenukom($id);
         $data['menupos'] = $this->M_Setting->getmenupos($id);
+        $data['menujenis'] = 'pos';
+        $data['activeMenu'] = '15';
         $this->load->view('template/sidebar.php', $data);
                 $tabel = 'tb_akses';
         $edit = array(

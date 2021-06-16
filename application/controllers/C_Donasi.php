@@ -20,6 +20,8 @@ class C_Donasi extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $nourut = $this->session->userdata('nourut');
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '4';
         $data['menukom'] = $this->M_Setting->getmenukom($id);
         $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
@@ -29,7 +31,7 @@ class C_Donasi extends CI_Controller{
         $edit = array(
             'tipeuser' => $id,
             'edit' => '1',
-            'id_menu' => '1'
+            'id_menu' => '4'
         );
         $hasiledit = $this->M_Setting->cekakses($tabel, $edit);
         if(count($hasiledit)!=0){ 
@@ -41,7 +43,7 @@ class C_Donasi extends CI_Controller{
         $hapus = array(
             'tipeuser' => $id,
             'delete' => '1',
-            'id_menu' => '1'
+            'id_menu' => '4'
         );
         $hasilhapus = $this->M_Setting->cekakses($tabel, $hapus);
         if(count($hasilhapus)!=0){ 
@@ -71,6 +73,8 @@ class C_Donasi extends CI_Controller{
         $nourut = $this->session->userdata('nourut');
         $data['menukom'] = $this->M_Setting->getmenukom($id);
         $data['menupos'] = $this->M_Setting->getmenupos($id);
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '4';
         $this->load->view('template/sidebar.php', $data);
         $levelup = $level+1;
         $data['level'] = $this->M_Level->getspek($levelup);
@@ -85,6 +89,8 @@ class C_Donasi extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $nourut = $this->session->userdata('nourut');
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '4';
         $data['menukom'] = $this->M_Setting->getmenukom($id);
         $data['menupos'] = $this->M_Setting->getmenupos($id);
         $this->load->view('template/sidebar.php', $data);
@@ -265,6 +271,8 @@ class C_Donasi extends CI_Controller{
         $nourut = $this->session->userdata('nourut');
         $data['menukom'] = $this->M_Setting->getmenukom($id);
         $data['menupos'] = $this->M_Setting->getmenupos($id);
+        $data['menujenis'] = 'komunitas';
+        $data['activeMenu'] = '4';
         $this->load->view('template/sidebar.php', $data);
         $data['data'] = $this->M_Donasi->gethistory($iduser);
         $this->load->view('donasi/v_history',$data); 

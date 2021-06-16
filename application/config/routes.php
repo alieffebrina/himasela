@@ -129,3 +129,4 @@ $route['Kategori-edit/(:any)'] = 'C_Kategoribarang/edit/$1';
 //master komisi
 $route['masterkomisi'] = 'C_MKomisi';
 $route['masterkomisi-edit/(:any)'] = 'C_MKomisi/edit/$1';
+$route['masterkomisi-add'] = 'C_MKomisi/add';
