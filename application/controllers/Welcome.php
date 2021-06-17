@@ -41,6 +41,8 @@ class Welcome extends CI_Controller {
         $user = $this->session->userdata('id_user');
         $data['menukom'] = $this->M_Setting->getmenukom($id);
         $data['menupos'] = $this->M_Setting->getmenupos($id);
+        $data['menujenis'] = 'welcome';
+        $data['activeMenu'] = '0';
 		$this->load->view('template/sidebar.php', $data);
 		if($id=='administrator'){
 			$data['anggota'] = $this->M_User->totalanggota();

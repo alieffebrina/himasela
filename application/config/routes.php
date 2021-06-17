@@ -120,11 +120,19 @@ $route['level-add'] = 'C_Level/add';
 //voucher
 $route['voucher'] = 'C_Voucher';
 
-
 //kategori barang
 $route['kategori'] = 'C_Kategoribarang';
 $route['Kategori-edit/(:any)'] = 'C_Kategoribarang/edit/$1';
 
+//kategori barang
+$route['barang'] = 'C_Barang';
+$route['barang-edit/(:any)'] = 'C_Barang/edit/$1';
+$route['barang-add'] = 'C_Barang/add';
+
+$route['historyharga'] = 'C_Barang/historyharga';
+
+//stok
+$route['stok'] = 'C_Barang/stok';
 
 //master komisi
 $route['masterkomisi'] = 'C_MKomisi';
