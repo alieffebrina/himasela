@@ -55,10 +55,7 @@
                       <td><?php echo $barang->stokmin; ?></td>
                       <td><?php echo $barang->stok; ?></td>
                       <td><?php echo $barang->stokretur; ?></td>
-                      <td><a href="<?php echo site_url('stok-view/'.$barang->id_barang); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
-                      <!-- <?php if($aksesedit == 'aktif'){?>
-                      <a href="<?php echo site_url('barang-edit/'.$barang->id_barang); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
-                      <?php } ?> -->
+                      <td><a href="<?php echo site_url('stok-view/'.$barang->id_barang); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a><a href="<?php echo site_url('stokopname/'.$barang->id_barang); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
                       </td>
                     </tr>
                   <?php } ?>

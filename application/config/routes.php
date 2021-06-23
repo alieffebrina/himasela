@@ -133,6 +133,8 @@ $route['historyharga'] = 'C_Barang/historyharga';
 
 //stok
 $route['stok'] = 'C_Barang/stok';
+$route['stok-view/(:any)'] = 'C_Barang/stokview/$1';
+$route['stokopname/(:any)'] = 'C_Barang/stokopname/$1';
 
 //master komisi
 $route['masterkomisi'] = 'C_MKomisi';
